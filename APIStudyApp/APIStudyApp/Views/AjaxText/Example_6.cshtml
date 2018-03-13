@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Example_6";
+}
+
+<h2>Övning 6</h2>
+<div class="row">
+    <div class="col-md-8">
+        <p>Vi ska nu ha två knappar, en rubrik, en kursiv ingress, en paragraf med text och en bild. På knapparna står det Prev och Next. När sidan först laddas finns alla övriga taggar men innehåller enbart <em>no data loaded</em> först.</p>
+        <ul>
+            <li>
+                Först gången användaren klickar på Next så ska en request skickas till <!--EDIT-->http://mardby.se/AJK15G/animals.php med query string animal=0
+            </li>
+            <li>
+                Nästa gång användaren klickar på Next så skickas request på samma url men värdet i query strängen ska ökas med ett
+            </li>
+            <li>
+                Istället för att skicka på animal=5 så använd animal=0 igen
+            </li>
+            <li>
+                När användaren klickar på Prev så ska samma sak som med Next hända förutom att anropets query string ska ha minskat värdet (animal=3 blir animal=2 osv och istället för animal=-1 så animal=4)
+            </li>
+        </ul>
+        <p>Responsen du får är en textsträng som du behöver dela upp i en array (split på *) där sedan första elementet använder du som rubrik, andra elementet är kursiv ingress, tredje elementet är en paragraf och fjärde elementet är en bild-url.</p>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Tillbaka till övningarna", "Index")
+</div>
+<!--Under här skrivs övningen-->
+
+<style>
+    /* din css här */
+</style>
+
+<script type="text/javascript">
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        console.log("readyState:" + request.readyState);
+        console.log("status:" + request.status);
+        console.log("responseText:" + request.responseText);
+        console.log("-----");
+
+        if ((request.readyState === 4) && (request.status === 200)) {
+            document.getElementById('here').innerHTML = request.responseText;
+        }
+    }
+    $(document).ready(function () {
+
+        // mer kod här
+        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+
+        request.send();
+    });
+
+
+</script>
+
+
+<!--html här-->
+<div id="here"></div>
+
+

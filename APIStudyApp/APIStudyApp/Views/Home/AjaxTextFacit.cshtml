@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "AjaxTextFacit";
+}
+
+<h2>Ajax med Texter</h2>
+
+<p>
+    Detta är lösningsförslag. Det går så klart lösa uppgifterna på flera olika sätt.
+</p>
+<h3>Lösning 1</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX text 1&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;button&gt;Ladda data&lt;/button&gt;
+	&lt;div&gt;&lt;/div&gt;
+
+	&lt;script type=&quot;text/javascript&quot;&gt;
+
+		var request = new XMLHttpRequest();
+
+		var handler = function() {
+			console.log(&quot;readyState: &quot; + request.readyState);
+			console.log(&quot;status: &quot; + request.status);
+			if(request.readyState===4 &amp;&amp; request.status===200)
+				$(&quot;div&quot;).append(&quot;&lt;p&gt;&quot; + request.responseText + &quot;&lt;/p&gt;&quot;);
+		}
+
+		$(document).ready(function() {
+			$(&quot;button&quot;).click(function() {
+				request.onreadystatechange = handler;
+			<!--EDIT-->	request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_text.php&quot;);
+				request.send();
+			});
+		});
+
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Lösning 2</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX text 2&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;button&gt;Ladda data&lt;/button&gt;
+	&lt;ul&gt;&lt;/ul&gt;
+
+	&lt;script type=&quot;text/javascript&quot;&gt;
+
+		var request = new XMLHttpRequest();
+
+		var handler = function() {
+			console.log(&quot;readyState: &quot; + request.readyState);
+			console.log(&quot;status: &quot; + request.status);
+			if(request.readyState===4 &amp;&amp; request.status===200)
+				$(&quot;ul&quot;).append(&quot;&lt;li&gt;&quot; + request.responseText + &quot;&lt;/li&gt;&quot;);
+		}
+
+		$(document).ready(function() {
+			$(&quot;button&quot;).click(function() {
+				request.onreadystatechange = handler;
+				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_text_random.php?numberOfWords=10&quot;);
+				request.send();
+			});
+		});
+
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Lösning 3</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX text 3&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;style type=&quot;text/css&quot;&gt;
+		th, td {
+			border: 1px solid lightblue;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;form&gt;
+		&lt;input type=&quot;text&quot;&gt;
+		&lt;button&gt;Ladda data&lt;/button&gt;
+	&lt;/form&gt;
+	&lt;table&gt;
+		&lt;tr&gt;&lt;th&gt;numberOfWords&lt;/th&gt;&lt;th&gt;responseText&lt;/th&gt;&lt;/tr&gt;
+	&lt;/table&gt;
+
+	&lt;script type=&quot;text/javascript&quot;&gt;
+
+		var request = new XMLHttpRequest();
+		var input = 0;
+		var handler = function() {
+			if(request.readyState===4 &amp;&amp; request.status===200)
+				$(&quot;table&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + input + &quot;&lt;/td&gt;&lt;td&gt;&quot; + request.responseText + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+		}
+
+		$(document).ready(function() {
+			$(&quot;button&quot;).click(function(evt) {
+				evt.preventDefault();
+				input = $(&quot;input&quot;).val();
+				request.onreadystatechange = handler;
+				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_text_random.php?numberOfWords=&quot; + input);
+				request.send();
+			});
+		});
+
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Lösning 4</h3>
+<pre>
+</pre>
+<h3>Lösning 5</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX texter 5&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;button&gt;Ladda data&lt;/button&gt;
+	&lt;ul&gt;&lt;/ul&gt;
+
+	&lt;script type=&quot;text/javascript&quot;&gt;
+
+		var request = new XMLHttpRequest();
+		var handler = function() {
+			if(request.readyState===4 &amp;&amp; request.status===200)
+			{
+				var arr = request.responseText.split(&quot;,&quot;);
+				console.log(arr);
+				for(i in arr)
+					$(&quot;ul&quot;).append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
+			}
+		}
+
+		$(document).ready(function() {
+			$(&quot;button&quot;).click(function() {
+				request.onreadystatechange = handler;
+				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_comma_text.php&quot;);
+				request.send();
+			});
+		});
+
+	&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Lösning 6</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX texter 6&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		
+		var handler = function() {
+			if(request.readyState===4 &amp;&amp; request.status===200)
+			{
+				var arr = request.responseText.split(&quot;*&quot;);
+				console.log(arr);
+				$(&quot;h1&quot;).html(arr[0]);
+				$(&quot;em&quot;).html(arr[1]);
+				$(&quot;p&quot;).html(arr[2]);
+				$(&quot;img&quot;).attr(&quot;src&quot;, arr[3]);
+			}
+		}
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = handler;
+
+		var sendRequest = function(a) {
+			<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/animals.php?animal=&quot; + a);
+			request.send();
+		}
+
+		var animal = 0;
+
+		$(document).ready(function() {
+			$(&quot;#prev&quot;).click(function() {
+				animal--;
+				if(animal &lt; 0)
+					animal = 4;
+				sendRequest(animal);
+			});
+			$(&quot;#next&quot;).click(function() {
+				animal++;
+				if(animal &gt; 4)
+					animal = 0;
+				sendRequest(animal);
+			});
+		});
+
+	&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+	&lt;button id=&quot;prev&quot;&gt;Prev&lt;/button&gt; &lt;button id=&quot;next&quot;&gt;Next&lt;/button&gt;
+	&lt;h1&gt;no data loaded&lt;/h1&gt;
+	&lt;em&gt;no data loaded&lt;/em&gt;
+	&lt;p&gt;no data loaded&lt;/p&gt;
+	&lt;img src=&quot;#&quot;&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+

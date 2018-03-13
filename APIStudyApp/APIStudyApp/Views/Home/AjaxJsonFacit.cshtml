@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "AjaxJsonFacit";
+}
+
+<h2>Ajax med JSON</h2>
+<p>
+    Detta är lösningsförslag. Det går så klart lösa uppgifterna på flera olika sätt.
+</p>
+<h3>Lösning 1</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX JSON 1&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		$(document).ready(function() {
+			$(&quot;button&quot;).click(function() {
+				var request = new XMLHttpRequest();
+				var x = $(&quot;input&quot;).val();
+				request.onreadystatechange = function() {
+					if(request.readyState===4 &amp;&amp; request.status===200)
+					{
+						var arr = JSON.parse(request.responseText);
+						var list = &quot;&lt;ul&gt;&quot;;
+						for(var i in arr)
+							list += &quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;;
+						list += &quot;&lt;/ul&gt;&quot;;
+						$(&quot;table&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + x + &quot;&lt;/td&gt;&lt;td&gt;&quot; + list + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+					}
+				};
+				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_json_array.php?numberOfWords=&quot; + x);
+				request.send();
+			});
+		});
+	&lt;/script&gt;
+	&lt;style type=&quot;text/css&quot;&gt;
+		th,td {
+			border: 1px solid lightgreen;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;input type=&quot;text&quot;&gt;
+	&lt;button&gt;Ladda JSON&lt;/button&gt;
+	&lt;table&gt;
+		&lt;tr&gt;&lt;th&gt;numberOfWOrds&lt;/th&gt;&lt;th&gt;responseText&lt;/th&gt;&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Lösning 2</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX JSON 2&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		$(document).ready(function() {
+			$(&quot;button&quot;).click(function() {
+				var x = $(this).text();
+				var request = new XMLHttpRequest();
+				request.onreadystatechange = function() {
+					if(request.readyState===4 &amp;&amp; request.status===200)
+					{
+						var arr = JSON.parse(request.responseText);
+						var list = &quot;&quot;;
+						for(var i in arr)
+							list += &quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;;
+						var thisUl = &quot;#u&quot; + x;
+						$(thisUl).html(list);
+					}
+				}
+				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_json_array.php?numberOfWords=&quot; + x);
+				request.send();
+			});
+		});
+	&lt;/script&gt;
+	&lt;style type=&quot;text/css&quot;&gt;
+		td {
+			border: 1px solid lightblue;
+		}
+		button {
+			width: 140px;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;table&gt;
+		&lt;tr&gt;&lt;td&gt;&lt;button&gt;1&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;2&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;3&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;4&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;5&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+		&lt;tr&gt;&lt;td&gt;&lt;ul id=&quot;u1&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u2&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u3&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u4&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u5&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Lösning 2 - Utmaning</h3>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX JSON 2&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+		// change this variable to the number of buttons you want!
+		var numButtons = 5;
+		$(document).ready(function() {
+			var buttons = &quot;&lt;tr&gt;&quot;;
+			var uls = &quot;&lt;tr&gt;&quot;;
+			for (var i = 1; i &lt;= numButtons; i++)
+			{
+				buttons += &quot;&lt;td&gt;&lt;button&gt;&quot;+i+&quot;&lt;/button&gt;&lt;/td&gt;&quot;;
+				uls += &quot;&lt;td&gt;&lt;ul id=u&quot;+i+&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&quot;;
+			};
+			buttons += &quot;&lt;/tr&gt;&quot;;
+			uls += &quot;&lt;/tr&gt;&quot;;
+			$(&quot;table&quot;).append(buttons + uls);
+
+			$(&quot;button&quot;).click(function() {
+				var x = $(this).text();
+				var request = new XMLHttpRequest();
+				request.onreadystatechange = function() {
+					if(request.readyState===4 &amp;&amp; request.status===200)
+					{
+						var arr = JSON.parse(request.responseText);
+						var list = &quot;&quot;;
+						for(var i in arr)
+							list += &quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;;
+						var thisUl = &quot;#u&quot; + x;
+						$(thisUl).html(list);
+					}
+				}
+				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_json_array.php?numberOfWords=&quot; + x);
+				request.send();
+			});
+		});
+	&lt;/script&gt;
+	&lt;style type=&quot;text/css&quot;&gt;
+		td {
+			border: 1px solid lightblue;
+		}
+		button {
+			width: 140px;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;table&gt;
+	&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+<h3>Lösning 3</h3>
+<pre>
+</pre>
+<h3>Lösning 4</h3>
+<pre>
+</pre>
+<h3>Lösning 5</h3>
+<pre>
+</pre>
+<h3>Lösning 6</h3>
+<p>
+    Jag har <i>inte</i> byggt denna på föregående uppgift för att förenkla/förkorta den.
+</p>
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;utf-8&quot;&gt;
+	&lt;title&gt;Öva AJAX JSON 6&lt;/title&gt;
+	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+	&lt;script type=&quot;text/javascript&quot;&gt;
+	$(document).ready(function() {
+		$(&quot;#blog&quot;).click(function(e) {
+			e.preventDefault();
+			var request = new XMLHttpRequest();
+			request.onreadystatechange = function() {
+				if(request.readyState===4 &amp;&amp; request.status===200)
+				{
+					var blogposts = JSON.parse(request.responseText).blog_posts;
+					for(var i in blogposts)
+					{
+						$(&quot;#main&quot;).append(&quot;&lt;div&gt;&quot; + 
+							&quot;&lt;h1&gt;&quot; + blogposts[i].title + &quot;&lt;/h1&gt;&quot; + 
+							&quot;&lt;em&gt;&quot; + blogposts[i].date + &quot;&lt;/em&gt;&quot; + 
+							&quot;&lt;p&gt;&quot; + blogposts[i].text + &quot;&lt;/p&gt;&quot; + 
+							&quot;&lt;/div&gt;&quot;);
+					}
+				}
+			};
+			<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/simple_json.php&quot;);
+			request.send();
+		});
+	});
+	&lt;/script&gt;
+	&lt;style type=&quot;text/css&quot;&gt;
+	div div {
+		width: 50%;
+		border: 2px solid blue;
+		margin-bottom: 5px;
+	}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;a href=&quot;#&quot; id=&quot;blog&quot;&gt;Blog&lt;/a&gt;
+&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>

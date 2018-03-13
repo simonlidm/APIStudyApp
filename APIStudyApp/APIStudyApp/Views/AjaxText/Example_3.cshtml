@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Example_3";
+}
+
+<h2>Övning 3</h2>
+<ul class="list-group">
+    <li class="list-group-item">Utgå ifrån koden ifrån förra uppgiften.</li>
+    <li class="list-group-item">Ersätt knappen med ett formulär med ett textfält och knapp.</li>
+    <li class="list-group-item">När man fyllt i en siffra i textfältet och klickat på knappen så kommer requesten skickas och <em>numberOfWords</em> är satt till det värde som användaren fyllt i textfältet.</li>
+    <li class="list-group-item">Den skickade siffran och svaret som kommer tillbaks läggs till som två fält på en rad i en tabell.</li>
+</ul>
+<div>
+    @Html.ActionLink("Tillbaka till övningarna", "Index")
+</div>
+<!--Under här skrivs övningen-->
+
+<style>
+    /* din css här */
+</style>
+
+
+<!--html här-->
+<div id="here"></div>
+
+
+
+<script type="text/javascript">
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        console.log("readyState:" + request.readyState);
+        console.log("status:" + request.status);
+        console.log("responseText:" + request.responseText);
+        console.log("-----");
+
+        if ((request.readyState === 4) && (request.status === 200)) {
+            document.getElementById('here').innerHTML = request.responseText;
+        }
+    }
+    $(document).ready(function () {
+
+        // mer kod här
+        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+
+        request.send();
+    });
+
+
+</script>

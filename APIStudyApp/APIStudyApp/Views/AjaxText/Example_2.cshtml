@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Example_2";
+}
+
+<h2>Övning 2</h2>
+<div class="row">
+    <div class="col-md-8">
+        <p>Utgå ifrån koden nedan som du ser i 'Example_2.cshtml' i View mappen, fast skicka requesten till <!--EDIT-->lorem_text_random.php. Lägg till en query string på http-requesten med nyckel <em>numberOfWords</em> och värde 10. Varje gång man klickar på knappen så sker requesten precis som innan men vi lägger nu till svaret som ett list item i en oordnad lista.</p>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Tillbaka till övningarna", "Index")
+</div>
+<!--Under här skrivs övningen-->
+
+<style>
+    /* din css här */
+</style>
+
+
+<!--html här-->
+<div id="here"></div>
+
+
+
+<script type="text/javascript">
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        console.log("readyState:" + request.readyState);
+        console.log("status:" + request.status);
+        console.log("responseText:" + request.responseText);
+        console.log("-----");
+
+        if ((request.readyState === 4) && (request.status === 200)) {
+            document.getElementById('here').innerHTML = request.responseText;
+        }
+    }
+    $(document).ready(function () {
+
+        // mer kod här
+        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+
+        request.send();
+    });
+
+
+</script>

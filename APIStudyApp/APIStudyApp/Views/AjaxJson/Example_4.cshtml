@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Example_4";
+}
+
+<h2>Övning 4</h2>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            Requesten i denna uppgift ska gå till <!--EDIT--><a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/simple_json.php">http://mardby.se/AJK15G/simple_json.php</a>
+        </p><p>
+            Högerklicka och välj <i>Visa sidkälla</i> så får du en mer lättläst output.
+        </p><p>
+            Du ska göra en sida med en länk: About
+        </p><p>
+            När användaren klickar på About så ska ska innehållet i elementet <i>about</i> i det JSON-objekt vi får ifrån servern visas upp.
+        </p>
+
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Tillbaka till övningarna", "Index")
+</div><br /><br />
+<!--Under här skrivs övningen-->
+
+<style>
+    /* din css här */
+</style>
+
+
+<!--html här-->
+<button>Ladda JSON</button>
+<ul></ul>
+
+<script type="text/javascript">
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        if ((request.readyState === 4) && (request.status === 200)) {
+            var arr = JSON.parse(request.responseText);
+            for (var i in arr) {
+                $("ul").append("<li>" + arr[i] + "</li>");
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        $("button").click(function () {
+            //EDIT  request.open('GET', 'http://mardby.se/AJK15G/lorem_json_array.php');
+            request.send();
+        });
+    });
+
+</script>
+
+

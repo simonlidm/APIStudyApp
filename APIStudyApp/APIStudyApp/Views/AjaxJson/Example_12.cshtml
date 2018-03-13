@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "Example_12";
+}
+
+<h2>Övning 12</h2>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            I denna uppgift ska requesten gå till <!--EDIT--><a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/dice_json_array.php">http://mardby.se/AJK15G/dice_json_array.php</a> och på denna url kan man lägga till en query string med nyckel numberOfDice och värde 1 till många.
+        </p><p>
+            På sidan ska det finnas två textrutor och en knapp. Framför första textrutan kan det stå "Antal lika" och framför andra textrutan kan det stå "Antal tärningar" och på knappen kan det stå "Kasta tärningarna"
+        </p><p>
+            Poängen är att när man klickar på knappen så ska programmet slå så många tärningar som användaren fyllt i om och om igen tills den får upp lika många lika tärningar som användaren fyllt i.
+        </p><p>
+            Alla tärningskast ska visas, så om det krävs 20 försök innan den lyckas så visas 20 rader med tärningskast.
+        </p><p>
+            Utmaning: Istället för att visa en siffra för varje tärningskast så rita en tärning med html och css!
+        </p>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Tillbaka till övningarna", "Index")
+</div><br /><br />
+<!--Under här skrivs övningen-->
+
+<style>
+    /* din css här */
+</style>
+
+
+<!--html här-->
+<button>Ladda JSON</button>
+<ul></ul>
+
+<script type="text/javascript">
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        if ((request.readyState === 4) && (request.status === 200)) {
+            var arr = JSON.parse(request.responseText);
+            for (var i in arr) {
+                $("ul").append("<li>" + arr[i] + "</li>");
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        $("button").click(function () {
+            //EDIT  request.open('GET', 'http://mardby.se/AJK15G/lorem_json_array.php');
+            request.send();
+        });
+    });
+
+</script>

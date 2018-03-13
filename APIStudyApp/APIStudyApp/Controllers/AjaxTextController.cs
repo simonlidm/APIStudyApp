@@ -6,35 +6,34 @@ using System.Web.Mvc;
 
 namespace APIStudyApp.Controllers
 {
-    public class HomeController : Controller
+    public class AjaxTextController : Controller
     {
+        // GET: AjaxText
         public ActionResult Index()
         {
-            ViewBag.Title = "APIStudyApp";
-
             return View();
         }
-        public ActionResult Tips()
+        public ActionResult Example_1()
         {
             return View();
         }
-        public ActionResult Facit()
+        public ActionResult Example_2()
         {
             return View();
         }
-      public ActionResult AjaxTextTips()
+        public ActionResult Example_3()
         {
             return View();
         }
-        public ActionResult AjaxJsonTips()
+        public ActionResult Example_4()
         {
             return View();
         }
-        public ActionResult AjaxTextFacit()
+        public ActionResult Example_5()
         {
             return View();
         }
-        public ActionResult AjaxJsonFacit()
+        public ActionResult Example_6()
         {
             return View();
         }

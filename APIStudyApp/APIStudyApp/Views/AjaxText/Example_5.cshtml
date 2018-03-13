@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Example_5";
+}
+
+<h2>Övning 5</h2>
+<div class="row">
+    <div class="col-md-8">
+        <p>Vi ska nu bara ha en knapp för att skicka vår request och den ska skickas till <!--EDIT-->lorem_comma_text.php. Svaret som vi får tillbaks som en textsträng där varje ord är separerat med kommatecken, ska vi göra om till en array. Använd <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">split()</a> för att få en array med ett ord per element utan kommatecken. Loopa sedan igenom arrayen och lägg till varje ord som en egen punkt i en oordnad punktlista.</p>
+    </div>
+</div>
+<div>
+    @Html.ActionLink("Tillbaka till övningarna", "Index")
+</div>
+<!--Under här skrivs övningen-->
+
+<style>
+    /* din css här */
+</style>
+
+
+<!--html här-->
+<div id="here"></div>
+
+
+
+<script type="text/javascript">
+
+    var request = new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+
+        console.log("readyState:" + request.readyState);
+        console.log("status:" + request.status);
+        console.log("responseText:" + request.responseText);
+        console.log("-----");
+
+        if ((request.readyState === 4) && (request.status === 200)) {
+            document.getElementById('here').innerHTML = request.responseText;
+        }
+    }
+    $(document).ready(function () {
+
+        // mer kod här
+        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+
+        request.send();
+    });
+
+
+</script>

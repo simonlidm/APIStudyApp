@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Övningar</h1>
+<div class="row">
+    <div class="col-md-8">
+        <p>
+            För varje övning utgår du ifrån mitt exempel. Man hittar dem i varje .cshtml fil i Views mappen.
+        </p><p>
+            I varje övning kommer vi skicka en request till någon url. Dessa kan du alltid testa i din webbläsare för att se hur outputen ser ut. Exvis <a rel="nofollow" class="external free" <!--EDIT-->href="http://localhost/AJK15G/lorem_text.php">http://mardby.se/AJK15G/lorem_text.php</a>
+        </p>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-2">
+            <h2>@Html.ActionLink("Övning 1", "Example_1", "AjaxText", new { area = "" }, null)</h2>
+        </div>
+        <div class="col-md-2">
+            <h2>@Html.ActionLink("Övning 2", "Example_2", "AjaxText", new { area = "" }, null)</h2>
+        </div>
+        <div class="col-md-2">
+            <h2>@Html.ActionLink("Övning 3", "Example_3", "AjaxText", new { area = "" }, null)</h2>
+        </div>
+        <div class="col-md-2">
+            <h2>@Html.ActionLink("Övning 4", "Example_4", "AjaxText", new { area = "" }, null)</h2>
+        </div>
+        <div class="col-md-2">
+            <h2>@Html.ActionLink("Övning 5", "Example_5", "AjaxText", new { area = "" }, null)</h2>
+        </div>        
+    </div><br /><br />
+<h1>Fördjupningsövningar</h1>
+<div class="row">
+    <div class="col-md-4">      
+            <h2>@Html.ActionLink("Övning 6", "Example_6", "AjaxText", new { area = "" }, null)</h2>
+    </div>
+</div>

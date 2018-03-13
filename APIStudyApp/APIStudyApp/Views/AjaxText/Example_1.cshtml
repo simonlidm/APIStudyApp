@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Example_1";
+}
+
+<h2>Övning 1</h2>
+<div class="row">
+    <div class="col-md-8">
+        <p>Utgå ifrån koden nedan som du ser i 'Example_1.cshtml' i View mappen, gör så att AJAX-anropet sker när man klickar på en knapp. Använd jQuery för event-hanteringen.</p>
+    </div>
+</div>
+    <div>
+        @Html.ActionLink("Tillbaka till övningarna", "Index")
+    </div>
+    <!--Under här skrivs övningen-->
+
+    <style>
+        /* din css här */
+    </style>
+
+
+    <!--html här-->
+    <div id="here"></div>
+
+
+
+    <script type="text/javascript">
+
+        var request = new XMLHttpRequest();
+
+        request.onreadystatechange = function () {
+
+            console.log("readyState:" + request.readyState);
+            console.log("status:" + request.status);
+            console.log("responseText:" + request.responseText);
+            console.log("-----");
+
+            if ((request.readyState === 4) && (request.status === 200)) {
+                document.getElementById('here').innerHTML = request.responseText;
+            }
+        }
+        $(document).ready(function () {
+
+            // mer kod här
+            //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+
+            request.send();
+        });
+
+
+    </script>

@@ -174,8 +174,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AjaxJsonController.cs" />
+    <Compile Include="Controllers\AjaxTextController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,6 +247,32 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Tips.cshtml" />
+    <Content Include="Views\Home\Facit.cshtml" />
+    <Content Include="Views\AjaxText\Index.cshtml" />
+    <Content Include="Views\AjaxJson\Index.cshtml" />
+    <Content Include="Views\AjaxText\Example_1.cshtml" />
+    <Content Include="Views\AjaxText\Example_2.cshtml" />
+    <Content Include="Views\AjaxText\Example_3.cshtml" />
+    <Content Include="Views\AjaxText\Example_4.cshtml" />
+    <Content Include="Views\AjaxText\Example_5.cshtml" />
+    <Content Include="Views\AjaxText\Example_6.cshtml" />
+    <Content Include="Views\Home\AjaxTextTips.cshtml" />
+    <Content Include="Views\Home\AjaxJsonTips.cshtml" />
+    <Content Include="Views\Home\AjaxTextFacit.cshtml" />
+    <Content Include="Views\Home\AjaxJsonFacit.cshtml" />
+    <Content Include="Views\AjaxJson\Example_1.cshtml" />
+    <Content Include="Views\AjaxJson\Example_2.cshtml" />
+    <Content Include="Views\AjaxJson\Example_3.cshtml" />
+    <Content Include="Views\AjaxJson\Example_4.cshtml" />
+    <Content Include="Views\AjaxJson\Example_5.cshtml" />
+    <Content Include="Views\AjaxJson\Example_6.cshtml" />
+    <Content Include="Views\AjaxJson\Example_7.cshtml" />
+    <Content Include="Views\AjaxJson\Example_8.cshtml" />
+    <Content Include="Views\AjaxJson\Example_9.cshtml" />
+    <Content Include="Views\AjaxJson\Example_10.cshtml" />
+    <Content Include="Views\AjaxJson\Example_11.cshtml" />
+    <Content Include="Views\AjaxJson\Example_12.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
