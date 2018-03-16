@@ -18,6 +18,5 @@ namespace APIStudyApp.Models
         public string AnimalName { get; set; }
         public string AnimalDetails { get; set; }
         public string Url { get; set; }
-        public string LoremText { get; set; }
     }
 }

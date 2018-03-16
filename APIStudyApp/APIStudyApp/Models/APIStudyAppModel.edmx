@@ -30,7 +30,6 @@
           <Property Name="AnimalName" Type="nvarchar" MaxLength="50" />
           <Property Name="AnimalDetails" Type="text" />
           <Property Name="Url" Type="text" />
-          <Property Name="LoremText" Type="text" />
         </EntityType>
         <EntityType Name="blog_posts">
           <Key>
@@ -177,7 +176,6 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <Property Name="AnimalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AnimalDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="LoremText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="blog_posts">
           <Key>
@@ -315,7 +313,6 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
                 <ScalarProperty Name="AnimalName" ColumnName="AnimalName" />
                 <ScalarProperty Name="AnimalDetails" ColumnName="AnimalDetails" />
                 <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="LoremText" ColumnName="LoremText" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
