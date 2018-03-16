@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-8">
         <p>
-            Utgå ifrån koden ifrån förra uppgiften. Vi ska nu anropa<!--EDIT--> lorem_text_slow.php istället i vår request. När knappen klickas ska knappen och textfältet inaktiveras och en gif som visar att sidan laddar svaret ska visas. När svaret kommet tillbaks från servern tas gif:en bort, formuläret aktiveras och svaret visas precis som i förra uppgiften.<br /><br />
+            Utgå ifrån koden ifrån förra uppgiften. Vi ska nu anropa <em>api/loremtexts/slow</em> istället i vår request. När knappen klickas ska knappen och textfältet inaktiveras och en gif som visar att sidan laddar svaret ska visas. När svaret kommet tillbaks från servern tas gif:en bort, formuläret aktiveras och svaret visas precis som i förra uppgiften.<br /><br />
             Exempel på gif nedan. Använd den eller någon annan du hittar som du tycker passar bra.
         </p>
     </div>
@@ -46,7 +46,7 @@
     $(document).ready(function () {
 
         // mer kod här
-        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+        request.open('GET', 'http://localhost:<PORT>/api/loremtexts');
 
         request.send();
     });

@@ -38,5 +38,9 @@ namespace APIStudyApp.Controllers
         {
             return View();
         }
+        public ActionResult ComingSoon()
+        {
+            return View();
+        }
     }
 }

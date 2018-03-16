@@ -6,7 +6,14 @@
 <h2>Övning 5</h2>
 <div class="row">
     <div class="col-md-8">
-        <p>Vi ska nu bara ha en knapp för att skicka vår request och den ska skickas till <!--EDIT-->lorem_comma_text.php. Svaret som vi får tillbaks som en textsträng där varje ord är separerat med kommatecken, ska vi göra om till en array. Använd <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">split()</a> för att få en array med ett ord per element utan kommatecken. Loopa sedan igenom arrayen och lägg till varje ord som en egen punkt i en oordnad punktlista.</p>
+        <p>Vi ska nu bara ha en knapp för att skicka vår request och den ska skickas 
+        till <em>api/loremtexts/comma</em>. Svaret som vi får tillbaks som en 
+        textsträng där varje ord är separerat med kommatecken, ska vi göra om till en 
+        array. Använd
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">
+            split()</a> för att få en array med ett ord per element utan kommatecken. 
+        Loopa sedan igenom arrayen och lägg till varje ord som en egen punkt i en 
+        oordnad punktlista.</p>
     </div>
 </div>
 <div>
@@ -42,7 +49,7 @@
     $(document).ready(function () {
 
         // mer kod här
-        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+        request.open('GET', 'http://localhost:<PORT>/api/loremtexts');
 
         request.send();
     });

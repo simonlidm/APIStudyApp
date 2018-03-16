@@ -49,6 +49,12 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -89,6 +95,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.4\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -177,8 +184,48 @@
     <Compile Include="Controllers\AjaxJsonController.cs" />
     <Compile Include="Controllers\AjaxTextController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoremTextsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Animal.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnimalDetail.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AnimalText.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APIStudyAppModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APIStudyAppModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APIStudyAppModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\APIStudyAppModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>APIStudyAppModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\blog_posts.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Detail.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoremText.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoremTextComma.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tags.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -221,7 +268,24 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <EntityDeploy Include="Models\APIStudyAppModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>APIStudyAppModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\APIStudyAppModel.edmx.diagram">
+      <DependentUpon>APIStudyAppModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Models\APIStudyAppModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>APIStudyAppModel.edmx</DependentUpon>
+      <LastGenOutput>APIStudyAppModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\APIStudyAppModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>APIStudyAppModel.edmx</DependentUpon>
+      <LastGenOutput>APIStudyAppModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -273,15 +337,19 @@
     <Content Include="Views\AjaxJson\Example_10.cshtml" />
     <Content Include="Views\AjaxJson\Example_11.cshtml" />
     <Content Include="Views\AjaxJson\Example_12.cshtml" />
+    <Content Include="Views\Home\ComingSoon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+    <Folder Include="Content\img\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

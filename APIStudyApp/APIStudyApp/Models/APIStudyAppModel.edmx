@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="APIStudyAppDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalId" />
+          </Key>
+          <Property Name="AnimalId" Type="int" Nullable="false" />
+          <Property Name="AnimalMaxId" Type="int" />
+        </EntityType>
+        <EntityType Name="AnimalDetail">
+          <Key>
+            <PropertyRef Name="AnimalDetailId" />
+          </Key>
+          <Property Name="AnimalDetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnimalId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="15" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Url" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AnimalText">
+          <Key>
+            <PropertyRef Name="AnimalId" />
+          </Key>
+          <Property Name="AnimalId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AnimalName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnimalDetails" Type="text" />
+          <Property Name="Url" Type="text" />
+          <Property Name="LoremText" Type="text" />
+        </EntityType>
+        <EntityType Name="blog_posts">
+          <Key>
+            <PropertyRef Name="blog_posts_id" />
+          </Key>
+          <Property Name="blog_posts_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Author" Type="nvarchar" MaxLength="50" />
+          <Property Name="About" Type="text" />
+        </EntityType>
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="DetailId" />
+          </Key>
+          <Property Name="DetailId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="50" />
+          <Property Name="date" Type="date" />
+          <Property Name="text" Type="text" />
+          <Property Name="blog_posts_id" Type="int" />
+          <Property Name="tagId" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremText' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LoremText">
+          <Key>
+            <PropertyRef Name="numberOfWords" />
+          </Key>
+          <Property Name="numberOfWords" Type="int" Nullable="false" />
+          <Property Name="Lorem" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="LoremTextComma">
+          <Key>
+            <PropertyRef Name="numberOfWords" />
+          </Key>
+          <Property Name="numberOfWords" Type="int" Nullable="false" />
+          <Property Name="LoremComma" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TagName1" Type="nvarchar" MaxLength="50" />
+          <Property Name="TagName2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_AnimalDetail_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="AnimalDetail" Type="Self.AnimalDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalId" />
+            </Principal>
+            <Dependent Role="AnimalDetail">
+              <PropertyRef Name="AnimalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_blog_posts">
+          <End Role="blog_posts" Type="Self.blog_posts" Multiplicity="0..1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog_posts">
+              <PropertyRef Name="blog_posts_id" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="blog_posts_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Tags">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="APIStudyAppDatabaseModelStoreContainer">
+          <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnimalDetail" EntityType="Self.AnimalDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnimalText" EntityType="Self.AnimalText" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="blog_posts" EntityType="Self.blog_posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoremText" EntityType="Self.LoremText" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LoremText].[numberOfWords] AS [numberOfWords], 
+    [LoremText].[Lorem] AS [Lorem]
+    FROM [dbo].[LoremText] AS [LoremText]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LoremTextComma" EntityType="Self.LoremTextComma" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LoremTextComma].[numberOfWords] AS [numberOfWords], 
+    [LoremTextComma].[LoremComma] AS [LoremComma]
+    FROM [dbo].[LoremTextComma] AS [LoremTextComma]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AnimalDetail_Animal" Association="Self.FK_AnimalDetail_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="AnimalDetail" EntitySet="AnimalDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_blog_posts" Association="Self.FK_Detail_blog_posts">
+            <End Role="blog_posts" EntitySet="blog_posts" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Tags" Association="Self.FK_Detail_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="APIStudyAppDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Animal">
+          <Key>
+            <PropertyRef Name="AnimalId" />
+          </Key>
+          <Property Name="AnimalId" Type="Int32" Nullable="false" />
+          <Property Name="AnimalMaxId" Type="Int32" />
+          <NavigationProperty Name="AnimalDetail" Relationship="Self.FK_AnimalDetail_Animal" FromRole="Animal" ToRole="AnimalDetail" />
+        </EntityType>
+        <EntityType Name="AnimalDetail">
+          <Key>
+            <PropertyRef Name="AnimalDetailId" />
+          </Key>
+          <Property Name="AnimalDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Animal" Relationship="Self.FK_AnimalDetail_Animal" FromRole="AnimalDetail" ToRole="Animal" />
+        </EntityType>
+        <EntityType Name="AnimalText">
+          <Key>
+            <PropertyRef Name="AnimalId" />
+          </Key>
+          <Property Name="AnimalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AnimalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnimalDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LoremText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="blog_posts">
+          <Key>
+            <PropertyRef Name="blog_posts_id" />
+          </Key>
+          <Property Name="blog_posts_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Detail" Relationship="Self.FK_Detail_blog_posts" FromRole="blog_posts" ToRole="Detail" />
+        </EntityType>
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="DetailId" />
+          </Key>
+          <Property Name="DetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="blog_posts_id" Type="Int32" />
+          <Property Name="tagId" Type="Int32" />
+          <NavigationProperty Name="blog_posts" Relationship="Self.FK_Detail_blog_posts" FromRole="Detail" ToRole="blog_posts" />
+          <NavigationProperty Name="Tags" Relationship="Self.FK_Detail_Tags" FromRole="Detail" ToRole="Tags" />
+        </EntityType>
+        <EntityType Name="Tags">
+          <Key>
+            <PropertyRef Name="tagId" />
+          </Key>
+          <Property Name="tagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TagName1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TagName2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Detail" Relationship="Self.FK_Detail_Tags" FromRole="Tags" ToRole="Detail" />
+        </EntityType>
+        <EntityType Name="LoremText">
+          <Key>
+            <PropertyRef Name="numberOfWords" />
+          </Key>
+          <Property Name="numberOfWords" Type="Int32" Nullable="false" />
+          <Property Name="Lorem" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_AnimalDetail_Animal">
+          <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
+          <End Role="AnimalDetail" Type="Self.AnimalDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Animal">
+              <PropertyRef Name="AnimalId" />
+            </Principal>
+            <Dependent Role="AnimalDetail">
+              <PropertyRef Name="AnimalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_blog_posts">
+          <End Role="blog_posts" Type="Self.blog_posts" Multiplicity="0..1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="blog_posts">
+              <PropertyRef Name="blog_posts_id" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="blog_posts_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Detail_Tags">
+          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
+          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="Detail">
+              <PropertyRef Name="tagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="APIStudyAppDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Animal" EntityType="Self.Animal" />
+          <EntitySet Name="AnimalDetail" EntityType="Self.AnimalDetail" />
+          <EntitySet Name="AnimalText" EntityType="Self.AnimalText" />
+          <EntitySet Name="blog_posts" EntityType="Self.blog_posts" />
+          <EntitySet Name="Detail" EntityType="Self.Detail" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" />
+          <EntitySet Name="LoremText" EntityType="Self.LoremText" />
+          <AssociationSet Name="FK_AnimalDetail_Animal" Association="Self.FK_AnimalDetail_Animal">
+            <End Role="Animal" EntitySet="Animal" />
+            <End Role="AnimalDetail" EntitySet="AnimalDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_blog_posts" Association="Self.FK_Detail_blog_posts">
+            <End Role="blog_posts" EntitySet="blog_posts" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detail_Tags" Association="Self.FK_Detail_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="Detail" EntitySet="Detail" />
+          </AssociationSet>
+          <EntitySet Name="LoremTextComma" EntityType="APIStudyAppDatabaseModel.LoremTextComma" />
+        </EntityContainer>
+        <EntityType Name="LoremTextComma">
+          <Key>
+            <PropertyRef Name="numberOfWords" />
+          </Key>
+          <Property Name="numberOfWords" Type="Int32" Nullable="false" />
+          <Property Name="LoremComma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="APIStudyAppDatabaseModelStoreContainer" CdmEntityContainer="APIStudyAppDatabaseEntities">
+          <EntitySetMapping Name="Animal">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Animal">
+              <MappingFragment StoreEntitySet="Animal">
+                <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
+                <ScalarProperty Name="AnimalMaxId" ColumnName="AnimalMaxId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnimalDetail">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.AnimalDetail">
+              <MappingFragment StoreEntitySet="AnimalDetail">
+                <ScalarProperty Name="AnimalDetailId" ColumnName="AnimalDetailId" />
+                <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnimalText">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.AnimalText">
+              <MappingFragment StoreEntitySet="AnimalText">
+                <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
+                <ScalarProperty Name="AnimalName" ColumnName="AnimalName" />
+                <ScalarProperty Name="AnimalDetails" ColumnName="AnimalDetails" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="LoremText" ColumnName="LoremText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="blog_posts">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.blog_posts">
+              <MappingFragment StoreEntitySet="blog_posts">
+                <ScalarProperty Name="blog_posts_id" ColumnName="blog_posts_id" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="About" ColumnName="About" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detail">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Detail">
+              <MappingFragment StoreEntitySet="Detail">
+                <ScalarProperty Name="DetailId" ColumnName="DetailId" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="text" ColumnName="text" />
+                <ScalarProperty Name="blog_posts_id" ColumnName="blog_posts_id" />
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Tags">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="tagId" ColumnName="tagId" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+                <ScalarProperty Name="TagName1" ColumnName="TagName1" />
+                <ScalarProperty Name="TagName2" ColumnName="TagName2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoremText">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.LoremText">
+              <MappingFragment StoreEntitySet="LoremText">
+                <ScalarProperty Name="numberOfWords" ColumnName="numberOfWords" />
+                <ScalarProperty Name="Lorem" ColumnName="Lorem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoremTextComma">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.LoremTextComma">
+              <MappingFragment StoreEntitySet="LoremTextComma">
+                <ScalarProperty Name="LoremComma" ColumnName="LoremComma" />
+                <ScalarProperty Name="numberOfWords" ColumnName="numberOfWords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

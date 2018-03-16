@@ -9,16 +9,16 @@
         <p>Vi ska nu ha två knappar, en rubrik, en kursiv ingress, en paragraf med text och en bild. På knapparna står det Prev och Next. När sidan först laddas finns alla övriga taggar men innehåller enbart <em>no data loaded</em> först.</p>
         <ul>
             <li>
-                Först gången användaren klickar på Next så ska en request skickas till <!--EDIT-->http://mardby.se/AJK15G/animals.php med query string animal=0
+                Först gången användaren klickar på Next så ska en request skickas till <em>http://localhost:<'PORT'>/api/loremtexts/animals?animalid</em> med query string animalid=1
             </li>
             <li>
                 Nästa gång användaren klickar på Next så skickas request på samma url men värdet i query strängen ska ökas med ett
             </li>
             <li>
-                Istället för att skicka på animal=5 så använd animal=0 igen
+                Istället för att skicka på animalid=6 så använd animalid=1 igen
             </li>
             <li>
-                När användaren klickar på Prev så ska samma sak som med Next hända förutom att anropets query string ska ha minskat värdet (animal=3 blir animal=2 osv och istället för animal=-1 så animal=4)
+                När användaren klickar på Prev så ska samma sak som med Next hända förutom att anropets query string ska ha minskat värdet (animalid=3 blir animalid=2 osv och istället för animalid=-1 så animalid=5   )
             </li>
         </ul>
         <p>Responsen du får är en textsträng som du behöver dela upp i en array (split på *) där sedan första elementet använder du som rubrik, andra elementet är kursiv ingress, tredje elementet är en paragraf och fjärde elementet är en bild-url.</p>
@@ -51,7 +51,7 @@
     $(document).ready(function () {
 
         // mer kod här
-        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+        request.open('GET', 'http://localhost:<'PORT'>/api/loremtexts/animals?animalid');
 
         request.send();
     });

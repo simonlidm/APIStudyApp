@@ -35,7 +35,7 @@
 		$(document).ready(function() {
 			$(&quot;button&quot;).click(function() {
 				request.onreadystatechange = handler;
-			<!--EDIT-->	request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_text.php&quot;);
+			    request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts&quot;);
 				request.send();
 			});
 		});
@@ -71,7 +71,7 @@
 		$(document).ready(function() {
 			$(&quot;button&quot;).click(function() {
 				request.onreadystatechange = handler;
-				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_text_random.php?numberOfWords=10&quot;);
+				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts?numberOfWords=10&quot;);
 				request.send();
 			});
 		});
@@ -117,7 +117,7 @@
 				evt.preventDefault();
 				input = $(&quot;input&quot;).val();
 				request.onreadystatechange = handler;
-				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_text_random.php?numberOfWords=&quot; + input);
+				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts?numberOfWords=&quot; + input);
 				request.send();
 			});
 		});
@@ -140,7 +140,7 @@
 &lt;/head&gt;
 &lt;body&gt;
 	&lt;button&gt;Ladda data&lt;/button&gt;
-	&lt;ul&gt;&lt;/ul&gt;
+	&lt;ul id=&quot;ul&quot;&gt;&lt;/ul&gt;
 
 	&lt;script type=&quot;text/javascript&quot;&gt;
 
@@ -151,14 +151,14 @@
 				var arr = request.responseText.split(&quot;,&quot;);
 				console.log(arr);
 				for(i in arr)
-					$(&quot;ul&quot;).append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
+					$(#ul).append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
 			}
 		}
 
 		$(document).ready(function() {
 			$(&quot;button&quot;).click(function() {
 				request.onreadystatechange = handler;
-				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_comma_text.php&quot;);
+				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts/comma&quot;);
 				request.send();
 			});
 		});
@@ -192,23 +192,23 @@
 		request.onreadystatechange = handler;
 
 		var sendRequest = function(a) {
-			<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/animals.php?animal=&quot; + a);
+			request.open(&quot;GET&quot;, &quot;http://localhost:<'PORT'>/api/loremtexts/animals?animalid=&quot; + a);
 			request.send();
 		}
 
-		var animal = 0;
+		var animal = 1;
 
 		$(document).ready(function() {
 			$(&quot;#prev&quot;).click(function() {
 				animal--;
-				if(animal &lt; 0)
-					animal = 4;
+				if(animal &lt; 1)
+					animal = 5;
 				sendRequest(animal);
 			});
 			$(&quot;#next&quot;).click(function() {
 				animal++;
-				if(animal &gt; 4)
-					animal = 0;
+				if(animal &gt; 5)
+					animal = 1;
 				sendRequest(animal);
 			});
 		});

@@ -43,7 +43,8 @@
     $(document).ready(function () {
 
         // mer kod här
-        //Måste redigeras	request.open('GET', 'http://mardby.se/AJK15G/lorem_text.php');
+        //Glöm inte ändra portnr till din egen!
+        request.open('GET', 'http://localhost:<PORTNR>/api/loremtexts');
 
         request.send();
     });
