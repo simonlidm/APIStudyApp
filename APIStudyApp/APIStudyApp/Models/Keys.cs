@@ -12,12 +12,10 @@ namespace APIStudyApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class AnimalText
+    public partial class Keys
     {
-        public int AnimalId { get; set; }
-        public string AnimalName { get; set; }
-        public string AnimalDetails { get; set; }
-        public string Url { get; set; }
-        public string LoremText { get; set; }
+        public int APIKeyId { get; set; }
+        public string APIKeyHash { get; set; }
+        public Nullable<bool> Status { get; set; }
     }
 }

@@ -11,9 +11,12 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using APIStudyApp.Models;
+using APIStudyApp.Security;
 
 namespace APIStudyApp.Controllers
 {
+    [Compress]
+    [CacheFilter(TimeDuration = 100)]
     public class LoremTextsController : ApiController
     {
         private APIStudyAppDatabaseEntities db = new APIStudyAppDatabaseEntities();
@@ -23,33 +26,27 @@ namespace APIStudyApp.Controllers
         //{
         //    return db.LoremText;
         //}
-        public IHttpActionResult GetLoremText([FromUri]LoremText loremText)
+       
+        public HttpResponseMessage GetLoremText([FromUri]LoremText loremText)
         {
-            if(loremText == null)
-            {
-                return NotFound();
-            }
 
             string result;
             int maxId = db.LoremText.Max(x => x.numberOfWords);
-            
+
             StringBuilder builder = new StringBuilder();
 
-            if (loremText.numberOfWords == 0 || loremText.numberOfWords > maxId)
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+            if (loremText == null|| loremText.numberOfWords == 0 || loremText.numberOfWords > maxId)
             {
-                
-                for (int i = 1; i <= maxId; i++)
-                {
-                    loremText = db.LoremText.Where(x => x.numberOfWords == i).SingleOrDefault();
-                   
-                    builder.Append(loremText.Lorem).Append(" ");
-                }
-                
-                 result = builder.ToString();
 
-                return Ok(result);
+                var text = db.AnimalText.Where(x => x.AnimalId == 1).FirstOrDefault();
+                result = text.LoremText;
+                resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
+
+                return resp;
             }
 
+          
             int id = loremText.numberOfWords;
             int rand_num = 0;
 
@@ -65,28 +62,38 @@ namespace APIStudyApp.Controllers
             }
 
              result = builder.ToString();
-
-            return Ok(result);
+            resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
+            return resp;
         }
         [Route("api/loremtexts/slow")]
         [HttpGet]
-        public IHttpActionResult GetLoremSlow([FromUri]LoremText loremText)
+        public HttpResponseMessage GetLoremSlow([FromUri]LoremText loremText)
         {
-            if (loremText == null)
-            {
-                return NotFound();
-            }
-
             string result;
-            int maxId = db.LoremText.Max(x => x.numberOfWords);
 
             StringBuilder builder = new StringBuilder();
 
             System.Threading.Thread.Sleep(5000);
 
-            int id = loremText.numberOfWords;
+            int maxId = db.LoremText.Max(x => x.numberOfWords);
             int rand_num = 0;
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+            if (loremText == null || loremText.numberOfWords == 0 || loremText.numberOfWords > maxId)
+            {
+             
+                
+                for (int i = 1; i <= maxId; i++)
+                {
+                    loremText = db.LoremText.Where(x => x.numberOfWords == i).SingleOrDefault();
 
+                    builder.Append(loremText.Lorem).Append(" ");
+                }
+                result = builder.ToString();
+                resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
+                return resp;
+            }
+
+            int id = loremText.numberOfWords;
             for (int i = 1; i <= id; i++)
             {
                 Random rand = new Random();
@@ -99,8 +106,9 @@ namespace APIStudyApp.Controllers
             }
 
             result = builder.ToString();
+            resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
 
-            return Ok(result);
+            return resp;
         }
         [Route("api/loremtexts/comma")]
         [HttpGet]
@@ -108,12 +116,26 @@ namespace APIStudyApp.Controllers
         {
             LoremTextComma loremText = new LoremTextComma();
 
-
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
             string result;
             int maxId = db.LoremText.Max(x => x.numberOfWords);
 
             StringBuilder builder = new StringBuilder();
+            if (loremText == null)
+            {
+                for (int i = 1; i <= maxId; i++)
+                {
+                    loremText = db.LoremTextComma.Where(x => x.numberOfWords == i).SingleOrDefault();
 
+                    if (i == maxId)
+                        builder.Append(loremText.LoremComma);
+                    else
+                        builder.Append(loremText.LoremComma).Append(",");
+                }
+                result = builder.ToString();
+                resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
+                return resp;
+            }
             for (int i = 1; i <= maxId; i++)
             {
                 loremText = db.LoremTextComma.Where(x => x.numberOfWords == i).SingleOrDefault();
@@ -124,7 +146,7 @@ namespace APIStudyApp.Controllers
             }
 
             result = builder.ToString();
-            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+          
             resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
             return resp;
         }
@@ -132,125 +154,153 @@ namespace APIStudyApp.Controllers
         [HttpGet]
         public HttpResponseMessage GetAnimal([FromUri]AnimalText animalText)
         {
+            var resp = new HttpResponseMessage(HttpStatusCode.OK);
+          StringBuilder builder = new StringBuilder();
+
+            string animal;
+            string description;
+            string url;
+            string loremText; 
+
+            if (animalText == null)
+            {
+                 animalText= db.AnimalText.Find(1);
+
+                animal = animalText.AnimalName;
+                 description = "*" + animalText.AnimalDetails + "*";
+                 url = "*" + animalText.Url + "*";
+                 loremText = animalText.LoremText;
+
+                builder.Append(animal).Append(description).Append(loremText).Append(url);
+
+                string result2 = builder.ToString();
+                resp.Content = new StringContent(result2, Encoding.UTF8, "text/plain");
+                return resp;
+              
+            }
 
             AnimalText animals = db.AnimalText.Find(animalText.AnimalId);
-            LoremText loremText = new LoremText();
-            int maxId = db.LoremText.Max(x => x.numberOfWords);
-            StringBuilder builder1 = new StringBuilder();
-            StringBuilder builder2 = new StringBuilder();
-            string animal = animals.AnimalName;
-            string description = "*"+animals.AnimalDetails+"*";
-            string url = "*" + animals.Url + "*";
-            for (int i = 1; i <= maxId; i++)
-            {              
+            if (animals == null)
+            {
+                 animalText = db.AnimalText.Find(1);
 
-                loremText = db.LoremText.Where(x => x.numberOfWords == i).SingleOrDefault();
+                animal = animalText.AnimalName;
+                description = "*" + animalText.AnimalDetails + "*";
+                url = "*" + animalText.Url + "*";
+                loremText = animalText.LoremText;
 
-                builder1.Append(loremText.Lorem).Append(" ");
+                builder.Append(animal).Append(description).Append(loremText).Append(url);
+
+                string result2 = builder.ToString();
+                resp.Content = new StringContent(result2, Encoding.UTF8, "text/plain");
+                return resp;
 
             }
-            string result1 = builder1.ToString();
+            animal = animals.AnimalName;
+             description = "*" + animals.AnimalDetails + "*";
+             url = "*" + animals.Url + "*";
+             loremText = animals.LoremText;
 
-            builder2.Append(animal).Append(description).Append(result1).Append(url);
+            builder.Append(animal).Append(description).Append(loremText).Append(url);
 
-            string result2 = builder2.ToString();
-            var resp = new HttpResponseMessage(HttpStatusCode.OK);
-            resp.Content = new StringContent(result2, Encoding.UTF8, "text/plain");
+            string result = builder.ToString();
+        
+            resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
             return resp;
         }
-        // GET: api/LoremTexts/5
-        [ResponseType(typeof(LoremText))]
-        public IHttpActionResult GetLoremText(int id)
-        {
-            LoremText loremText = db.LoremText.Find(id);
-            if (loremText == null)
-            {
-                return NotFound();
-            }
+        //// GET: api/LoremTexts/5
+        //[ResponseType(typeof(LoremText))]
+        //public IHttpActionResult GetLoremText(int id)
+        //{
+        //    LoremText loremText = db.LoremText.Find(id);
+        //    if (loremText == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return Ok(loremText);
-        }
+        //    return Ok(loremText);
+        //}
 
         // PUT: api/LoremTexts/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutLoremText(int id, LoremText loremText)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutLoremText(int id, LoremText loremText)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != loremText.numberOfWords)
-            {
-                return BadRequest();
-            }
+        //    if (id != loremText.numberOfWords)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(loremText).State = EntityState.Modified;
+        //    db.Entry(loremText).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LoremTextExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!LoremTextExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-        // POST: api/LoremTexts
-        [ResponseType(typeof(LoremText))]
-        public IHttpActionResult PostLoremText(LoremText loremText)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// POST: api/LoremTexts
+        //[ResponseType(typeof(LoremText))]
+        //public IHttpActionResult PostLoremText(LoremText loremText)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.LoremText.Add(loremText);
+        //    db.LoremText.Add(loremText);
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (LoremTextExists(loremText.numberOfWords))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (LoremTextExists(loremText.numberOfWords))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtRoute("DefaultApi", new { id = loremText.numberOfWords }, loremText);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = loremText.numberOfWords }, loremText);
+        //}
 
-        // DELETE: api/LoremTexts/5
-        [ResponseType(typeof(LoremText))]
-        public IHttpActionResult DeleteLoremText(int id)
-        {
-            LoremText loremText = db.LoremText.Find(id);
-            if (loremText == null)
-            {
-                return NotFound();
-            }
+        //// DELETE: api/LoremTexts/5
+        //[ResponseType(typeof(LoremText))]
+        //public IHttpActionResult DeleteLoremText(int id)
+        //{
+        //    LoremText loremText = db.LoremText.Find(id);
+        //    if (loremText == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            db.LoremText.Remove(loremText);
-            db.SaveChanges();
+        //    db.LoremText.Remove(loremText);
+        //    db.SaveChanges();
 
-            return Ok(loremText);
-        }
+        //    return Ok(loremText);
+        //}
 
         protected override void Dispose(bool disposing)
         {

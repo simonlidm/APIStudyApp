@@ -22,45 +22,73 @@
             </li>
         </ul>
         <p>Responsen du får är en textsträng som du behöver dela upp i en array (split på *) där sedan första elementet använder du som rubrik, andra elementet är kursiv ingress, tredje elementet är en paragraf och fjärde elementet är en bild-url.</p>
+        <div>
+            @Html.ActionLink("Tillbaka till övningarna", "Index")
+        </div>
+        <br /><br />
+        <!--Under här skrivs övningen-->
+
+    <style>
+        /* din css här, tänk på att använda klasser och id för att
+            inte krocka med annan css.
+        */
+    </style>
+
+
+    <!--html här-->
+    <div id="here"></div>
+
+
+
+    <script type="text/javascript">
+
+        var request = new XMLHttpRequest();
+
+        request.onreadystatechange = function () {
+
+            console.log("readyState:" + request.readyState);
+            console.log("status:" + request.status);
+            console.log("responseText:" + request.responseText);
+            console.log("-----");
+
+            if ((request.readyState === 4) && (request.status === 200)) {
+                document.getElementById('here').innerHTML = request.responseText;
+            }
+            else if (request.status === 403 && request.readyState === 4) {
+                $("#here").append("<p>" + request.responseText + "</p>");
+            }
+        }
+        $(document).ready(function () {
+
+            // mer kod här
+            //Glöm inte ändra portnr till din egen!
+            request.open('GET', 'http://localhost:<PORTNR>/api/loremtexts');
+            request.setRequestHeader("apikey", "Nyckel HÄR");
+            request.send();
+        });
+
+
+    </script>
+
+
+        <!--Slut på kod-->
+
+
+    </div>
+    <div class="col-md-4">
+        <h3>Tips</h3>
+        <ul>
+            <li>
+                Du kommer behöva en variabel för att lagra vilket djur vi är på, en sorts state för sidan
+            </li>
+            <li>
+                Den variabeln ökas resp minskas när man klickar på knapparna
+            </li>
+            <li>
+                Det kommer behövas en if-sats för att kolla så inte state-variabeln blir för stor eller för liten
+            </li>
+        </ul>
     </div>
 </div>
-<div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
-</div>
-<!--Under här skrivs övningen-->
-
-<style>
-    /* din css här */
-</style>
-
-<script type="text/javascript">
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-
-        console.log("readyState:" + request.readyState);
-        console.log("status:" + request.status);
-        console.log("responseText:" + request.responseText);
-        console.log("-----");
-
-        if ((request.readyState === 4) && (request.status === 200)) {
-            document.getElementById('here').innerHTML = request.responseText;
-        }
-    }
-    $(document).ready(function () {
-
-        // mer kod här
-        request.open('GET', 'http://localhost:<PORT>/api/loremtexts/animals?animalid');
-
-        request.send();
-    });
-
-
-</script>
-
-
-<!--html här-->
-<div id="here"></div>
 
 

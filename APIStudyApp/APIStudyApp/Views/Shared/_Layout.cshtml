@@ -8,6 +8,51 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
+    <style>
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -6px;
+                margin-left: -1px;
+                -webkit-border-radius: 0 6px 6px 6px;
+                -moz-border-radius: 0 6px 6px 6px;
+                border-radius: 0 6px 6px 6px;
+            }
+
+            .dropdown-submenu > a:after {
+                display: block;
+                content: " ";
+                float: right;
+                width: 0;
+                height: 0;
+                border-color: transparent;
+                border-style: solid;
+                border-width: 5px 0 5px 5px;
+                border-left-color: #cccccc;
+                margin-top: 5px;
+                margin-right: -10px;
+            }
+
+            .dropdown-submenu:hover > a:after {
+                border-left-color: #555;
+            }
+
+            .dropdown-submenu.pull-left {
+                float: none;
+            }
+
+                .dropdown-submenu.pull-left > .dropdown-menu {
+                    left: -100%;
+                    margin-left: 10px;
+                    -webkit-border-radius: 6px 0 6px 6px;
+                    -moz-border-radius: 6px 0 6px 6px;
+                    border-radius: 6px 0 6px 6px;
+                }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -23,14 +68,47 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Hem", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Tips", "Tips", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Facit", "Facit", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
+                    <li>
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Övningar <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+                                
+                                @Html.ActionLink("Text Övningar", "Index", "AjaxText", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" } )
+                                <ul class="dropdown-menu">
+                                    <li> @Html.ActionLink("Övning 1", "Example_1", "AjaxText", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 2", "Example_2", "AjaxText", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 3", "Example_3", "AjaxText", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 4", "Example_4", "AjaxText", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 5", "Example_5", "AjaxText", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 6", "Example_6", "AjaxText", new { area = "" }, null)</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                @Html.ActionLink("JSON Övningar", "Index", "AjaxJson", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                                <ul class="dropdown-menu">
+                                    <li> @Html.ActionLink("Övning 1", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 2", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 3", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 4", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 5", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 6", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 7", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 8", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 9", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 10", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 11", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 12", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
     </div>
-   
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -38,8 +116,18 @@
             <p>&copy; @DateTime.Now.Year - APIStudyApp</p>
         </footer>
     </div>
-
-    
+    <script>
+        (function ($) {
+            $(document).ready(function () {
+                $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    $(this).parent().siblings().removeClass('open');
+                    $(this).parent().toggleClass('open');
+                });
+            });
+        })(jQuery);
+    </script>
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

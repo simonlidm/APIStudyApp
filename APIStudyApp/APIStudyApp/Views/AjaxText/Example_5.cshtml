@@ -6,53 +6,78 @@
 <h2>Övning 5</h2>
 <div class="row">
     <div class="col-md-8">
-        <p>Vi ska nu bara ha en knapp för att skicka vår request och den ska skickas 
-        till <em>api/loremtexts/comma</em>. Svaret som vi får tillbaks som en 
-        textsträng där varje ord är separerat med kommatecken, ska vi göra om till en 
-        array. Använd
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">
-            split()</a> för att få en array med ett ord per element utan kommatecken. 
-        Loopa sedan igenom arrayen och lägg till varje ord som en egen punkt i en 
-        oordnad punktlista.</p>
+        <p>
+            Vi ska nu bara ha en knapp för att skicka vår request och den ska skickas
+            till <em>api/loremtexts/comma</em>. Svaret som vi får tillbaks som en
+            textsträng där varje ord är separerat med kommatecken, ska vi göra om till en
+            array. Använd
+            <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split">
+                split()
+            </a> för att få en array med ett ord per element utan kommatecken.
+            Loopa sedan igenom arrayen och lägg till varje ord som en egen punkt i en
+            oordnad punktlista.
+        </p>
+        <div>
+            @Html.ActionLink("Tillbaka till övningarna", "Index")
+        </div>
+        <br /><br />
+        <!--Under här skrivs övningen-->
+
+    <style>
+        /* din css här, tänk på att använda klasser och id för att
+            inte krocka med annan css.
+        */
+    </style>
+
+
+    <!--html här-->
+    <div id="here"></div>
+
+
+
+    <script type="text/javascript">
+
+        var request = new XMLHttpRequest();
+
+        request.onreadystatechange = function () {
+
+            console.log("readyState:" + request.readyState);
+            console.log("status:" + request.status);
+            console.log("responseText:" + request.responseText);
+            console.log("-----");
+
+            if ((request.readyState === 4) && (request.status === 200)) {
+                document.getElementById('here').innerHTML = request.responseText;
+            }
+            else if (request.status === 403 && request.readyState === 4) {
+                $("#here").append("<p>" + request.responseText + "</p>");
+            }
+        }
+        $(document).ready(function () {
+
+            // mer kod här
+            //Glöm inte ändra portnr till din egen!
+            request.open('GET', 'http://localhost:<PORTNR>/api/loremtexts');
+            request.setRequestHeader("apikey", "Nyckel HÄR");
+            request.send();
+        });
+
+
+    </script>
+    
+
+        <!--Slut på kod-->
+
+
+    </div>
+    <div class="col-md-4">
+        <h3>Tips</h3>
+        <p>
+            Exempel på <i>split</i>:
+        </p><p>
+            <img src="http://i.imgur.com/gHoZMZd.png" alt="gHoZMZd.png">
+        </p><p>
+            Vi ser i exemplet ovan att split är en funktion vi kan anropa på en textsträng och den returnerar en array. Invärdet till split är en textsträng som visar vad ska split dela på. I exemplet har vi "," för att dela på kommatecken.
+        </p>
     </div>
 </div>
-<div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
-</div>
-<!--Under här skrivs övningen-->
-
-<style>
-    /* din css här */
-</style>
-
-
-<!--html här-->
-<div id="here"></div>
-
-
-
-<script type="text/javascript">
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-
-        console.log("readyState:" + request.readyState);
-        console.log("status:" + request.status);
-        console.log("responseText:" + request.responseText);
-        console.log("-----");
-
-        if ((request.readyState === 4) && (request.status === 200)) {
-            document.getElementById('here').innerHTML = request.responseText;
-        }
-    }
-    $(document).ready(function () {
-
-        // mer kod här
-        request.open('GET', 'http://localhost:<PORT>/api/loremtexts');
-
-        request.send();
-    });
-
-
-</script>

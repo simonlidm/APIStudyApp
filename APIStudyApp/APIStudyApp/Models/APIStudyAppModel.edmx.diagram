@@ -16,6 +16,7 @@
         <AssociationConnector Association="APIStudyAppDatabaseModel.FK_Detail_blog_posts" ManuallyRouted="false" />
         <AssociationConnector Association="APIStudyAppDatabaseModel.FK_Detail_Tags" ManuallyRouted="false" />
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.LoremTextComma" Width="1.5" PointX="7.375" PointY="3.75" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Keys" Width="1.5" PointX="7.375" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

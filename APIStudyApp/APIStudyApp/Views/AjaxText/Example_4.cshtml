@@ -10,46 +10,67 @@
             Utgå ifrån koden ifrån förra uppgiften. Vi ska nu anropa <em>api/loremtexts/slow</em> istället i vår request. När knappen klickas ska knappen och textfältet inaktiveras och en gif som visar att sidan laddar svaret ska visas. När svaret kommet tillbaks från servern tas gif:en bort, formuläret aktiveras och svaret visas precis som i förra uppgiften.<br /><br />
             Exempel på gif nedan. Använd den eller någon annan du hittar som du tycker passar bra.
         </p>
+        <img src="http://i.imgur.com/yM5pI7W.gif" />
+        <div>
+            @Html.ActionLink("Tillbaka till övningarna", "Index")
+        </div>
+        <br /><br />
+        <!--Under här skrivs övningen-->
+
+        <style>
+                /* din css här, tänk på att använda klasser och id för att
+                inte krocka med annan css.
+            */
+        </style>
+
+
+        <!--html här-->
+        <div id="here"></div>
+
+
+
+        <script type="text/javascript">
+
+            var request = new XMLHttpRequest();
+
+            request.onreadystatechange = function () {
+
+                console.log("readyState:" + request.readyState);
+                console.log("status:" + request.status);
+                console.log("responseText:" + request.responseText);
+                console.log("-----");
+
+                if ((request.readyState === 4) && (request.status === 200)) {
+                    document.getElementById('here').innerHTML = request.responseText;
+                }
+                else if (request.status === 403 && request.readyState === 4) {
+                    $("#here").append("<p>" + request.responseText + "</p>");
+                }
+            }
+            $(document).ready(function () {
+
+                // mer kod här
+                //Glöm inte ändra portnr till din egen!
+                request.open('GET', 'http://localhost:<PORTNR>/api/loremtexts');
+                request.setRequestHeader("apikey", "Nyckel HÄR");
+                request.send();
+            });
+
+
+        </script>
+
+
+        <!--Slut på kod-->
+    </div>
+    <div class="col-md-4">
+        <h3>Tips</h3>
+        <ul>
+            <li>
+                $("input").prop('disabled', true); och sedan samma anrop fast false för att aktivera igen
+            </li>
+            <li>
+                med rätt selektor kan du inaktivera alla taggar på en gång
+            </li>
+        </ul>
     </div>
 </div>
-<img src="http://i.imgur.com/yM5pI7W.gif" />
-<div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
-</div>
-<!--Under här skrivs övningen-->
-
-<style>
-    /* din css här */
-</style>
-
-
-<!--html här-->
-<div id="here"></div>
-
-
-
-<script type="text/javascript">
-
-    var request = new XMLHttpRequest();
-
-    request.onreadystatechange = function () {
-
-        console.log("readyState:" + request.readyState);
-        console.log("status:" + request.status);
-        console.log("responseText:" + request.responseText);
-        console.log("-----");
-
-        if ((request.readyState === 4) && (request.status === 200)) {
-            document.getElementById('here').innerHTML = request.responseText;
-        }
-    }
-    $(document).ready(function () {
-
-        // mer kod här
-        request.open('GET', 'http://localhost:<PORT>/api/loremtexts');
-
-        request.send();
-    });
-
-
-</script>

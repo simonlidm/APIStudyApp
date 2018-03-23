@@ -15,6 +15,7 @@ namespace APIStudyApp.Controllers
         }
         public ActionResult Example_1()
         {
+            
             return View();
         }
         public ActionResult Example_2()

@@ -14,10 +14,6 @@ namespace APIStudyApp.Controllers
 
             return View();
         }
-        public ActionResult Tips()
-        {
-            return View();
-        }
         public ActionResult Facit()
         {
             return View();
@@ -38,6 +34,7 @@ namespace APIStudyApp.Controllers
         {
             return View();
         }
+      
         public ActionResult ComingSoon()
         {
             return View();

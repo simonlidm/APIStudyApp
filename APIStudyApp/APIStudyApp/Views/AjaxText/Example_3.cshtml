@@ -4,50 +4,77 @@
 }
 
 <h2>Övning 3</h2>
-<ul class="list-group">
-    <li class="list-group-item">Utgå ifrån koden ifrån förra uppgiften.</li>
-    <li class="list-group-item">Ersätt knappen med ett formulär med ett textfält och knapp.</li>
-    <li class="list-group-item">När man fyllt i en siffra i textfältet och klickat på knappen så kommer requesten skickas och <em>numberOfWords</em> är satt till det värde som användaren fyllt i textfältet.</li>
-    <li class="list-group-item">Den skickade siffran och svaret som kommer tillbaks läggs till som två fält på en rad i en tabell.</li>
-</ul>
-<div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
-</div>
-<!--Under här skrivs övningen-->
+<div class="row">
+    <div class="col-md-8">
+        <ul class="list-group">
+            <li class="list-group-item">Utgå ifrån koden ifrån förra uppgiften.</li>
+            <li class="list-group-item">Ersätt knappen med ett formulär med ett textfält och knapp.</li>
+            <li class="list-group-item">När man fyllt i en siffra i textfältet och klickat på knappen så kommer requesten skickas och <em>numberOfWords</em> är satt till det värde som användaren fyllt i textfältet.</li>
+            <li class="list-group-item">Den skickade siffran och svaret som kommer tillbaks läggs till som två fält på en rad i en tabell.</li>
+        </ul>
+        <div>
+            @Html.ActionLink("Tillbaka till övningarna", "Index")
+        </div>
+        <br /><br />
+        <!--Under här skrivs övningen-->
 
-<style>
-    /* din css här */
-</style>
+    <style>
+        /* din css här, tänk på att använda klasser och id för att
+            inte krocka med annan css.
+        */
+    </style>
 
 
-<!--html här-->
-<div id="here"></div>
+    <!--html här-->
+    <div id="here"></div>
 
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    var request = new XMLHttpRequest();
+        var request = new XMLHttpRequest();
 
-    request.onreadystatechange = function () {
+        request.onreadystatechange = function () {
 
-        console.log("readyState:" + request.readyState);
-        console.log("status:" + request.status);
-        console.log("responseText:" + request.responseText);
-        console.log("-----");
+            console.log("readyState:" + request.readyState);
+            console.log("status:" + request.status);
+            console.log("responseText:" + request.responseText);
+            console.log("-----");
 
-        if ((request.readyState === 4) && (request.status === 200)) {
-            document.getElementById('here').innerHTML = request.responseText;
+            if ((request.readyState === 4) && (request.status === 200)) {
+                document.getElementById('here').innerHTML = request.responseText;
+            }
+            else if (request.status === 403 && request.readyState === 4) {
+                $("#here").append("<p>" + request.responseText + "</p>");
+            }
         }
-    }
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-        // mer kod här
-        //Glöm inte ändra portnr till din egen!
-        request.open('GET', 'http://localhost:<PORTNR>/api/loremtexts');
+            // mer kod här
+            //Glöm inte ändra portnr till din egen!
+            request.open('GET', 'http://localhost:<PORTNR>/api/loremtexts');
+            request.setRequestHeader("apikey", "Nyckel HÄR");
+            request.send();
+        });
 
-        request.send();
-    });
+
+    </script>
 
 
-</script>
+        <!--Slut på kod-->
+
+
+    </div>
+    <div class="col-md-4">
+        <h3>Tips</h3>
+        <ol>
+            <li>
+                <a rel="nofollow" class="external text" href="https://api.jquery.com/submit/">.submit()</a>
+            </li>
+            <li>
+                glöm inte preventDefault <b>om</b> du har form-taggar
+            </li>
+        </ol>
+        <object width="425" height="350"><param name="movie" value="http://www.youtube.com/v/llE_gkYnENI&amp;fs=1"><param name="wmode" value="transparent"></object>
+    </div>
+</div>

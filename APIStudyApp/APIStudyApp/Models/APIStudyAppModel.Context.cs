@@ -33,5 +33,6 @@ namespace APIStudyApp.Models
         public virtual DbSet<Tags> Tags { get; set; }
         public virtual DbSet<LoremText> LoremText { get; set; }
         public virtual DbSet<LoremTextComma> LoremTextComma { get; set; }
+        public virtual DbSet<Keys> Keys { get; set; }
     }
 }

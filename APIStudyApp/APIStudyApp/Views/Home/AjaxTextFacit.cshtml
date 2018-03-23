@@ -18,8 +18,8 @@
 	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-	&lt;button&gt;Ladda data&lt;/button&gt;
-	&lt;div&gt;&lt;/div&gt;
+	&lt;button class=&quot;btn&quot;&gt;Ladda data&lt;/button&gt;
+	&lt;div id= &quot;div&quot;&gt;&lt;/div&gt;
 
 	&lt;script type=&quot;text/javascript&quot;&gt;
 
@@ -29,13 +29,16 @@
 			console.log(&quot;readyState: &quot; + request.readyState);
 			console.log(&quot;status: &quot; + request.status);
 			if(request.readyState===4 &amp;&amp; request.status===200)
-				$(&quot;div&quot;).append(&quot;&lt;p&gt;&quot; + request.responseText + &quot;&lt;/p&gt;&quot;);
+				$(&quot;#div&quot;).append(&quot;&lt;p&gt;&quot; + request.responseText + &quot;&lt;/p&gt;&quot;);
+                       else if (request.status === 403 &amp;&amp; request.readyState === 4)
+                         $(&quot;#div&quot;).append(&quot;&lt;p&gt;&quot; + request.responseText + &quot;&lt;/p&gt;&quot;);
 		}
 
 		$(document).ready(function() {
-			$(&quot;button&quot;).click(function() {
+			$(&quot;.btn&quot;).click(function() {
 				request.onreadystatechange = handler;
-			    request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts&quot;);
+			        request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts&quot;);
+                                request.setRequestHeader(&quot;apikey&quot;, &quot;Nyckel HÄR&quot;);
 				request.send();
 			});
 		});
@@ -54,8 +57,8 @@
 	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-	&lt;button&gt;Ladda data&lt;/button&gt;
-	&lt;ul&gt;&lt;/ul&gt;
+	&lt;button class="btn"&gt;Ladda data&lt;/button&gt;
+	&lt;ul id="ul"&gt;&lt;/ul&gt;
 
 	&lt;script type=&quot;text/javascript&quot;&gt;
 
@@ -65,13 +68,17 @@
 			console.log(&quot;readyState: &quot; + request.readyState);
 			console.log(&quot;status: &quot; + request.status);
 			if(request.readyState===4 &amp;&amp; request.status===200)
-				$(&quot;ul&quot;).append(&quot;&lt;li&gt;&quot; + request.responseText + &quot;&lt;/li&gt;&quot;);
+				$("#ul").append(&quot;&lt;li&gt;&quot; + request.responseText + &quot;&lt;/li&gt;&quot;);
+                       else if (request.status === 403 && request.readyState === 4) {
+                        $("#ul").append("&lt;li>" + request.responseText + "&lt;li />");
+                }
 		}
 
 		$(document).ready(function() {
-			$(&quot;button&quot;).click(function() {
+			$(&quot;.btn&quot;).click(function() {
 				request.onreadystatechange = handler;
 				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts?numberOfWords=10&quot;);
+                                request.setRequestHeader("apikey", "API Nyckel HÄR");
 				request.send();
 			});
 		});
@@ -102,6 +109,7 @@
 	&lt;table&gt;
 		&lt;tr&gt;&lt;th&gt;numberOfWords&lt;/th&gt;&lt;th&gt;responseText&lt;/th&gt;&lt;/tr&gt;
 	&lt;/table&gt;
+        &lt;div id="here">&lt;/div>
 
 	&lt;script type=&quot;text/javascript&quot;&gt;
 
@@ -110,14 +118,17 @@
 		var handler = function() {
 			if(request.readyState===4 &amp;&amp; request.status===200)
 				$(&quot;table&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + input + &quot;&lt;/td&gt;&lt;td&gt;&quot; + request.responseText + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+                         else if (request.status === 403 && request.readyState === 4) {
+                             $("#here").append("&lt;p>" + request.responseText + "&lt;/p>");
 		}
-
+              }
 		$(document).ready(function() {
 			$(&quot;button&quot;).click(function(evt) {
 				evt.preventDefault();
 				input = $(&quot;input&quot;).val();
 				request.onreadystatechange = handler;
 				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts?numberOfWords=&quot; + input);
+                                request.setRequestHeader("apikey", "API nyckel Här");
 				request.send();
 			});
 		});
@@ -141,6 +152,7 @@
 &lt;body&gt;
 	&lt;button&gt;Ladda data&lt;/button&gt;
 	&lt;ul id=&quot;ul&quot;&gt;&lt;/ul&gt;
+        &lt;div id="here">&lt;/div>
 
 	&lt;script type=&quot;text/javascript&quot;&gt;
 
@@ -151,7 +163,12 @@
 				var arr = request.responseText.split(&quot;,&quot;);
 				console.log(arr);
 				for(i in arr)
-					$(#ul).append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
+					$("#ul").append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
+                         }
+
+                    else if (request.status === 403 && request.readyState === 4) {
+                            $("#here").append("&lt;p>" + request.responseText + "&lt;/p>");
+                
 			}
 		}
 
@@ -159,6 +176,7 @@
 			$(&quot;button&quot;).click(function() {
 				request.onreadystatechange = handler;
 				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts/comma&quot;);
+                                request.setRequestHeader("apikey", "API nyckel Här");
 				request.send();
 			});
 		});
@@ -178,7 +196,10 @@
 	&lt;script type=&quot;text/javascript&quot;&gt;
 		
 		var handler = function() {
-			if(request.readyState===4 &amp;&amp; request.status===200)
+                 if (request.status === 403 && request.readyState === 4) {
+                    $("#here").append("&lt;p>" + request.responseText + "&lt;/p>");
+                }
+			else if(request.readyState===4 &amp;&amp; request.status===200)
 			{
 				var arr = request.responseText.split(&quot;*&quot;);
 				console.log(arr);
@@ -193,6 +214,7 @@
 
 		var sendRequest = function(a) {
 			request.open(&quot;GET&quot;, &quot;http://localhost:<'PORT'>/api/loremtexts/animals?animalid=&quot; + a);
+                        request.setRequestHeader("apikey", "API nyckel Här");
 			request.send();
 		}
 
@@ -217,12 +239,13 @@
 &lt;/head&gt;
 &lt;body&gt;
 
+        &lt;div id="here">&lt;/div>
 	&lt;button id=&quot;prev&quot;&gt;Prev&lt;/button&gt; &lt;button id=&quot;next&quot;&gt;Next&lt;/button&gt;
 	&lt;h1&gt;no data loaded&lt;/h1&gt;
 	&lt;em&gt;no data loaded&lt;/em&gt;
 	&lt;p&gt;no data loaded&lt;/p&gt;
 	&lt;img src=&quot;#&quot;&gt;
-
+  
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>

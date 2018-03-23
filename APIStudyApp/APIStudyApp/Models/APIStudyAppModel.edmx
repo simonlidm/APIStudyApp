@@ -30,6 +30,7 @@
           <Property Name="AnimalName" Type="nvarchar" MaxLength="50" />
           <Property Name="AnimalDetails" Type="text" />
           <Property Name="Url" Type="text" />
+          <Property Name="LoremText" Type="text" />
         </EntityType>
         <EntityType Name="blog_posts">
           <Key>
@@ -49,6 +50,14 @@
           <Property Name="text" Type="text" />
           <Property Name="blog_posts_id" Type="int" />
           <Property Name="tagId" Type="int" />
+        </EntityType>
+        <EntityType Name="Keys">
+          <Key>
+            <PropertyRef Name="APIKeyId" />
+          </Key>
+          <Property Name="APIKeyId" Type="int" Nullable="false" />
+          <Property Name="APIKeyHash" Type="varchar" MaxLength="250" />
+          <Property Name="Status" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremText' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -119,6 +128,7 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <EntitySet Name="AnimalText" EntityType="Self.AnimalText" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="blog_posts" EntityType="Self.blog_posts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoremText" EntityType="Self.LoremText" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -176,6 +186,7 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <Property Name="AnimalName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AnimalDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="LoremText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="blog_posts">
           <Key>
@@ -273,6 +284,7 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
             <End Role="Detail" EntitySet="Detail" />
           </AssociationSet>
           <EntitySet Name="LoremTextComma" EntityType="APIStudyAppDatabaseModel.LoremTextComma" />
+          <EntitySet Name="Keys" EntityType="APIStudyAppDatabaseModel.Keys" />
         </EntityContainer>
         <EntityType Name="LoremTextComma">
           <Key>
@@ -280,6 +292,14 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           </Key>
           <Property Name="numberOfWords" Type="Int32" Nullable="false" />
           <Property Name="LoremComma" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Keys">
+          <Key>
+            <PropertyRef Name="APIKeyId" />
+          </Key>
+          <Property Name="APIKeyId" Type="Int32" Nullable="false" />
+          <Property Name="APIKeyHash" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Status" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -309,6 +329,7 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <EntitySetMapping Name="AnimalText">
             <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.AnimalText">
               <MappingFragment StoreEntitySet="AnimalText">
+                <ScalarProperty Name="LoremText" ColumnName="LoremText" />
                 <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
                 <ScalarProperty Name="AnimalName" ColumnName="AnimalName" />
                 <ScalarProperty Name="AnimalDetails" ColumnName="AnimalDetails" />
@@ -360,6 +381,15 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
               <MappingFragment StoreEntitySet="LoremTextComma">
                 <ScalarProperty Name="LoremComma" ColumnName="LoremComma" />
                 <ScalarProperty Name="numberOfWords" ColumnName="numberOfWords" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Keys">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Keys">
+              <MappingFragment StoreEntitySet="Keys">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="APIKeyHash" ColumnName="APIKeyHash" />
+                <ScalarProperty Name="APIKeyId" ColumnName="APIKeyId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
