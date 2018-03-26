@@ -1,17 +1,12 @@
 ﻿<style>
     .customBackground img{
-       
         opacity:0.2;
       position:absolute;
       height:325px;
-      width:940px;
-      
+      width:940px;   
     }
     .jumbotron {
         background-color: white;
-    }
-    .btn-default:link,.btn-default:active,.btn-default:visited {
-        background-color: rgba(80, 171, 222, 0.15)
     }
     .btn-default:hover{
         background-color:rgba(81, 122, 207, 0.43)
@@ -19,17 +14,23 @@
     a:hover, a:active {
         background-color: rgba(82, 118, 207, 0.37);
     }
+    .border {
+        background-color: rgba(82, 118, 207, 0.1);
+    }
 </style>
-<div class="customBackground"><img src="https://code.iadb.org/sites/default/files/inline-images/baner-code_0.jpg" /></div>
-<div class="jumbotron">
-    <h1>APIStudyApp</h1>
-    <h2>Välkommen till APIStudyApp</h2>
-    <div class="row">
-        <div class="col-md-8">
-            <p>Här kan du lära dig att använda AJAX med JavaScript samt förstå hur man kommunicerar med ett WebAPI.</p>
+<div class="customBackground">
+    <img src="https://code.iadb.org/sites/default/files/inline-images/baner-code_0.jpg" />
+    <div class="jumbotron">
+        <h1>APIStudyApp</h1>
+        <h2>Välkommen till APIStudyApp</h2>
+        <div class="row">
+            <div class="col-md-8">
+                <p>Här kan du lära dig att använda AJAX med JavaScript samt förstå hur man kommunicerar med ett WebAPI.</p>
+            </div>
         </div>
     </div>
 </div>
+<br>
 <div class="row">
     <div class="col-md-6">
         <h2>Öva på grunderna i AJAX med texter</h2>
@@ -45,7 +46,7 @@
         <p>
             Du bör ha förstått grunderna i AJAX med hur man använder XmlHttpRequest-objekt samt hur vi arbetar med JSON.
         </p><p>
-            Du bör ha gjort <a href="AjaxText">Öva på grunderna i AJAX med texter</a>.
+            Du bör ha gjort <a class="border" href="AjaxText" >Öva på grunderna i AJAX med texter</a>.
         </p>
         <p><a class="btn btn-default" href="Home/ComingSoon">Gå till övningarna &raquo;</a></p>
     </div>

@@ -5,10 +5,21 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="icon" href="@Url.Content("~/Content/icon-apistudyapp.ico")">
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     <style>
+        @@import url('https://fonts.googleapis.com/css?family=Lato');
+        @@import url('https://fonts.googleapis.com/css?family=Muli');
+
+        h1,h2,h3 {
+            color: inherit;
+            font-family: 'Lato', sans-serif;
+        }
+    p,a:link,a:visited { color: inherit; font-family: 'Muli', sans-serif; 
+
+    }
         .dropdown-submenu {
             position: relative;
         }
@@ -37,7 +48,7 @@
                 margin-right: -10px;
             }
 
-            .dropdown-submenu:hover > a:after {
+            .dropdown-submenu:hover a:after {
                 border-left-color: #555;
             }
 
@@ -53,6 +64,7 @@
                     border-radius: 6px 0 6px 6px;
                 }
     </style>
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -68,14 +80,49 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Hem", "Index", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Facit", "Facit", "Home", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                     <li>
-                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Övningar <b class="caret"></b></a>
+
+                        <a href="Facit" class="dropdown-toggle" data-toggle="dropdown">Facit <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li class="dropdown-submenu">
-                                
-                                @Html.ActionLink("Text Övningar", "Index", "AjaxText", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" } )
+
+                                @Html.ActionLink("Ajax med Texter", "AjaxTextFacit", "Home", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link1">Lösning 1</a></li>
+                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link2">Lösning 2</a></li>
+                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link3">Lösning 3</a></li>
+                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link4">Lösning 4</a></li>
+                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link5">Lösning 5</a></li>
+                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link6">Lösning 6</a></li>
+                                </ul>
+                            </li>
+                            <li class="dropdown-submenu">
+                                @Html.ActionLink("Ajax med JSON", "AjaxJsonFacit", "Home", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link1">Lösning 1</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link2">Lösning 2</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link3">Lösning 2 - Utmaning</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link4">Lösning 3</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link5">Lösning 4</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link6">Lösning 5</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link7">Lösning 6</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link8">Lösning 7</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link9">Lösning 8</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link10">Lösning 9</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link11">Lösning 10</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link12">Lösning 11</a></li>
+                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link13">Lösning 12</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="AjaxText" class="dropdown-toggle" data-toggle="dropdown">Övningar <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-submenu">
+
+                                @Html.ActionLink("Text Övningar", "Index", "AjaxText", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" })
                                 <ul class="dropdown-menu">
                                     <li> @Html.ActionLink("Övning 1", "Example_1", "AjaxText", new { area = "" }, null)</li>
                                     <li> @Html.ActionLink("Övning 2", "Example_2", "AjaxText", new { area = "" }, null)</li>
@@ -104,6 +151,7 @@
                             </li>
                         </ul>
                     </li>
+                    <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, null)</li>
                 </ul>
             </div>
         </div>
@@ -119,7 +167,7 @@
     <script>
         (function ($) {
             $(document).ready(function () {
-                $('ul.dropdown-menu [data-toggle=dropdown]').on('click', function (event) {
+                $('ul.dropdown-menu [data-toggle=dropdown]').on('mouseover', function (event) {
                     event.preventDefault();
                     event.stopPropagation();
                     $(this).parent().siblings().removeClass('open');
