@@ -5,11 +5,23 @@ For studying Client API interaction with Back-end API
 
 ## Installation
 
-Visual Studio Community 2017:
+Visual Studio Community 2017 > :
 
 1. Download Visual Studio Community https://www.visualstudio.com/downloads/
 2. Install Visual Studio as shown below
-![Visual Studio Req](http://url/to/img.png)
+3. Choose to install following Workloads https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio
+   1. Universal Windows Platform Development and .NET Core cross-platform development
+   2. <img src="https://docs.microsoft.com/en-us/visualstudio/install/media/install-visual-studio-enterprise.png" width="450"/>
+   3. Guide https://www.youtube.com/watch?v=Q4KsY-pQLsI
+
+SQL Server EXPRESS 2015 > :
+
+1. Download SQL Server EXPRESS https://www.microsoft.com/sv-se/sql-server/sql-server-editions-express
+2. Install SQL server and SQL server Management Studio as shown below
+3. <img src="http://www.theamazingpics.com/includes/img/pics/captivating-pic-of-rotterdam-in-a-bubble.jpg" width="450"/>
+
+  [![Guide for VS installation](https://img.youtube.com/vi/Q4KsY-pQLsI/0.jpg)](https://www.youtube.com/watch?v=Q4KsY-pQLsI)
+
 
 ## Usage example
 
