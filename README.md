@@ -42,7 +42,7 @@ npm test
 
 Simon Lindmer – simon.lindmer@gmail.com
 
-[https://github.com/yourname/github-link](https://github.com/simonlidm/APIStudyApp/)
+[https://github.com/simonlidm/APIStudyApp](https://github.com/simonlidm/APIStudyApp/)
 
 ## Contributing
 
