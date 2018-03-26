@@ -6,12 +6,6 @@ For studying Client API interaction with Back-end API
 
 ## Installation
 
-OS X & Linux:
-
-```sh
-npm install my-crazy-module --save
-```
-
 Windows:
 
 ```sh
