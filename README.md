@@ -2,17 +2,14 @@
 
 For studying Client API interaction with Back-end API
 
-![](header.png)
 
 ## Installation
 
 Visual Studio Community 2017:
 
 1. Download Visual Studio Community https://www.visualstudio.com/downloads/
-2. Item 2
-3. Item 3
-   1. Item 3a
-   1. Item 3b
+2. Install Visual Studio as shown below
+![Visual Studio Req](http://url/to/img.png)
 
 ## Usage example
 
