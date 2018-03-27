@@ -5,7 +5,7 @@ For studying Client API interaction with Back-end API
 
 ## Installation
 
-SQL Server EXPRESS 2015:
+SQL Server EXPRESS 2017 >:
 
 1. Download SQL Server EXPRESS https://www.microsoft.com/sv-se/sql-server/sql-server-editions-express
 2. Install SQL server and SQL server Management Studio (SSMS)
