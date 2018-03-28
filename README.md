@@ -5,7 +5,7 @@ For studying Client API interaction with Back-end API
 
 ## Installation
 
-SQL Server EXPRESS 2017 >:
+<h4>SQL Server EXPRESS 2017 >:</h4>
 
 1. Download SQL Server EXPRESS https://www.microsoft.com/sv-se/sql-server/sql-server-editions-express
 2. Install SQL server and SQL server Management Studio (SSMS)
@@ -15,7 +15,7 @@ SQL Server EXPRESS 2017 >:
    4. Guide for installation of MS SQL EXPRESS and Importing backup file https://www.youtube.com/watch?v=Q4KsY-pQLsI.
   
 
-Visual Studio Community 2017 > :
+<h4>Visual Studio Community 2017 > :</h4>
 
 1. Download Visual Studio Community https://www.visualstudio.com/downloads/
 2. Install Visual Studio as shown below
@@ -29,7 +29,8 @@ Visual Studio Community 2017 > :
 
 Please watch the video in order to understand how to use this app.
 
-Basic usage:
+<h4>Basic usage:</h4>
+
    1. Views folder contains all test examples.
    2. For each Example there is code to be written in order to use AJAX with JavaScript.
    3. Url must be correct for each example, read carefully.
