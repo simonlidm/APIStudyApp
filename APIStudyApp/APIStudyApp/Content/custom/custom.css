@@ -1,0 +1,118 @@
+﻿@import url('https://fonts.googleapis.com/css?family=Lato');
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+h1, h2, h3 {
+    color: inherit;
+    font-family: 'Lato', sans-serif;
+}
+
+.link:hover {
+    background-color: rgba(82, 118, 207, 0.37);
+}
+.nav-opacity {
+    opacity: 0.9;
+}
+.link {
+    background-color: rgba(82, 118, 207, 0.1)
+}
+
+p, li, a:link, a:visited {
+    color:inherit;
+    font-family: 'Muli', sans-serif;
+}
+
+.dropdown-submenu {
+    position: relative;
+ 
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus{
+    color: #262626;
+    text-decoration: none;
+    background-color: rgba(149, 148, 143, 0.21);
+}
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+
+    .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: rgba(82, 118, 207, 0.37);
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+
+  
+
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+.customBackground img {
+    opacity: 0.2;
+    position: absolute;
+    height: 325px;
+    width: 940px;
+}
+.dropdown-submenu:hover > a:after {
+    border-left-color: rgba(82, 118, 207, 0.37);
+}
+
+.bgimg {
+    background-image: url('https://globalgoalscast.org/wp-content/uploads/2017/12/forestbridge-800x500.jpg');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    height: 400px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 25px;
+}
+
+.topleft {
+    position: relative;
+    top: 0;
+    left: 16px;
+}
+
+    .topleft img {
+        height: 90px;
+        width: 90px;
+        color: white;
+        background-color: rgba(244, 242, 242, 0.10)
+    }
+
+
+
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+hr {
+    margin: auto;
+    width: 40%;
+}

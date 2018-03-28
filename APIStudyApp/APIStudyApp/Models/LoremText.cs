@@ -11,10 +11,18 @@ namespace APIStudyApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    /// <summary>
+    /// Represents a Lorem text and specific lorem words.
+    /// </summary>
     public partial class LoremText
     {
+        /// <summary>
+        /// Specific number of lorem words
+        /// </summary>
         public int numberOfWords { get; set; }
+        /// <summary>
+        /// Full Lorem text
+        /// </summary>
         public string Lorem { get; set; }
     }
 }

@@ -12,7 +12,7 @@
         </p>
         <img src="http://i.imgur.com/yM5pI7W.gif" />
         <div>
-            @Html.ActionLink("Tillbaka till övningarna", "Index")
+            @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
         </div>
         <br /><br />
         <!--Under här skrivs övningen-->
@@ -50,9 +50,9 @@
             $(document).ready(function () {
 
                 // mer kod här
-                //Glöm inte ändra portnr till din egen!
-                request.open('GET', 'http://localhost:<PORTNR>/api/loremtexts');
-                request.setRequestHeader("apikey", "Nyckel HÄR");
+
+                request.open('GET', 'http://localhost:62818/api/loremtexts/');
+                request.setRequestHeader("apikey", "");
                 request.send();
             });
 

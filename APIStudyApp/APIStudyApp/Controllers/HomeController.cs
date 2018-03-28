@@ -14,10 +14,6 @@ namespace APIStudyApp.Controllers
 
             return View();
         }
-        public ActionResult Facit()
-        {
-            return View();
-        }
       public ActionResult AjaxTextTips()
         {
             return View();

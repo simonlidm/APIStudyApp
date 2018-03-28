@@ -35,6 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>App_Data\Documentation.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -245,6 +246,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom\custom.css" />
+    <Content Include="Content\custom\custom.min.css">
+      <DependentUpon>custom.css</DependentUpon>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -285,6 +290,7 @@
     <Content Include="Models\APIStudyAppModel.edmx.diagram">
       <DependentUpon>APIStudyAppModel.edmx</DependentUpon>
     </Content>
+    <None Include="bundleconfig.json" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Models\APIStudyAppModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -323,7 +329,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Facit.cshtml" />
     <Content Include="Views\AjaxText\Index.cshtml" />
     <Content Include="Views\AjaxJson\Index.cshtml" />
     <Content Include="Views\AjaxText\Example_1.cshtml" />

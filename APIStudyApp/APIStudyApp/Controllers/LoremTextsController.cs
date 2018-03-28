@@ -15,6 +15,9 @@ using APIStudyApp.Security;
 
 namespace APIStudyApp.Controllers
 {
+    /// <summary>
+    /// API controller for example testing AJAX med Texter
+    /// </summary>
     [Compress]
     [CacheFilter(TimeDuration = 100)]
     public class LoremTextsController : ApiController
@@ -27,6 +30,11 @@ namespace APIStudyApp.Controllers
         //    return db.LoremText;
         //}
        
+         /// <summary>
+         /// Gets a text with lorem by default and by numberOfWords unique identifier
+         /// </summary>
+         /// <param name="loremText">Contains an object of loremtext words</param>
+         /// <returns>Returns a lorem text or a unique amount of lorem words</returns>
         public HttpResponseMessage GetLoremText([FromUri]LoremText loremText)
         {
 
@@ -65,6 +73,11 @@ namespace APIStudyApp.Controllers
             resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
             return resp;
         }
+        /// <summary>
+        /// Gets a text with lorem by default and by numberOfWords unique identifier, it will also wait for 5 secs.
+        /// </summary>
+        /// <param name="loremText">Contains an object of loremtext words</param>
+        /// <returns>Returns a lorem text or a unique amount of lorem words</returns>
         [Route("api/loremtexts/slow")]
         [HttpGet]
         public HttpResponseMessage GetLoremSlow([FromUri]LoremText loremText)
@@ -110,6 +123,10 @@ namespace APIStudyApp.Controllers
 
             return resp;
         }
+        /// <summary>
+        /// Gets an object of LoremTextComma where lorem words is separated by commas
+        /// </summary>
+        /// <returns>Returns a string of lorem words with commas by default</returns>
         [Route("api/loremtexts/comma")]
         [HttpGet]
         public HttpResponseMessage GetLoremComma()
@@ -121,21 +138,7 @@ namespace APIStudyApp.Controllers
             int maxId = db.LoremText.Max(x => x.numberOfWords);
 
             StringBuilder builder = new StringBuilder();
-            if (loremText == null)
-            {
-                for (int i = 1; i <= maxId; i++)
-                {
-                    loremText = db.LoremTextComma.Where(x => x.numberOfWords == i).SingleOrDefault();
-
-                    if (i == maxId)
-                        builder.Append(loremText.LoremComma);
-                    else
-                        builder.Append(loremText.LoremComma).Append(",");
-                }
-                result = builder.ToString();
-                resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
-                return resp;
-            }
+           
             for (int i = 1; i <= maxId; i++)
             {
                 loremText = db.LoremTextComma.Where(x => x.numberOfWords == i).SingleOrDefault();
@@ -150,6 +153,11 @@ namespace APIStudyApp.Controllers
             resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
             return resp;
         }
+       /// <summary>
+       /// Gets an animal object with spefic values
+       /// </summary>
+       /// <param name="animalText">The object contains properties that represents an animal</param>
+       /// <returns>Returns an animal object with specific values</returns>
         [Route("api/loremtexts/animals")]
         [HttpGet]
         public HttpResponseMessage GetAnimal([FromUri]AnimalText animalText)
@@ -301,7 +309,10 @@ namespace APIStudyApp.Controllers
 
         //    return Ok(loremText);
         //}
-
+        /// <summary>
+        /// If out of scope. Disposed activates
+        /// </summary>
+        /// <param name="disposing">For disposing out of scope operations</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -310,10 +321,7 @@ namespace APIStudyApp.Controllers
             }
             base.Dispose(disposing);
         }
+       
 
-        private bool LoremTextExists(int id)
-        {
-            return db.LoremText.Count(e => e.numberOfWords == id) > 0;
-        }
     }
 }

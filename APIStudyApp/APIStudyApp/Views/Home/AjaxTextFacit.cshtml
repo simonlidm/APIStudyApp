@@ -39,7 +39,7 @@
 		$(document).ready(function() {
 			$(&quot;.btn&quot;).click(function() {
 				request.onreadystatechange = handler;
-			        request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts&quot;);
+			        request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts&quot;);
                                 request.setRequestHeader(&quot;apikey&quot;, &quot;Nyckel HÄR&quot;);
 				request.send();
 			});
@@ -81,7 +81,7 @@
 		$(document).ready(function() {
 			$(&quot;.btn&quot;).click(function() {
 				request.onreadystatechange = handler;
-				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts?numberOfWords=10&quot;);
+				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts?numberOfWords=10&quot;);
                                 request.setRequestHeader("apikey", "API Nyckel HÄR");
 				request.send();
 			});
@@ -133,7 +133,7 @@
 				evt.preventDefault();
 				input = $(&quot;input&quot;).val();
 				request.onreadystatechange = handler;
-				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts?numberOfWords=&quot; + input);
+				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts?numberOfWords=&quot; + input);
                                 request.setRequestHeader("apikey", "API nyckel Här");
 				request.send();
 			});
@@ -185,7 +185,7 @@
 		$(document).ready(function() {
 			$(&quot;button&quot;).click(function() {
 				request.onreadystatechange = handler;
-				request.open(&quot;GET&quot;, &quot;http://localhost:PORTNR/api/loremtexts/comma&quot;);
+				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts/comma&quot;);
                                 request.setRequestHeader("apikey", "API nyckel Här");
 				request.send();
 			});
@@ -225,7 +225,7 @@
 		request.onreadystatechange = handler;
 
 		var sendRequest = function(a) {
-			request.open(&quot;GET&quot;, &quot;http://localhost:<'PORT'>/api/loremtexts/animals?animalid=&quot; + a);
+			request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts/animals?animalid=&quot; + a);
                         request.setRequestHeader("apikey", "API nyckel Här");
 			request.send();
 		}

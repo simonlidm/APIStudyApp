@@ -25,8 +25,10 @@ namespace APIStudyApp
                       "~/Content/site.css",
                       "~/Content/font-awesome.css",
                       "~/Content/font-awesome.min.css"
-                      
                       ));
+            bundles.Add(new StyleBundle("~/Content/custom").Include(
+                 "~/Content/custom/custom.min.css"
+                ));
         }
     }
 }
