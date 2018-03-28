@@ -33,7 +33,7 @@ Please watch the video in order to understand how to use this app.
 
    1. Views folder contains all test examples.
    2. For each Example there is code to be written in order to use AJAX with JavaScript.
-   3. Url must be correct for each example, read carefully.
+   3. Url must be correct for each example, read carefully. Use an API tool to check url queries ex. Postman or Restlet Client (watch video).
    4. You will be able to see the WebAPI and how it works directly (watch video). There is also an API Helper when you run the app, API Helper is mainly to understand how you can use the API http://localhost:62818/Help.
    5. API Key is needed and will be given by your teacher.
 
