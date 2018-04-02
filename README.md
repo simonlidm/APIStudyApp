@@ -12,7 +12,7 @@ For studying Client API interaction with Back-end API
    1. SSMS installation https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms
    2. Import backup file https://drive.google.com/drive/u/2/folders/14tWMANiO6FDZqfdaI11_opjOLFYwkShg
    3. Databases > Right Click > Restore Database > Source > Device > Add backup file > Click OK
-   4. Guide for installation of MS SQL EXPRESS and Importing backup file https://www.youtube.com/watch?v=Q4KsY-pQLsI.
+   4. Guide for installation of MS SQL EXPRESS and Importing backup file https://youtu.be/J9OQR3A3Txk (8min).
   
 
 <h4>Visual Studio Community 2017 > :</h4>
@@ -23,7 +23,7 @@ For studying Client API interaction with Back-end API
    1. Universal Windows Platform Development,.NET Core cross-platform development and ASP.NET and Web Development.
    2. <img src="https://docs.microsoft.com/en-us/visualstudio/install/media/install-visual-studio-enterprise.png" width="450"/>
    3. Copy URL https://github.com/simonlidm/APIStudyApp and paste into Visual Studio > Team Explorer > Clone > URL. Open .sln file.
-   4. Guide for installation and use of GitHub in Visual Studio https://www.youtube.com/watch?v=Q4KsY-pQLsI
+   4. Guide for installation and use of GitHub in Visual Studio https://youtu.be/VIRY50_sUVs (5min).
 
 ## Usage example
 
