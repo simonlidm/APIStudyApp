@@ -20,7 +20,7 @@ For studying Client API interaction with Back-end API
 1. Download Visual Studio Community https://www.visualstudio.com/downloads/
 2. Install Visual Studio as shown below
 3. Choose to install following Workloads https://docs.microsoft.com/en-us/visualstudio/install/install-visual-studio
-   1. Universal Windows Platform Development and .NET Core cross-platform development
+   1. Universal Windows Platform Development,.NET Core cross-platform development and ASP.NET and Web Development.
    2. <img src="https://docs.microsoft.com/en-us/visualstudio/install/media/install-visual-studio-enterprise.png" width="450"/>
    3. Copy URL https://github.com/simonlidm/APIStudyApp and paste into Visual Studio > Team Explorer > Clone > URL. Open .sln file.
    4. Guide for installation and use of GitHub in Visual Studio https://www.youtube.com/watch?v=Q4KsY-pQLsI
