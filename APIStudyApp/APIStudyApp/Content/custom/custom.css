@@ -25,12 +25,7 @@ p, li, a:link, a:visited {
     position: relative;
  
 }
-.dropdown-menu > li > a:hover,
-.dropdown-menu > li > a:focus{
-    color: #262626;
-    text-decoration: none;
-    background-color: rgba(149, 148, 143, 0.21);
-}
+
     .dropdown-submenu > .dropdown-menu {
         top: 0;
         left: 100%;
@@ -77,9 +72,14 @@ p, li, a:link, a:visited {
 .dropdown-submenu:hover > a:after {
     border-left-color: rgba(82, 118, 207, 0.37);
 }
-
+.navbar-nav > li > .dropdown-menu a:hover,
+.navbar-nav > li > .dropdown-menu a:hover > a:focus {
+    color: #262626;
+    text-decoration: none;
+    background-color: rgba(149, 148, 143, 0.21);
+}
 .bgimg {
-    background-image: url('https://globalgoalscast.org/wp-content/uploads/2017/12/forestbridge-800x500.jpg');
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnj5ZKc6msMsH6zBlKKHxjYO1Zxox37iLDBy-QfGMTkveU2frplQ');
     background-position: center;
     background-size: cover;
     position: relative;
