@@ -65,12 +65,7 @@ p, li, a:link, a:visited {
             -moz-border-radius: 6px 0 6px 6px;
             border-radius: 6px 0 6px 6px;
         }
-.customBackground img {
-    opacity: 0.2;
-    position: absolute;
-    height: 325px;
-    width: 940px;
-}
+
 .dropdown-submenu:hover > a:after {
     border-left-color: rgba(82, 118, 207, 0.37);
 }
@@ -89,6 +84,15 @@ p, li, a:link, a:visited {
     height: 400px;
     font-family: "Courier New", Courier, monospace;
     font-size: 25px;
+}
+.bgimg2 {
+    background-image: url('http://hdqwalls.com/wallpapers/time-clock-digital-creative-illustration-2d.jpg');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    color: white;
+    height: 400px;
+    opacity: 0.9;
 }
 
 .topleft {
