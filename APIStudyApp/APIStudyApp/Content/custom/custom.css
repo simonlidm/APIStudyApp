@@ -5,7 +5,9 @@ h1, h2, h3 {
     color: inherit;
     font-family: 'Lato', sans-serif;
 }
-
+.jumbotron{
+    background-color:white;
+}
 .link:hover {
     background-color: rgba(82, 118, 207, 0.37);
 }
