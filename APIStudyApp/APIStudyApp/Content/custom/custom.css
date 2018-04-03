@@ -86,12 +86,11 @@ p, li, a:link, a:visited {
     font-size: 25px;
 }
 .bgimg2 {
-    background-image: url('http://hdqwalls.com/wallpapers/time-clock-digital-creative-illustration-2d.jpg');
+    background-image: url('http://www.stnicholas-billings.org/wp-content/uploads/2015/05/13956205-Blue-globe-on-the-digital-technology-background-Stock-Photo-computer-software-internet.jpg');
     background-position: center;
     background-size: cover;
     position: relative;
-    color: white;
-    height: 400px;
+    color:black;
     opacity: 0.9;
 }
 
