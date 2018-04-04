@@ -58,10 +58,11 @@ Fork it (<https://github.com/simonlidm/APIStudyApp/fork>)
 [Download SQL DB]: https://www.microsoft.com/sv-se/sql-server/sql-server-editions-express
 [Download SSMS]:https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms
 [Download Backup]: https://drive.google.com/drive/u/2/folders/14tWMANiO6FDZqfdaI11_opjOLFYwkShg
-[VIDEO DB]: https://youtu.be/PXLaP4mn8vU
+[VIDEO DB]:https://youtu.be/DUiPad5BuaI
+
 
 [Download Visual Studio]:https://www.visualstudio.com/downloads/
 [VIDEO VS]: https://youtu.be/VIRY50_sUVs
 
 [local/API Help]:http://localhost:62818/Help
-[GUIDE VIDEO]:https://youtu.be/DUiPad5BuaI
+[GUIDE VIDEO]:https://youtu.be/PXLaP4mn8vU
