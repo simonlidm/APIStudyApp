@@ -12,7 +12,7 @@ For studying Client API interaction with Back-end API
    1. SSMS installation 
    2. Import backup file [Download Backup]
    3. Databases > Right Click > Restore Database > Source > Device > Add backup file > Click OK
-   4. Guide for installation of MS SQL EXPRESS and Importing backup file [VIDEO DB] (8min).
+   4. Guide for installation of MS SQL EXPRESS and Importing backup file [VIDEO DB] (6min).
   
 
 <h4>Visual Studio Community 2017 > :</h4>
@@ -36,7 +36,7 @@ Please watch the video in order to understand how to use this app.
    3. Url must be correct for each example, read carefully. Use an API tool to check url queries ex. Postman or Restlet Client (watch video).
    4. You will be able to see the WebAPI and how it works directly (watch video). There is also an API Helper when you run the app, API Helper is mainly to understand how you can use the API [local/API Help].
    5. API Key is needed and will be given by your teacher.
-   6. Guide for usage of the app [GUIDE VIDEO]
+   6. Guide for usage of the app [GUIDE VIDEO] (10min)
 
 
 ## Release History
@@ -58,10 +58,10 @@ Fork it (<https://github.com/simonlidm/APIStudyApp/fork>)
 [Download SQL DB]: https://www.microsoft.com/sv-se/sql-server/sql-server-editions-express
 [Download SSMS]:https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms
 [Download Backup]: https://drive.google.com/drive/u/2/folders/14tWMANiO6FDZqfdaI11_opjOLFYwkShg
-[VIDEO DB]: https://youtu.be/J9OQR3A3Txk
+[VIDEO DB]: https://youtu.be/PXLaP4mn8vU
 
 [Download Visual Studio]:https://www.visualstudio.com/downloads/
 [VIDEO VS]: https://youtu.be/VIRY50_sUVs
 
 [local/API Help]:http://localhost:62818/Help
-[GUIDE VIDEO]:https://www.youtube.com/watch?v=0fKg7e37bQE
+[GUIDE VIDEO]:https://youtu.be/DUiPad5BuaI
