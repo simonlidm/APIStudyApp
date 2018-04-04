@@ -41,7 +41,9 @@ Please watch the video in order to understand how to use this app.
 
 ## Release History
 
-* 0.0.1
+* 1.0.0
+   * Ready to Use
+* 2.0.0
     * Work in progress
 
 ## Meta
