@@ -7,9 +7,7 @@
 <div class="row">
     <div class="col-md-8">
         <p>
-            Requesten i denna uppgift ska gå till <!--EDIT--><a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/simple_json.php">http://mardby.se/AJK15G/simple_json.php</a>
-        </p><p>
-            Högerklicka och välj <i>Visa sidkälla</i> så får du en mer lättläst output.
+            Requesten i denna uppgift ska gå till <a rel="nofollow" class="external free" href="http://localhost:62818/api/jsonapi/simple_json">http://localhost:62818/api/jsonapi/simple_json</a>
         </p><p>
             Du ska göra en sida med en länk: About
         </p><p>
@@ -20,7 +18,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
+    @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
 </div><br /><br />
 <!--Under här skrivs övningen-->
 
@@ -32,6 +30,7 @@
 <!--html här-->
 <button>Ladda JSON</button>
 <ul></ul>
+<div id="here"></div>
 
 <script type="text/javascript">
 
@@ -45,15 +44,17 @@
                 $("ul").append("<li>" + arr[i] + "</li>");
             }
         }
+        else if (request.status === 403 && request.readyState === 4) {
+            $("#here").append("<p>" + request.responseText + "</p>");
+        }
     }
 
     $(document).ready(function () {
         $("button").click(function () {
-            //EDIT  request.open('GET', 'http://mardby.se/AJK15G/lorem_json_array.php');
+            request.open('GET', 'http://localhost:62818/api/jsonapi');
+            request.setRequestHeader("apikey", "Nyckel HÄR");
             request.send();
         });
     });
 
 </script>
-
-

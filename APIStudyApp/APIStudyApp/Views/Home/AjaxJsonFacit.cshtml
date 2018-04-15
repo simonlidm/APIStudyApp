@@ -32,8 +32,12 @@
 						list += &quot;&lt;/ul&gt;&quot;;
 						$(&quot;table&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + x + &quot;&lt;/td&gt;&lt;td&gt;&quot; + list + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
 					}
+                                         else if (request.status === 403 && request.readyState === 4) {
+                                            $("#here").append(&quot;&lt;p>" + request.responseText + &quot;&lt;/p>");
+                                             }
 				};
-				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_json_array.php?numberOfWords=&quot; + x);
+				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/jsonapi/lorem_json_array?numberOfWords=&quot; + x);
+                                request.setRequestHeader("apikey", "Nyckel HÄR");
 				request.send();
 			});
 		});
@@ -50,6 +54,7 @@
 	&lt;table&gt;
 		&lt;tr&gt;&lt;th&gt;numberOfWOrds&lt;/th&gt;&lt;th&gt;responseText&lt;/th&gt;&lt;/tr&gt;
 	&lt;/table&gt;
+    &lt;div id="here">&lt;/div>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -78,8 +83,12 @@
 						var thisUl = &quot;#u&quot; + x;
 						$(thisUl).html(list);
 					}
+                                        else if (request.status === 403 && request.readyState === 4) {
+                                            $("#here").append(&quot;&lt;p>" + request.responseText + &quot;&lt;/p>");
+                                             }
 				}
-				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_json_array.php?numberOfWords=&quot; + x);
+				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/jsonapi/lorem_json_array?numberOfWords=&quot; + x);
+                                request.setRequestHeader("apikey", "Nyckel HÄR");
 				request.send();
 			});
 		});
@@ -98,6 +107,7 @@
 		&lt;tr&gt;&lt;td&gt;&lt;button&gt;1&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;2&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;3&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;4&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;5&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
 		&lt;tr&gt;&lt;td&gt;&lt;ul id=&quot;u1&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u2&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u3&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u4&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u5&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;/tr&gt;
 	&lt;/table&gt;
+    &lt;div id="here">&lt;/div>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -139,8 +149,12 @@
 						var thisUl = &quot;#u&quot; + x;
 						$(thisUl).html(list);
 					}
+                                     else if (request.status === 403 && request.readyState === 4) {
+                                            $("#here").append(&quot;&lt;p>" + request.responseText + &quot;&lt;/p>");
+                                             }
 				}
-				<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/lorem_json_array.php?numberOfWords=&quot; + x);
+				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/jsonapi/lorem_json_array?numberOfWords=&quot; + x);
+                                request.setRequestHeader("apikey", "Nyckel HÄR");
 				request.send();
 			});
 		});
@@ -157,6 +171,7 @@
 &lt;body&gt;
 	&lt;table&gt;
 	&lt;/table&gt;
+    &lt;div id="here">&lt;/div>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>
@@ -206,9 +221,13 @@
 							&quot;&lt;/div&gt;&quot;);
 					}
 				}
+                                 else if (request.status === 403 && request.readyState === 4) {
+                                          $("#here").append(&quot;&lt;p>" + request.responseText + &quot;&lt;/p>");
+                                           }
 			};
-			<!--EDIT-->request.open(&quot;GET&quot;, &quot;http://mardby.se/AJK15G/simple_json.php&quot;);
-			request.send();
+				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/jsonapi/simple_json&quot;);
+                                request.setRequestHeader("apikey", "Nyckel HÄR");
+			        request.send();
 		});
 	});
 	&lt;/script&gt;
@@ -223,6 +242,7 @@
 &lt;body&gt;
 &lt;a href=&quot;#&quot; id=&quot;blog&quot;&gt;Blog&lt;/a&gt;
 &lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+&lt;div id="here">&lt;/div>
 &lt;/body&gt;
 &lt;/html&gt;
 </pre>

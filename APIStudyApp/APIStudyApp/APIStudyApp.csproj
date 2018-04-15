@@ -188,6 +188,7 @@
     <Compile Include="Controllers\AjaxJsonController.cs" />
     <Compile Include="Controllers\AjaxTextController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JsonApiController.cs" />
     <Compile Include="Controllers\LoremTextsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -201,6 +202,7 @@
     <Compile Include="Models\AnimalText.cs">
       <DependentUpon>APIStudyAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Animal_detail.cs" />
     <Compile Include="Models\APIStudyAppModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -216,10 +218,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>APIStudyAppModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\blog_posts.cs">
+    <Compile Include="Models\Blog_posts.cs" />
+    <Compile Include="Models\Blog_post_detail.cs" />
+    <Compile Include="Models\Company.cs">
       <DependentUpon>APIStudyAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompanyDTO.cs" />
+    <Compile Include="Models\Company_details.cs" />
     <Compile Include="Models\Detail.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\diceModel.cs" />
+    <Compile Include="Models\Employee.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Employee_details.cs" />
+    <Compile Include="Models\ItemsSkill.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ItemTags.cs">
       <DependentUpon>APIStudyAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Keys.cs">
@@ -231,7 +248,16 @@
     <Compile Include="Models\LoremTextComma.cs">
       <DependentUpon>APIStudyAppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Office.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Skill.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tags.cs">
+      <DependentUpon>APIStudyAppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\WorkExperience.cs">
       <DependentUpon>APIStudyAppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

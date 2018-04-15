@@ -8,15 +8,25 @@
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Animal" Width="1.5" PointX="2.75" PointY="5.25" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.AnimalDetail" Width="1.5" PointX="5" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.AnimalText" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.blog_posts" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Detail" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Tags" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Tags" Width="1.5" PointX="0.5" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.LoremText" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="APIStudyAppDatabaseModel.FK_AnimalDetail_Animal" ManuallyRouted="false" />
-        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_Detail_blog_posts" ManuallyRouted="false" />
-        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_Detail_Tags" ManuallyRouted="false" />
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.LoremTextComma" Width="1.5" PointX="7.375" PointY="3.75" />
         <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Keys" Width="1.5" PointX="7.375" PointY="6.75" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.ItemTags" Width="1.5" PointX="10.25" PointY="3.125" />
+        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_ItemTags_Detail" />
+        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_ItemTags_Tags" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Employee" Width="1.5" PointX="3.375" PointY="11.75" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Office" Width="1.5" PointX="6.625" PointY="12" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Skill" Width="1.5" PointX="0.75" PointY="9.5" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.WorkExperience" Width="1.5" PointX="3.375" PointY="9.5" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.Company" Width="1.5" PointX="5.875" PointY="9.75" />
+        <EntityTypeShape EntityType="APIStudyAppDatabaseModel.ItemsSkill" Width="1.5" PointX="1.125" PointY="12.25" />
+        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_ItemsSkill_Employee" />
+        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_ItemsSkill_Skill" />
+        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_Office_Employee" />
+        <AssociationConnector Association="APIStudyAppDatabaseModel.FK_WorkExperience_Employee" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

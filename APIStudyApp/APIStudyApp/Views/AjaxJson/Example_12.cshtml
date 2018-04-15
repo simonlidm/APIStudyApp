@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-8">
         <p>
-            I denna uppgift ska requesten gå till <!--EDIT--><a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/dice_json_array.php">http://mardby.se/AJK15G/dice_json_array.php</a> och på denna url kan man lägga till en query string med nyckel numberOfDice och värde 1 till många.
+            I denna uppgift ska requesten gå till <a rel="nofollow" class="external free" href="http://localhost:62818/api/jsonapi/dice_json_array">http://localhost:62818/api/jsonapi/dice_json_array</a> och på denna url kan man lägga till en query string med nyckel numberOfDice och värde 1 till många.
         </p><p>
             På sidan ska det finnas två textrutor och en knapp. Framför första textrutan kan det stå "Antal lika" och framför andra textrutan kan det stå "Antal tärningar" och på knappen kan det stå "Kasta tärningarna"
         </p><p>
@@ -20,7 +20,7 @@
     </div>
 </div>
 <div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
+    @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
 </div><br /><br />
 <!--Under här skrivs övningen-->
 
@@ -32,6 +32,7 @@
 <!--html här-->
 <button>Ladda JSON</button>
 <ul></ul>
+<div id="here"></div>
 
 <script type="text/javascript">
 
@@ -45,13 +46,18 @@
                 $("ul").append("<li>" + arr[i] + "</li>");
             }
         }
+        else if (request.status === 403 && request.readyState === 4) {
+            $("#here").append("<p>" + request.responseText + "</p>");
+        }
     }
 
     $(document).ready(function () {
         $("button").click(function () {
-            //EDIT  request.open('GET', 'http://mardby.se/AJK15G/lorem_json_array.php');
+            request.open('GET', 'http://localhost:62818/api/jsonapi');
+            request.setRequestHeader("apikey", "Nyckel HÄR");
             request.send();
         });
     });
 
 </script>
+

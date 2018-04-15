@@ -44,9 +44,9 @@ namespace APIStudyApp.Controllers
             StringBuilder builder = new StringBuilder();
 
             var resp = new HttpResponseMessage(HttpStatusCode.OK);
-            if (loremText == null|| loremText.numberOfWords == 0 || loremText.numberOfWords > maxId)
+            if (loremText == null|| loremText.numberOfWords <= 0 || loremText.numberOfWords > maxId)
             {
-
+                //borrowing Loremtext from animaltext column (faster)
                 var text = db.AnimalText.Where(x => x.AnimalId == 1).FirstOrDefault();
                 result = text.LoremText;
                 resp.Content = new StringContent(result, Encoding.UTF8, "text/plain");
@@ -91,7 +91,7 @@ namespace APIStudyApp.Controllers
             int maxId = db.LoremText.Max(x => x.numberOfWords);
             int rand_num = 0;
             var resp = new HttpResponseMessage(HttpStatusCode.OK);
-            if (loremText == null || loremText.numberOfWords == 0 || loremText.numberOfWords > maxId)
+            if (loremText == null || loremText.numberOfWords <= 0 || loremText.numberOfWords > maxId)
             {
              
                 

@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-8">
         <p>
-            Requesten i denna uppgift ska gå till<!--EDIT--> <a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/lorem_json_array.php">http://mardby.se/AJK15G/lorem_json_array.php</a> och på denna url kan vi lägga på en query string med nyckel <i>numberOfWords</i>.
+            Requesten i denna uppgift ska gå till <a rel="nofollow" class="external free" href="http://localhost:62818/api/jsonapi/lorem_json_array">http://localhost:62818/api/jsonapi/lorem_json_array</a> och på denna url kan vi lägga på en query string med nyckel <i>numberOfWords</i>.
         </p><p>
             Du ska göra:
         </p>
@@ -29,7 +29,7 @@
     Utmaning: Skriv din kod så att du på <b>ett</b> ställe kan ändra hur många knappar som skapas!
 </p>
 <div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
+    @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
 </div><br /><br />
 <!--Under här skrivs övningen-->
 
@@ -41,6 +41,7 @@
 <!--html här-->
 <button>Ladda JSON</button>
 <ul></ul>
+<div id="here"></div>
 
 <script type="text/javascript">
 
@@ -54,14 +55,19 @@
                 $("ul").append("<li>" + arr[i] + "</li>");
             }
         }
+        else if (request.status === 403 && request.readyState === 4) {
+            $("#here").append("<p>" + request.responseText + "</p>");
+        }
     }
 
     $(document).ready(function () {
         $("button").click(function () {
-            //EDIT  request.open('GET', 'http://mardby.se/AJK15G/lorem_json_array.php');
+            request.open('GET', 'http://localhost:62818/api/jsonapi');
+            request.setRequestHeader("apikey", "Nyckel HÄR");
             request.send();
         });
     });
 
 </script>
+
 

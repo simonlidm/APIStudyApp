@@ -7,11 +7,11 @@
 <div class="row">
     <div class="col-md-8">
         <p>
-            Vi ska nu bygga en sida som pratar med <!--EDIT--><a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/animals_json.php">http://mardby.se/AJK15G/animals_json.php</a>
+            Vi ska nu bygga en sida som pratar med <a rel="nofollow" class="external free" href="http://localhost:62818/api/jsonapi/animals_json">http://localhost:62818/api/jsonapi/animals_json</a>
         </p><p>
-            Denna url kan få en query string med nyckel animalId vars minsta värde är 0
+            Denna url kan få en query string med nyckel animalId vars minsta värde är 1
         </p><p>
-            Bygg en sida med två knappar Prev och Next. När sidan först laddas så ska djur 0 visas.
+            Bygg en sida med två knappar Prev och Next. När sidan först laddas så ska djur 1 visas.
         </p><p>
             Next hämtar nästa djur på nästa animalId medan Prev hämtar djuret innan.
         </p><p>
@@ -20,7 +20,7 @@
     </div>
 </div>
 <div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
+    @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
 </div><br /><br />
 <!--Under här skrivs övningen-->
 

@@ -10,7 +10,6 @@
             <PropertyRef Name="AnimalId" />
           </Key>
           <Property Name="AnimalId" Type="int" Nullable="false" />
-          <Property Name="AnimalMaxId" Type="int" />
         </EntityType>
         <EntityType Name="AnimalDetail">
           <Key>
@@ -32,13 +31,14 @@
           <Property Name="Url" Type="text" />
           <Property Name="LoremText" Type="text" />
         </EntityType>
-        <EntityType Name="blog_posts">
+        <EntityType Name="Company">
           <Key>
-            <PropertyRef Name="blog_posts_id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="blog_posts_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Author" Type="nvarchar" MaxLength="50" />
-          <Property Name="About" Type="text" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Detail">
           <Key>
@@ -48,8 +48,34 @@
           <Property Name="title" Type="nvarchar" MaxLength="50" />
           <Property Name="date" Type="date" />
           <Property Name="text" Type="text" />
-          <Property Name="blog_posts_id" Type="int" />
-          <Property Name="tagId" Type="int" />
+          <Property Name="author" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="DirectNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="ItemsSkill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillsId" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+        </EntityType>
+        <EntityType Name="ItemTags">
+          <Key>
+            <PropertyRef Name="ItemTag" />
+          </Key>
+          <Property Name="ItemTag" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DetailId" Type="int" />
+          <Property Name="TagId" Type="int" />
         </EntityType>
         <EntityType Name="Keys">
           <Key>
@@ -77,14 +103,36 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <Property Name="numberOfWords" Type="int" Nullable="false" />
           <Property Name="LoremComma" Type="varchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Floor" Type="int" />
+          <Property Name="EmployeeId" Type="int" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Tags">
           <Key>
             <PropertyRef Name="tagId" />
           </Key>
           <Property Name="tagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TagName" Type="nvarchar" MaxLength="50" />
-          <Property Name="TagName1" Type="nvarchar" MaxLength="50" />
-          <Property Name="TagName2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmployeeId" Type="int" />
         </EntityType>
         <Association Name="FK_AnimalDetail_Animal">
           <End Role="Animal" Type="Self.Animal" Multiplicity="0..1" />
@@ -98,27 +146,75 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Detail_blog_posts">
-          <End Role="blog_posts" Type="Self.blog_posts" Multiplicity="0..1" />
-          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+        <Association Name="FK_ItemsSkill_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="ItemsSkill" Type="Self.ItemsSkill" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="blog_posts">
-              <PropertyRef Name="blog_posts_id" />
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
             </Principal>
-            <Dependent Role="Detail">
-              <PropertyRef Name="blog_posts_id" />
+            <Dependent Role="ItemsSkill">
+              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Detail_Tags">
+        <Association Name="FK_ItemsSkill_Skill">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="0..1" />
+          <End Role="ItemsSkill" Type="Self.ItemsSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ItemsSkill">
+              <PropertyRef Name="SkillsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemTags_Detail">
+          <End Role="Detail" Type="Self.Detail" Multiplicity="0..1" />
+          <End Role="ItemTags" Type="Self.ItemTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detail">
+              <PropertyRef Name="DetailId" />
+            </Principal>
+            <Dependent Role="ItemTags">
+              <PropertyRef Name="DetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemTags_Tags">
           <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
-          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
+          <End Role="ItemTags" Type="Self.ItemTags" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Tags">
               <PropertyRef Name="tagId" />
             </Principal>
-            <Dependent Role="Detail">
-              <PropertyRef Name="tagId" />
+            <Dependent Role="ItemTags">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Office_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Office" Type="Self.Office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Office">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExperience_Employee">
+          <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="WorkExperience" Type="Self.WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkExperience">
+              <PropertyRef Name="EmployeeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -126,10 +222,16 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <EntitySet Name="Animal" EntityType="Self.Animal" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnimalDetail" EntityType="Self.AnimalDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnimalText" EntityType="Self.AnimalText" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="blog_posts" EntityType="Self.blog_posts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemsSkill" EntityType="Self.ItemsSkill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemTags" EntityType="Self.ItemTags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Keys" EntityType="Self.Keys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Office" EntityType="Self.Office" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkExperience" EntityType="Self.WorkExperience" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoremText" EntityType="Self.LoremText" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [LoremText].[numberOfWords] AS [numberOfWords], 
@@ -146,13 +248,29 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
             <End Role="Animal" EntitySet="Animal" />
             <End Role="AnimalDetail" EntitySet="AnimalDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_Detail_blog_posts" Association="Self.FK_Detail_blog_posts">
-            <End Role="blog_posts" EntitySet="blog_posts" />
-            <End Role="Detail" EntitySet="Detail" />
+          <AssociationSet Name="FK_ItemsSkill_Employee" Association="Self.FK_ItemsSkill_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ItemsSkill" EntitySet="ItemsSkill" />
           </AssociationSet>
-          <AssociationSet Name="FK_Detail_Tags" Association="Self.FK_Detail_Tags">
-            <End Role="Tags" EntitySet="Tags" />
+          <AssociationSet Name="FK_ItemsSkill_Skill" Association="Self.FK_ItemsSkill_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="ItemsSkill" EntitySet="ItemsSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemTags_Detail" Association="Self.FK_ItemTags_Detail">
             <End Role="Detail" EntitySet="Detail" />
+            <End Role="ItemTags" EntitySet="ItemTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemTags_Tags" Association="Self.FK_ItemTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="ItemTags" EntitySet="ItemTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Office_Employee" Association="Self.FK_Office_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Office" EntitySet="Office" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExperience_Employee" Association="Self.FK_WorkExperience_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="WorkExperience" EntitySet="WorkExperience" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -164,7 +282,6 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
             <PropertyRef Name="AnimalId" />
           </Key>
           <Property Name="AnimalId" Type="Int32" Nullable="false" />
-          <Property Name="AnimalMaxId" Type="Int32" />
           <NavigationProperty Name="AnimalDetail" Relationship="Self.FK_AnimalDetail_Animal" FromRole="Animal" ToRole="AnimalDetail" />
         </EntityType>
         <EntityType Name="AnimalDetail">
@@ -188,15 +305,6 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="LoremText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="blog_posts">
-          <Key>
-            <PropertyRef Name="blog_posts_id" />
-          </Key>
-          <Property Name="blog_posts_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="About" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Detail" Relationship="Self.FK_Detail_blog_posts" FromRole="blog_posts" ToRole="Detail" />
-        </EntityType>
         <EntityType Name="Detail">
           <Key>
             <PropertyRef Name="DetailId" />
@@ -205,10 +313,8 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="date" Type="DateTime" Precision="0" />
           <Property Name="text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="blog_posts_id" Type="Int32" />
-          <Property Name="tagId" Type="Int32" />
-          <NavigationProperty Name="blog_posts" Relationship="Self.FK_Detail_blog_posts" FromRole="Detail" ToRole="blog_posts" />
-          <NavigationProperty Name="Tags" Relationship="Self.FK_Detail_Tags" FromRole="Detail" ToRole="Tags" />
+          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ItemTags" Relationship="APIStudyAppDatabaseModel.FK_ItemTags_Detail" FromRole="Detail" ToRole="ItemTags" />
         </EntityType>
         <EntityType Name="Tags">
           <Key>
@@ -216,9 +322,7 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           </Key>
           <Property Name="tagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TagName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TagName1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TagName2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Detail" Relationship="Self.FK_Detail_Tags" FromRole="Tags" ToRole="Detail" />
+          <NavigationProperty Name="ItemTags" Relationship="APIStudyAppDatabaseModel.FK_ItemTags_Tags" FromRole="Tags" ToRole="ItemTags" />
         </EntityType>
         <EntityType Name="LoremText">
           <Key>
@@ -239,35 +343,10 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Detail_blog_posts">
-          <End Role="blog_posts" Type="Self.blog_posts" Multiplicity="0..1" />
-          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="blog_posts">
-              <PropertyRef Name="blog_posts_id" />
-            </Principal>
-            <Dependent Role="Detail">
-              <PropertyRef Name="blog_posts_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Detail_Tags">
-          <End Role="Tags" Type="Self.Tags" Multiplicity="0..1" />
-          <End Role="Detail" Type="Self.Detail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tags">
-              <PropertyRef Name="tagId" />
-            </Principal>
-            <Dependent Role="Detail">
-              <PropertyRef Name="tagId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="APIStudyAppDatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Animal" EntityType="Self.Animal" />
           <EntitySet Name="AnimalDetail" EntityType="Self.AnimalDetail" />
           <EntitySet Name="AnimalText" EntityType="Self.AnimalText" />
-          <EntitySet Name="blog_posts" EntityType="Self.blog_posts" />
           <EntitySet Name="Detail" EntityType="Self.Detail" />
           <EntitySet Name="Tags" EntityType="Self.Tags" />
           <EntitySet Name="LoremText" EntityType="Self.LoremText" />
@@ -275,16 +354,39 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
             <End Role="Animal" EntitySet="Animal" />
             <End Role="AnimalDetail" EntitySet="AnimalDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK_Detail_blog_posts" Association="Self.FK_Detail_blog_posts">
-            <End Role="blog_posts" EntitySet="blog_posts" />
-            <End Role="Detail" EntitySet="Detail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detail_Tags" Association="Self.FK_Detail_Tags">
-            <End Role="Tags" EntitySet="Tags" />
-            <End Role="Detail" EntitySet="Detail" />
-          </AssociationSet>
           <EntitySet Name="LoremTextComma" EntityType="APIStudyAppDatabaseModel.LoremTextComma" />
           <EntitySet Name="Keys" EntityType="APIStudyAppDatabaseModel.Keys" />
+          <EntitySet Name="ItemTags" EntityType="APIStudyAppDatabaseModel.ItemTags" />
+          <AssociationSet Name="FK_ItemTags_Detail" Association="APIStudyAppDatabaseModel.FK_ItemTags_Detail">
+            <End Role="Detail" EntitySet="Detail" />
+            <End Role="ItemTags" EntitySet="ItemTags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemTags_Tags" Association="APIStudyAppDatabaseModel.FK_ItemTags_Tags">
+            <End Role="Tags" EntitySet="Tags" />
+            <End Role="ItemTags" EntitySet="ItemTags" />
+          </AssociationSet>
+          <EntitySet Name="Employee" EntityType="APIStudyAppDatabaseModel.Employee" />
+          <EntitySet Name="Office" EntityType="APIStudyAppDatabaseModel.Office" />
+          <EntitySet Name="Skill" EntityType="APIStudyAppDatabaseModel.Skill" />
+          <EntitySet Name="WorkExperience" EntityType="APIStudyAppDatabaseModel.WorkExperience" />
+          <EntitySet Name="Company" EntityType="APIStudyAppDatabaseModel.Company" />
+          <EntitySet Name="ItemsSkill" EntityType="APIStudyAppDatabaseModel.ItemsSkill" />
+          <AssociationSet Name="FK_ItemsSkill_Employee" Association="APIStudyAppDatabaseModel.FK_ItemsSkill_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="ItemsSkill" EntitySet="ItemsSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ItemsSkill_Skill" Association="APIStudyAppDatabaseModel.FK_ItemsSkill_Skill">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="ItemsSkill" EntitySet="ItemsSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Office_Employee" Association="APIStudyAppDatabaseModel.FK_Office_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="Office" EntitySet="Office" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkExperience_Employee" Association="APIStudyAppDatabaseModel.FK_WorkExperience_Employee">
+            <End Role="Employee" EntitySet="Employee" />
+            <End Role="WorkExperience" EntitySet="WorkExperience" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="LoremTextComma">
           <Key>
@@ -301,6 +403,148 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
           <Property Name="APIKeyHash" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" />
         </EntityType>
+        <EntityType Name="ItemTags">
+          <Key>
+            <PropertyRef Name="ItemTag" />
+          </Key>
+          <Property Name="ItemTag" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DetailId" Type="Int32" />
+          <Property Name="TagId" Type="Int32" />
+          <NavigationProperty Name="Detail" Relationship="APIStudyAppDatabaseModel.FK_ItemTags_Detail" FromRole="ItemTags" ToRole="Detail" />
+          <NavigationProperty Name="Tags" Relationship="APIStudyAppDatabaseModel.FK_ItemTags_Tags" FromRole="ItemTags" ToRole="Tags" />
+        </EntityType>
+        <Association Name="FK_ItemTags_Detail">
+          <End Type="APIStudyAppDatabaseModel.Detail" Role="Detail" Multiplicity="0..1" />
+          <End Type="APIStudyAppDatabaseModel.ItemTags" Role="ItemTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Detail">
+              <PropertyRef Name="DetailId" />
+            </Principal>
+            <Dependent Role="ItemTags">
+              <PropertyRef Name="DetailId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemTags_Tags">
+          <End Type="APIStudyAppDatabaseModel.Tags" Role="Tags" Multiplicity="0..1" />
+          <End Type="APIStudyAppDatabaseModel.ItemTags" Role="ItemTags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tags">
+              <PropertyRef Name="tagId" />
+            </Principal>
+            <Dependent Role="ItemTags">
+              <PropertyRef Name="TagId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DirectNumber" Type="Int32" />
+          <NavigationProperty Name="ItemsSkill" Relationship="APIStudyAppDatabaseModel.FK_ItemsSkill_Employee" FromRole="Employee" ToRole="ItemsSkill" />
+          <NavigationProperty Name="Office" Relationship="APIStudyAppDatabaseModel.FK_Office_Employee" FromRole="Employee" ToRole="Office" />
+          <NavigationProperty Name="WorkExperience" Relationship="APIStudyAppDatabaseModel.FK_WorkExperience_Employee" FromRole="Employee" ToRole="WorkExperience" />
+        </EntityType>
+        <EntityType Name="Office">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" />
+          <Property Name="Floor" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="APIStudyAppDatabaseModel.FK_Office_Employee" FromRole="Office" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ItemsSkill" Relationship="APIStudyAppDatabaseModel.FK_ItemsSkill_Skill" FromRole="Skill" ToRole="ItemsSkill" />
+        </EntityType>
+        <EntityType Name="WorkExperience">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="APIStudyAppDatabaseModel.FK_WorkExperience_Employee" FromRole="WorkExperience" ToRole="Employee" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ItemsSkill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillsId" Type="Int32" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="APIStudyAppDatabaseModel.FK_ItemsSkill_Employee" FromRole="ItemsSkill" ToRole="Employee" />
+          <NavigationProperty Name="Skill" Relationship="APIStudyAppDatabaseModel.FK_ItemsSkill_Skill" FromRole="ItemsSkill" ToRole="Skill" />
+        </EntityType>
+        <Association Name="FK_ItemsSkill_Employee">
+          <End Type="APIStudyAppDatabaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="APIStudyAppDatabaseModel.ItemsSkill" Role="ItemsSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ItemsSkill">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ItemsSkill_Skill">
+          <End Type="APIStudyAppDatabaseModel.Skill" Role="Skill" Multiplicity="0..1" />
+          <End Type="APIStudyAppDatabaseModel.ItemsSkill" Role="ItemsSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ItemsSkill">
+              <PropertyRef Name="SkillsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Office_Employee">
+          <End Type="APIStudyAppDatabaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="APIStudyAppDatabaseModel.Office" Role="Office" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Office">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkExperience_Employee">
+          <End Type="APIStudyAppDatabaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+          <End Type="APIStudyAppDatabaseModel.WorkExperience" Role="WorkExperience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employee">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="WorkExperience">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -311,7 +555,6 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
             <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Animal">
               <MappingFragment StoreEntitySet="Animal">
                 <ScalarProperty Name="AnimalId" ColumnName="AnimalId" />
-                <ScalarProperty Name="AnimalMaxId" ColumnName="AnimalMaxId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -337,24 +580,14 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="blog_posts">
-            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.blog_posts">
-              <MappingFragment StoreEntitySet="blog_posts">
-                <ScalarProperty Name="blog_posts_id" ColumnName="blog_posts_id" />
-                <ScalarProperty Name="Author" ColumnName="Author" />
-                <ScalarProperty Name="About" ColumnName="About" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Detail">
             <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Detail">
               <MappingFragment StoreEntitySet="Detail">
+                <ScalarProperty Name="author" ColumnName="author" />
                 <ScalarProperty Name="DetailId" ColumnName="DetailId" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="date" ColumnName="date" />
                 <ScalarProperty Name="text" ColumnName="text" />
-                <ScalarProperty Name="blog_posts_id" ColumnName="blog_posts_id" />
-                <ScalarProperty Name="tagId" ColumnName="tagId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -363,8 +596,6 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
               <MappingFragment StoreEntitySet="Tags">
                 <ScalarProperty Name="tagId" ColumnName="tagId" />
                 <ScalarProperty Name="TagName" ColumnName="TagName" />
-                <ScalarProperty Name="TagName1" ColumnName="TagName1" />
-                <ScalarProperty Name="TagName2" ColumnName="TagName2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -390,6 +621,73 @@ warning 6002: The table/view 'APIStudyAppDatabase.dbo.LoremTextComma' does not h
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="APIKeyHash" ColumnName="APIKeyHash" />
                 <ScalarProperty Name="APIKeyId" ColumnName="APIKeyId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemTags">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.ItemTags">
+              <MappingFragment StoreEntitySet="ItemTags">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="DetailId" ColumnName="DetailId" />
+                <ScalarProperty Name="ItemTag" ColumnName="ItemTag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employee">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Employee">
+              <MappingFragment StoreEntitySet="Employee">
+                <ScalarProperty Name="DirectNumber" ColumnName="DirectNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Office">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Office">
+              <MappingFragment StoreEntitySet="Office">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Floor" ColumnName="Floor" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skill">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkExperience">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.WorkExperience">
+              <MappingFragment StoreEntitySet="WorkExperience">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemsSkill">
+            <EntityTypeMapping TypeName="APIStudyAppDatabaseModel.ItemsSkill">
+              <MappingFragment StoreEntitySet="ItemsSkill">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="SkillsId" ColumnName="SkillsId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

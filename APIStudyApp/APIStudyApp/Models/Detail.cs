@@ -14,14 +14,19 @@ namespace APIStudyApp.Models
     
     public partial class Detail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Detail()
+        {
+            this.ItemTags = new HashSet<ItemTags>();
+        }
+    
         public int DetailId { get; set; }
         public string title { get; set; }
         public Nullable<System.DateTime> date { get; set; }
         public string text { get; set; }
-        public Nullable<int> blog_posts_id { get; set; }
-        public Nullable<int> tagId { get; set; }
+        public string author { get; set; }
     
-        public virtual blog_posts blog_posts { get; set; }
-        public virtual Tags Tags { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ItemTags> ItemTags { get; set; }
     }
 }

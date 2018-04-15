@@ -34,30 +34,30 @@
 
                                 @Html.ActionLink("Ajax med Texter", "AjaxTextFacit", "Home", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" })
                                 <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link1">Lösning 1</a></li>
-                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link2">Lösning 2</a></li>
-                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link3">Lösning 3</a></li>
-                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link4">Lösning 4</a></li>
-                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link5">Lösning 5</a></li>
-                                    <li><a href="@Url.Action("AjaxTextFacit","Home")#link6">Lösning 6</a></li>
+                                    <li>@Html.ActionLink("Lösning 1", "AjaxTextFacit", "Home", null, null, "link1", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 2", "AjaxTextFacit", "Home", null, null, "link2", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 3", "AjaxTextFacit", "Home", null, null, "link3", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 4", "AjaxTextFacit", "Home", null, null, "link4", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 5", "AjaxTextFacit", "Home", null, null, "link5", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 6", "AjaxTextFacit", "Home", null, null, "link6", new { area = "" }, null)</li>
                                 </ul>
                             </li>
                             <li class="dropdown-submenu">
                                 @Html.ActionLink("Ajax med JSON", "AjaxJsonFacit", "Home", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" })
                                 <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link1">Lösning 1</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link2">Lösning 2</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link3">Lösning 2 - Utmaning</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link4">Lösning 3</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link5">Lösning 4</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link6">Lösning 5</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link7">Lösning 6</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link8">Lösning 7</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link9">Lösning 8</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link10">Lösning 9</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link11">Lösning 10</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link12">Lösning 11</a></li>
-                                    <li><a href="@Url.Action("AjaxJsonFacit","Home")#link13">Lösning 12</a></li>
+                                    <li>@Html.ActionLink("Lösning 1", "AjaxJsonFacit", "Home", null, null, "link1", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 2", "AjaxJsonFacit", "Home", null, null, "link2", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 2 - Utmaning", "AjaxJsonFacit", "Home", null, null, "link3", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 3", "AjaxJsonFacit", "Home", null, null, "link4", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 4", "AjaxJsonFacit", "Home", null, null, "link5", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 5", "AjaxJsonFacit", "Home", null, null, "link6", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 6", "AjaxJsonFacit", "Home", null, null, "link7", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 7", "AjaxJsonFacit", "Home", null, null, "link8", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 8", "AjaxJsonFacit", "Home", null, null, "link9", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 9", "AjaxJsonFacit", "Home", null, null, "link10", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 10", "AjaxJsonFacit", "Home", null, null, "link11", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 11", "AjaxJsonFacit", "Home", null, null, "link12", new { area = "" }, null)</li>
+                                    <li>@Html.ActionLink("Lösning 12", "AjaxJsonFacit", "Home", null, null, "link13", new { area = "" }, null)</li>
                                 </ul>
                             </li>
                         </ul>
@@ -81,18 +81,18 @@
                             <li class="dropdown-submenu">
                                 @Html.ActionLink("JSON Övningar", "Index", "AjaxJson", new { area = "" }, htmlAttributes: new { @class = "dropdown-toggle", data_toggle = "dropdown" })
                                 <ul class="dropdown-menu">
-                                    <li> @Html.ActionLink("Övning 1", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 2", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 3", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 4", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 5", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 6", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 7", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 8", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 9", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 1", "Example_1", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 2", "Example_2", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 3", "Example_3", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 4", "Example_4", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 5", "Example_5", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 6", "Example_6", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 7", "Example_7", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 8", "Example_8", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 9", "Example_9", "AjaxJson", new { area = "" }, null)</li>
                                     <li> @Html.ActionLink("Övning 10", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 11", "ComingSoon", "Home", new { area = "" }, null)</li>
-                                    <li> @Html.ActionLink("Övning 12", "ComingSoon", "Home", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 11", "Example_11", "AjaxJson", new { area = "" }, null)</li>
+                                    <li> @Html.ActionLink("Övning 12", "Example_12", "AjaxJson", new { area = "" }, null)</li>
                                 </ul>
                             </li>
                         </ul>

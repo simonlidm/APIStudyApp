@@ -28,11 +28,17 @@ namespace APIStudyApp.Models
         public virtual DbSet<Animal> Animal { get; set; }
         public virtual DbSet<AnimalDetail> AnimalDetail { get; set; }
         public virtual DbSet<AnimalText> AnimalText { get; set; }
-        public virtual DbSet<blog_posts> blog_posts { get; set; }
         public virtual DbSet<Detail> Detail { get; set; }
         public virtual DbSet<Tags> Tags { get; set; }
         public virtual DbSet<LoremText> LoremText { get; set; }
         public virtual DbSet<LoremTextComma> LoremTextComma { get; set; }
         public virtual DbSet<Keys> Keys { get; set; }
+        public virtual DbSet<ItemTags> ItemTags { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Office> Office { get; set; }
+        public virtual DbSet<Skill> Skill { get; set; }
+        public virtual DbSet<WorkExperience> WorkExperience { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<ItemsSkill> ItemsSkill { get; set; }
     }
 }

@@ -2,52 +2,67 @@
 @{
     ViewBag.Title = "Example_3";
 }
-
 <h2>Övning 3</h2>
 <div class="row">
     <div class="col-md-8">
+        <p> Requesten i denna uppgift ska gå till <a rel="nofollow" class="external free" href="http://localhost:62818/api/jsonapi/dice_json_array">http://localhost:62818/api/jsonapi/dice_json_array</a> och på denna url kan vi lägga på en query string med nyckel <i>numberOfDice</i>.</p>
         <p>
-            Requesten i denna uppgift ska gå till <!--EDIT--><a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/dice_json_array.php">http://mardby.se/AJK15G/dice_json_array.php</a> och på denna url kan vi lägga på en query string med nyckel <i>numberOfDice</i>.
-        </p><p>
             Du ska göra ett formulär med ett textfält och en knapp som låter användaren välja hur många tärningar som ska slås. Resultatet ska sorteras och läggas till tidigare visade resultat.
         </p>
-    </div>
-</div>
-<div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
-</div><br /><br />
-<!--Under här skrivs övningen-->
+        <div>
+            @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
+        </div>
+        <br /><br />
 
-<style>
-    /* din css här */
-</style>
+        <!--Under här skrivs övningen-->
+
+        <style>
+            /* din css här */
+        </style>
 
 
-<!--html här-->
-<button>Ladda JSON</button>
-<ul></ul>
+        <!--html här-->
+        <button>Ladda JSON</button>
+        <ul></ul>
+        <div id="here"></div>
 
-<script type="text/javascript">
+        <script type="text/javascript">
 
-    var request = new XMLHttpRequest();
+            var request = new XMLHttpRequest();
 
-    request.onreadystatechange = function () {
+            request.onreadystatechange = function () {
 
-        if ((request.readyState === 4) && (request.status === 200)) {
-            var arr = JSON.parse(request.responseText);
-            for (var i in arr) {
-                $("ul").append("<li>" + arr[i] + "</li>");
+                if ((request.readyState === 4) && (request.status === 200)) {
+                    var arr = JSON.parse(request.responseText);
+                    for (var i in arr) {
+                        $("ul").append("<li>" + arr[i] + "</li>");
+                    }
+                }
+                else if (request.status === 403 && request.readyState === 4) {
+                    $("#here").append("<p>" + request.responseText + "</p>");
+                }
             }
-        }
-    }
 
-    $(document).ready(function () {
-        $("button").click(function () {
-            //EDIT  request.open('GET', 'http://mardby.se/AJK15G/lorem_json_array.php');
-            request.send();
-        });
-    });
+            $(document).ready(function () {
+                $("button").click(function () {
+                    request.open('GET', 'http://localhost:62818/api/jsonapi');
+                    request.setRequestHeader("apikey", "Nyckel HÄR");
+                    request.send();
+                });
+            });
 
-</script>
+        </script>
 
 
+        <!--Slut på kod-->
+
+
+    </div>
+    <div class="col-md-4">
+        <h3>Tips</h3>
+        <ul>
+            <li>
+                <a rel="nofollow" class="external text" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort">.sort()</a> (MDN)
+            </li>
+        </ul>
+</div>

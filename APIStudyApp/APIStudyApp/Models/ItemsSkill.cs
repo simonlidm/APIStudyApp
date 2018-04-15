@@ -12,9 +12,13 @@ namespace APIStudyApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LoremText
+    public partial class ItemsSkill
     {
-        public int numberOfWords { get; set; }
-        public string Lorem { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> SkillsId { get; set; }
+        public Nullable<int> EmployeeId { get; set; }
+    
+        public virtual Employee Employee { get; set; }
+        public virtual Skill Skill { get; set; }
     }
 }

@@ -481,6 +481,50 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:APIStudyApp.Controllers.JsonApiController">
+            <summary>
+            API controller for example testing AJAX med Json
+            </summary>
+        </member>
+        <member name="M:APIStudyApp.Controllers.JsonApiController.GetJsonText(APIStudyApp.Models.LoremText)">
+            <summary>
+            Get random loremtext in an array. Four by default. NumberOfWords parameter is to be used to specify the amount of words.
+            </summary>
+            <param name="loremText"></param>
+            <returns>Returns a specific amount of words in an array or four words by default</returns>
+        </member>
+        <member name="M:APIStudyApp.Controllers.JsonApiController.GetJsonNumber(APIStudyApp.Models.diceModel)">
+            <summary>
+            Gets random numbers into an int array consisting of numbers 1-6.
+            </summary>
+            <param name="dice"></param>
+            <returns>Returns an int array with specified amount of dice.</returns>
+        </member>
+        <member name="M:APIStudyApp.Controllers.JsonApiController.GetSimpleJson">
+            <summary>
+            Get a blog in an object array and with a relation to a tag object array.
+            </summary>
+            <returns>Returns blog_posts as an object array consisting properties and another object array with tags</returns>
+        </member>
+        <member name="M:APIStudyApp.Controllers.JsonApiController.GetBlogJson">
+            <summary>
+            Gets an object array consisting blog posts.
+            </summary>
+            <returns>Returns a list of blog posts with tags</returns>
+        </member>
+        <member name="M:APIStudyApp.Controllers.JsonApiController.GetEmployeeJson">
+            <summary>
+            Gets a list of employees with properties and relations. Company properties in an array.
+            </summary>
+            <returns>Returns 2 object arrays, 1 Company array and 1 Employee array consisting of more to more relations.</returns>
+        </member>
+        <member name="M:APIStudyApp.Controllers.JsonApiController.GetAnimalJson(APIStudyApp.Models.Animal)">
+            <summary>
+            Gets an animalid 1 by default or when higher than array it is maxid by default. Query is specified by animalid.
+            </summary>
+            <param name="animal"></param>
+            <returns>Returns default values 1 or max value. If specified it returns an animal by id.</returns>
+        </member>
         <member name="T:APIStudyApp.Controllers.LoremTextsController">
             <summary>
             API controller for example testing AJAX med Texter
@@ -518,51 +562,6 @@
             If out of scope. Disposed activates
             </summary>
             <param name="disposing">For disposing out of scope operations</param>
-        </member>
-        <member name="T:APIStudyApp.Models.AnimalText">
-            <summary>
-            Represents an animal.
-            </summary>
-        </member>
-        <member name="P:APIStudyApp.Models.AnimalText.AnimalId">
-            <summary>
-            The identifier of an animal
-            </summary>
-        </member>
-        <member name="P:APIStudyApp.Models.AnimalText.AnimalName">
-            <summary>
-            Name of the animal
-            </summary>
-        </member>
-        <member name="P:APIStudyApp.Models.AnimalText.AnimalDetails">
-            <summary>
-            Details about the animal
-            </summary>
-        </member>
-        <member name="P:APIStudyApp.Models.AnimalText.Url">
-            <summary>
-            Url to animal picture
-            </summary>
-        </member>
-        <member name="P:APIStudyApp.Models.AnimalText.LoremText">
-            <summary>
-            Sample data Lorem text
-            </summary>
-        </member>
-        <member name="T:APIStudyApp.Models.LoremText">
-            <summary>
-            Represents a Lorem text and specific lorem words.
-            </summary>
-        </member>
-        <member name="P:APIStudyApp.Models.LoremText.numberOfWords">
-            <summary>
-            Specific number of lorem words
-            </summary>
-        </member>
-        <member name="P:APIStudyApp.Models.LoremText.Lorem">
-            <summary>
-            Full Lorem text
-            </summary>
         </member>
     </members>
 </doc>

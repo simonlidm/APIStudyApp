@@ -12,9 +12,13 @@ namespace APIStudyApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LoremText
+    public partial class ItemTags
     {
-        public int numberOfWords { get; set; }
-        public string Lorem { get; set; }
+        public int ItemTag { get; set; }
+        public Nullable<int> DetailId { get; set; }
+        public Nullable<int> TagId { get; set; }
+    
+        public virtual Detail Detail { get; set; }
+        public virtual Tags Tags { get; set; }
     }
 }

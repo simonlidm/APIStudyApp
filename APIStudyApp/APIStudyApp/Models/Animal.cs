@@ -21,7 +21,6 @@ namespace APIStudyApp.Models
         }
     
         public int AnimalId { get; set; }
-        public Nullable<int> AnimalMaxId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnimalDetail> AnimalDetail { get; set; }

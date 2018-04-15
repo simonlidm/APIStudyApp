@@ -7,7 +7,7 @@
 <div class="row">
     <div class="col-md-8">
         <p>
-            Vi ska nu göra en variant på blogg-uppgiften. Denna gång ska vi prata med <!--EDIT--><a rel="nofollow" class="external free" href="http://mardby.se/AJK15G/blog_json.php">http://mardby.se/AJK15G/blog_json.php</a>
+            Vi ska nu göra en variant på blogg-uppgiften. Denna gång ska vi prata med <a rel="nofollow" class="external free" href="http://localhost:62818/api/jsonapi/blog_json">http://localhost:62818/api/jsonapi/blog_json</a>
         </p><p>
             Vad uppgiften ska innehålla kan du se via request urlen. Vi ska nu inte visa alla blogginlägg på en gång däremot. Istället visas först en lista på alla titlar. När man klickar på en titel så glider hela inlägget fram.
         </p>
@@ -16,7 +16,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Tillbaka till övningarna", "Index")
+    @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
 </div><br /><br />
 <!--Under här skrivs övningen-->
 

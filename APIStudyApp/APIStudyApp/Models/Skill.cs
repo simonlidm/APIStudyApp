@@ -12,18 +12,18 @@ namespace APIStudyApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tags
+    public partial class Skill
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tags()
+        public Skill()
         {
-            this.ItemTags = new HashSet<ItemTags>();
+            this.ItemsSkill = new HashSet<ItemsSkill>();
         }
     
-        public int tagId { get; set; }
-        public string TagName { get; set; }
+        public int ID { get; set; }
+        public string Title { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ItemTags> ItemTags { get; set; }
+        public virtual ICollection<ItemsSkill> ItemsSkill { get; set; }
     }
 }

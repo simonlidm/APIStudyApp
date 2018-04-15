@@ -12,9 +12,11 @@ namespace APIStudyApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LoremText
+    public partial class Company
     {
-        public int numberOfWords { get; set; }
-        public string Lorem { get; set; }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Website { get; set; }
     }
 }
