@@ -3,7 +3,7 @@
 For studying Client API interaction with Back-end API
 ## Target Group
 
-This app targets those who wants learn about AJAX with JavaScript(for example Angular, React, JQuery) but also those who develops Web APIs. You will be able to type code in Client side as well as Server Side. 
+This app targets those who wants to learn about AJAX with JavaScript(for example Angular, React, JQuery) but also those who develops Web APIs. You will be able to type code in Client side as well as Server side. 
 
 1. Teachers can use it to learn or teach students about Web API or AJAX with JavaScript.
 2. Students who focus on front-end development can use this app to type scripts directly in the app or start the app in order to use the WebApi and in that case use whatever front-end developer program, for example Sublime, Atom etc.
@@ -70,7 +70,7 @@ Front-end developers should either use the APIStudyApp project directly as seen 
 
 * 1.0.0
    * Ready to Use
-* 2.0.0
+* 1.1.0
     * Work in progress
 
 ## Meta
