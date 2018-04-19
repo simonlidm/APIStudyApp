@@ -1,7 +1,13 @@
 # APIStudyApp
 
 For studying Client API interaction with Back-end API
+## Target Group
 
+This app targets those who wants to learn about AJAX with JavaScript(for example Angular, React, JQuery) but also those who develops Web APIs. You will be able to type code in Client side as well as Server side. 
+
+1. Teachers can use it to learn or teach students about Web API or AJAX with JavaScript.
+2. Students who focus on front-end development can use this app to type scripts directly in the app or start the app in order to use the WebApi and in that case use whatever front-end developer program, for example Sublime, Atom etc.
+3. Students who focus on back-end development can use this app to develop the WebApiCore project found within the repository.
 
 ## Installation
 
@@ -27,7 +33,11 @@ For studying Client API interaction with Back-end API
 
 ## Usage example
 
-Please watch the video in order to understand how to use this app.
+Please watch the videos in order to understand how to use this app.
+
+### Recommendation
+
+Front-end developers should either use the APIStudyApp project directly as seen in the video below or run the WebApiCore project and use own webdeveloper tools like Sublime, Atom etc. If you choose to use the latter dont forget to call GET requests to the WebApiCore project as seen in the guide video for WebApi Core [GUIDE VIDEO WEBAPICORE] (10min)
 
 <h4>Basic usage:</h4>
 
@@ -39,11 +49,28 @@ Please watch the video in order to understand how to use this app.
    6. Guide for usage of the app [GUIDE VIDEO] (10min)
 
 
+## Technologies and Methods
+
++ Visual Studio 2017
++ Git
++ MS SQL Server / Management Studio
++ .NET Framework
++ .NET Core
++ ASP.NET MVC 5
++ ASP.NET Core WebApi
++ Entity Framework
++ Entity Framework Core
++ Bootstrap
++ HTML
++ CSS
++ Razor
++ JQuery
+
 ## Release History
 
 * 1.0.0
    * Ready to Use
-* 2.0.0
+* 1.1.0
     * Work in progress
 
 ## Meta
@@ -68,3 +95,4 @@ Fork it (<https://github.com/simonlidm/APIStudyApp/fork>)
 
 [local/API Help]:http://localhost:62818/Help
 [GUIDE VIDEO]:https://youtu.be/PXLaP4mn8vU
+[GUIDE VIDEO WEBAPICORE]:https://youtu.be/PXLaP4mn8vU
