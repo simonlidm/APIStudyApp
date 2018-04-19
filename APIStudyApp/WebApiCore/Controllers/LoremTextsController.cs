@@ -43,7 +43,7 @@ namespace WebApiCore.Controllers
                 var text = db.AnimalText.Where(x => x.AnimalId == 1).FirstOrDefault();
                 result = text.LoremText;
 
-                return Ok(result);
+                return Content(result);
             }
 
 
@@ -62,7 +62,7 @@ namespace WebApiCore.Controllers
             }
 
             result = builder.ToString();
-            return Ok(result);
+            return Content(result);
         }
         /// <summary>
         /// Gets a text with lorem by default and by numberOfWords unique identifier, it will also wait for 5 secs.
@@ -92,7 +92,7 @@ namespace WebApiCore.Controllers
                     builder.Append(loremText.Lorem).Append(" ");
                 }
                 result = builder.ToString();
-                return Ok(result);
+                return Content(result);
             }
 
             int id = loremText.NumberOfWords;
@@ -109,7 +109,7 @@ namespace WebApiCore.Controllers
 
             result = builder.ToString();
 
-            return Ok(result);
+            return Content(result);
         }
         /// <summary>
         /// Gets an object of LoremTextComma where lorem words is separated by commas
@@ -137,7 +137,7 @@ namespace WebApiCore.Controllers
 
             result = builder.ToString();
 
-            return Ok(result);
+            return Content(result);
         }
         /// <summary>
         /// Gets an animal object with spefic values
@@ -167,7 +167,7 @@ namespace WebApiCore.Controllers
                 builder.Append(animal).Append(description).Append(loremText).Append(url);
 
                 string result2 = builder.ToString();
-                return Ok(result2);
+                return Content(result2);
 
             }
 
@@ -184,7 +184,7 @@ namespace WebApiCore.Controllers
                 builder.Append(animal).Append(description).Append(loremText).Append(url);
 
                 string result2 = builder.ToString();
-                return Ok(result2);
+                return Content(result2);
 
             }
             animal = animals.AnimalName;
@@ -196,7 +196,7 @@ namespace WebApiCore.Controllers
 
             string result = builder.ToString();
 
-            return Ok(result);
+            return Content(result);
         }
       
         //}
