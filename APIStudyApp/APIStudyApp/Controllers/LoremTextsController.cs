@@ -135,7 +135,7 @@ namespace APIStudyApp.Controllers
 
             var resp = new HttpResponseMessage(HttpStatusCode.OK);
             string result;
-            int maxId = db.LoremText.Max(x => x.numberOfWords);
+            int maxId = db.LoremTextComma.Max(x => x.numberOfWords);
 
             StringBuilder builder = new StringBuilder();
            
