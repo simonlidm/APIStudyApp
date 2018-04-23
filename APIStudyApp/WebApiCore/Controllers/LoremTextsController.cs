@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiCore.Models;
@@ -13,6 +14,7 @@ namespace WebApiCore.Controllers
 {
     [Produces("application/json")]
     [Route("api/LoremTexts")]
+    [DisableCors]
     public class LoremTextsController : Controller
     {
         private APIStudyAppDatabaseContext db = new APIStudyAppDatabaseContext();

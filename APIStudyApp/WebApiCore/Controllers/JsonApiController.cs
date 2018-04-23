@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApiCore.Models;
@@ -10,6 +11,7 @@ namespace WebApiCore.Controllers
 {
     [Produces("application/json")]
     [Route("api/JsonApi")]
+    [DisableCors]
     public class JsonApiController : Controller
     {
         private APIStudyAppDatabaseContext db = new APIStudyAppDatabaseContext();
