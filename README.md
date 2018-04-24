@@ -33,11 +33,13 @@ This app targets those who wants to learn about AJAX with JavaScript(for example
 
 ## Usage example
 
-Please watch the videos in order to understand how to use this app.
+Please watch the videos in order to understand how to use this app. [GUIDE VIDEO] (10min)
 
 ### Recommendation
 
 Front-end developers should either use the APIStudyApp project directly as seen in the video below or run the WebApiCore project and use own webdeveloper tools like Sublime, Atom etc. If you choose to use the latter dont forget to call GET requests to the WebApiCore project as seen in the guide video for WebApi Core [GUIDE VIDEO WEBAPICORE] (10min)
+
+Back-end developers should try to create similar APIs as seen in the WebApi Core/APIStudyApp project(without copying the code in controllers). Use Postman or Restlet to see the output from the GET requests in the APIs. You can use the already created API controllers as right answers.
 
 <h4>Basic usage:</h4>
 
@@ -47,6 +49,7 @@ Front-end developers should either use the APIStudyApp project directly as seen 
    4. You will be able to see the WebAPI and how it works directly (watch video). There is also an API Helper when you run the app, API Helper is mainly to understand how you can use the API [local/API Help].
    5. API Key is needed and will be given by your teacher.
    6. Guide for usage of the app [GUIDE VIDEO] (10min)
+   7. Guide for usage of WebApi Core [GUIDE VIDEO WEBAPICORE] (10min)
 
 
 ## Technologies and Methods
