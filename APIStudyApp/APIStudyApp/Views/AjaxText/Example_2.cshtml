@@ -33,33 +33,32 @@
 
 
 
-        <script type="text/javascript">
+        <script>
 
-            var request = new XMLHttpRequest();
+            fetch('http://localhost:62818/api/loremtexts', {
+                method: 'get',
+                headers: new Headers({
+                    'apikey': ''
+                })
+            })
+                .then(function (response) {
+                    if (response.status === 200) {
+                        return response.text().then(function (text) {
 
-            request.onreadystatechange = function () {
+                            $("#here").append("<p>" + text + "</p>");
 
-                console.log("readyState:" + request.readyState);
-                console.log("status:" + request.status);
-                console.log("responseText:" + request.responseText);
-                console.log("-----");
+                        });
+                    } else if (response.status === 403) {
+                        response.text().then(function (text) {
 
-                if ((request.readyState === 4) && (request.status === 200)) {
-                    document.getElementById('here').innerHTML = request.responseText;
-                }
-                else if (request.status === 403 && request.readyState === 4) {
-                    $("#here").append("<p>" + request.responseText + "</p>");
-                }
-            }
-            $(document).ready(function () {
+                            $("#here").append("<p>" + text + "</p>");
 
-                // mer kod här
-                
-                request.open('GET', 'http://localhost:62818/api/loremtexts');
-                request.setRequestHeader("apikey", "Nyckel HÄR");
-                request.send();
-            });
-
+                        });
+                    }
+                })
+                .catch(function (err) {
+                    console.log('Fetch Error :-S', err);
+                });
 
         </script>
 
@@ -81,6 +80,6 @@
                 <a rel="nofollow" class="external text" href="https://api.jquery.com/append/">.append()</a>
             </li>
         </ol>       
-        <iframe width="350" height="350" src="https://www.youtube.com/embed/NUy8Th_1DII" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        @*<iframe width="350" height="350" src="https://www.youtube.com/embed/NUy8Th_1DII" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>*@
     </div>
 </div>
