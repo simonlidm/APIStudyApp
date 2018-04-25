@@ -21,32 +21,26 @@
     &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-    &lt;title&gt;Fetch API&lt;/title&gt;
+    &lt;title&gt;Övning 1&lt;/title&gt;
 &lt;/head&gt;
 
 &lt;body&gt;
-    &lt;button class=&quot;btn&quot;&gt;GET DATA &lt;/button&gt;
+    &lt;button class=&quot;btn&quot;&gt;Ladda data&lt;/button&gt;
     &lt;div id=&quot;here&quot;&gt;
 
     &lt;/div&gt;
 
     &lt;script&gt;
         $(&quot;.btn&quot;).click(function() {
-            fetch('http://localhost:62818/api/loremtexts', {
+            fetch('http://localhost:60658/api/loremtexts', {
                     method: 'get',
                     headers: new Headers({
-                        'apikey': ''
+                        'apikey': 'Studentnyckel12'
                     })
                 })
                 .then(function(response) {
-                    if (response.status === 200) {
+                    if (response.status === 200 || response.status === 403) {
                         return response.text().then(function(text) {
-
-                            $(&quot;#here&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
-
-                        });
-                    } else if (response.status === 403) {
-                        response.text().then(function(text) {
 
                             $(&quot;#here&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
 
@@ -68,41 +62,46 @@
 <h3>Lösning 2</h3>
 <pre>
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
 &lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;title&gt;Öva AJAX text 2&lt;/title&gt;
-	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;title&gt;Övning 2&lt;/title&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
-	&lt;button class="btn"&gt;Ladda data&lt;/button&gt;
-	&lt;ul id="ul"&gt;&lt;/ul&gt;
+    &lt;button class=&quot;btn&quot;&gt;Ladda data&lt;/button&gt;
+    &lt;ul id=&quot;here&quot;&gt;&lt;/ul&gt;
 
-	&lt;script type=&quot;text/javascript&quot;&gt;
+    &lt;script&gt;
+        $(&quot;.btn&quot;).click(function() {
+            fetch('http://localhost:62818/api/loremtexts?numberOfWords=10', {
+                    method: 'get',
+                    headers: new Headers({
+                        'apikey': ''
+                    })
+                })
+                .then(function(response) {
+                    if (response.status === 200 || response.status === 403) {
+                        return response.text().then(function(text) {
 
-		var request = new XMLHttpRequest();
+                            $(&quot;#here&quot;).append(&quot;&lt;li&gt;&quot; + text + &quot;&lt;/li&gt;&quot;);
 
-		var handler = function() {
-			console.log(&quot;readyState: &quot; + request.readyState);
-			console.log(&quot;status: &quot; + request.status);
-			if(request.readyState===4 &amp;&amp; request.status===200)
-				$("#ul").append(&quot;&lt;li&gt;&quot; + request.responseText + &quot;&lt;/li&gt;&quot;);
-                       else if (request.status === 403 && request.readyState === 4) {
-                        $("#ul").append("&lt;li>" + request.responseText + "&lt;li />");
-                }
-		}
+                        });
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
 
-		$(document).ready(function() {
-			$(&quot;.btn&quot;).click(function() {
-				request.onreadystatechange = handler;
-				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts?numberOfWords=10&quot;);
-                                request.setRequestHeader("apikey", "API Nyckel HÄR");
-				request.send();
-			});
-		});
-
-	&lt;/script&gt;
 &lt;/body&gt;
+
 &lt;/html&gt;
 </pre>
 <div id="link3"></div>
@@ -110,103 +109,192 @@
 <h3>Lösning 3</h3>
 <pre>
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
 &lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;title&gt;Öva AJAX text 3&lt;/title&gt;
-	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-	&lt;style type=&quot;text/css&quot;&gt;
-		th, td {
-			border: 1px solid lightblue;
-		}
-	&lt;/style&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;title&gt;Övning 3&lt;/title&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        th,
+        td {
+            border: 1px solid lightblue;
+        }
+    &lt;/style&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
-	&lt;form&gt;
-		&lt;input type=&quot;text&quot;&gt;
-		&lt;button&gt;Ladda data&lt;/button&gt;
-	&lt;/form&gt;
-	&lt;table&gt;
-		&lt;tr&gt;&lt;th&gt;numberOfWords&lt;/th&gt;&lt;th&gt;responseText&lt;/th&gt;&lt;/tr&gt;
-	&lt;/table&gt;
-        &lt;div id="here">&lt;/div>
+    &lt;form&gt;
+        &lt;input type=&quot;text&quot; id=&quot;in&quot;&gt;
 
-	&lt;script type=&quot;text/javascript&quot;&gt;
+        &lt;button class=&quot;btn&quot;&gt;Ladda data&lt;/button&gt;
+    &lt;/form&gt;
+    &lt;table id=&quot;here&quot;&gt;
+        &lt;tr&gt;
+            &lt;th&gt;numberOfWords&lt;/th&gt;
+            &lt;th&gt;responseText&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
 
-		var request = new XMLHttpRequest();
-		var input = 0;
-		var handler = function() {
-			if(request.readyState===4 &amp;&amp; request.status===200)
-				$(&quot;table&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + input + &quot;&lt;/td&gt;&lt;td&gt;&quot; + request.responseText + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
-                         else if (request.status === 403 && request.readyState === 4) {
-                             $("#here").append("&lt;p>" + request.responseText + "&lt;/p>");
-		}
-              }
-		$(document).ready(function() {
-			$(&quot;button&quot;).click(function(evt) {
-				evt.preventDefault();
-				input = $(&quot;input&quot;).val();
-				request.onreadystatechange = handler;
-				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts?numberOfWords=&quot; + input);
-                                request.setRequestHeader("apikey", "API nyckel Här");
-				request.send();
-			});
-		});
+    &lt;script&gt;
+        let input = 0;
 
-	&lt;/script&gt;
+        $(&quot;.btn&quot;).click(function(evt) {
+            evt.preventDefault();
+            input = $(&quot;#in&quot;).val();
+            fetch('http://localhost:62818/api/loremtexts?numberOfWords=' + input, {
+                    method: 'get',
+                    headers: new Headers({
+                        'apikey': ''
+                    })
+                })
+                .then(function(response) {
+                    if (response.status === 200 || response.status === 403) {
+                        return response.text().then(function(text) {
+
+                            $(&quot;#here&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + input + &quot;&lt;/td&gt;&lt;td&gt;&quot; + text + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+
+                        });
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
+
 &lt;/body&gt;
+
 &lt;/html&gt;
 </pre>
 <div id="link4"></div>
 <br /><br /><br />
 <h3>Lösning 4</h3>
 <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;title&gt;Övning 4&lt;/title&gt;
+	&lt;style type=&quot;text/css&quot;&gt;
+		th, td {
+			border: 1px solid lightblue;
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;form&gt;
+		&lt;input type=&quot;text&quot;&gt;
+
+    &lt;button class=&quot;btn&quot;&gt;Ladda data&lt;/button&gt;
+	&lt;/form&gt;
+   	&lt;table id=&quot;here&quot;&gt;
+		&lt;tr&gt;&lt;th&gt;responseText&lt;/th&gt;&lt;/tr&gt;
+	&lt;/table&gt;
+&lt;img src=&quot;http://i.imgur.com/yM5pI7W.gif&quot; /&gt;
+           &lt;script&gt;
+            $(&quot;img&quot;).hide();
+
+            $(&quot;.btn&quot;).click(function (evt) {
+                evt.preventDefault();
+                $(&quot;img&quot;).show();
+                $(&quot;button&quot;).prop('disabled', true);
+                $(&quot;input&quot;).prop('disabled', true);
+
+
+                fetch('http://localhost:62818/api/loremtexts/slow', {
+                    method: 'get',
+                    headers: new Headers({
+                        'apikey': ''
+                    })
+                })
+                    .then(function (response) {
+                        if (response.status === 200 || response.status === 403) {
+                            return response.text().then(function (text) {
+                                $(&quot;#here&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + text + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+
+                                $(&quot;img&quot;).hide();
+                                $(&quot;button&quot;).prop('disabled', false);
+                                $(&quot;input&quot;).prop('disabled', false);
+
+                            });
+                        }
+                    })
+                    .catch(function (err) {
+                        console.log('Fetch Error :-S', err);
+                    });
+            });
+        &lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;
+
 </pre>
 <div id="link5"></div>
 <br /><br /><br />
 <h3>Lösning 5</h3>
 <pre>
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
 &lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;title&gt;Öva AJAX texter 5&lt;/title&gt;
-	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;title&gt;&Ouml;vning 5&lt;/title&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+        th,
+        td {
+            border: 1px solid lightblue;
+        }
+    &lt;/style&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
-	&lt;button&gt;Ladda data&lt;/button&gt;
-	&lt;ul id=&quot;ul&quot;&gt;&lt;/ul&gt;
-        &lt;div id="here">&lt;/div>
 
-	&lt;script type=&quot;text/javascript&quot;&gt;
+    &lt;button class=&quot;btn&quot;&gt;Ladda data&lt;/button&gt;
 
-		var request = new XMLHttpRequest();
-		var handler = function() {
-			if(request.readyState===4 &amp;&amp; request.status===200)
-			{
-				var arr = request.responseText.split(&quot;,&quot;);
-				console.log(arr);
-				for(i in arr)
-					$("#ul").append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
-                         }
+    &lt;ul id=&quot;here&quot;&gt;&lt;/ul&gt;
+    &lt;script&gt;
+        $(&quot;.btn&quot;).click(function(evt) {
+            evt.preventDefault();
 
-                    else if (request.status === 403 && request.readyState === 4) {
-                            $("#here").append("&lt;p>" + request.responseText + "&lt;/p>");
-                
-			}
-		}
+            fetch('http://localhost:62818/api/loremtexts/comma', {
+                    method: 'get',
+                    headers: new Headers({
+                        'apikey': ''
+                    })
+                })
+                .then(function(response) {
+                    if (response.status === 200 || response.status === 403) {
+                        return response.text().then(function(text) {
+                            let arr = text.split(&quot;,&quot;);
+                            for (i in arr)
+                                $(&quot;#here&quot;).append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
 
-		$(document).ready(function() {
-			$(&quot;button&quot;).click(function() {
-				request.onreadystatechange = handler;
-				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts/comma&quot;);
-                                request.setRequestHeader("apikey", "API nyckel Här");
-				request.send();
-			});
-		});
+                        });
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
 
-	&lt;/script&gt;
 &lt;/body&gt;
+
 &lt;/html&gt;
 </pre>
 <div id="link6"></div>
@@ -214,65 +302,69 @@
 <h3>Lösning 6</h3>
 <pre>
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
 &lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;title&gt;Öva AJAX texter 6&lt;/title&gt;
-	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script type=&quot;text/javascript&quot;&gt;
-		
-		var handler = function() {
-                 if (request.status === 403 && request.readyState === 4) {
-                    $("#here").append("&lt;p>" + request.responseText + "&lt;/p>");
-                }
-			else if(request.readyState===4 &amp;&amp; request.status===200)
-			{
-				var arr = request.responseText.split(&quot;*&quot;);
-				console.log(arr);
-				$(&quot;h1&quot;).html(arr[0]);
-				$(&quot;em&quot;).html(arr[1]);
-				$(&quot;p&quot;).html(arr[2]);
-				$(&quot;img&quot;).attr(&quot;src&quot;, arr[3]);
-			}
-		}
-		var request = new XMLHttpRequest();
-		request.onreadystatechange = handler;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-		var sendRequest = function(a) {
-			request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/loremtexts/animals?animalid=&quot; + a);
-                        request.setRequestHeader("apikey", "API nyckel Här");
-			request.send();
-		}
+    &lt;title&gt;&Ouml;vning 6&lt;/title&gt;
 
-		var animal = 1;
-
-		$(document).ready(function() {
-			$(&quot;#prev&quot;).click(function() {
-				animal--;
-				if(animal &lt; 1)
-					animal = 5;
-				sendRequest(animal);
-			});
-			$(&quot;#next&quot;).click(function() {
-				animal++;
-				if(animal &gt; 5)
-					animal = 1;
-				sendRequest(animal);
-			});
-		});
-
-	&lt;/script&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
 
-        &lt;div id="here">&lt;/div>
-	&lt;button id=&quot;prev&quot;&gt;Prev&lt;/button&gt; &lt;button id=&quot;next&quot;&gt;Next&lt;/button&gt;
-	&lt;h1&gt;no data loaded&lt;/h1&gt;
-	&lt;em&gt;no data loaded&lt;/em&gt;
-	&lt;p&gt;no data loaded&lt;/p&gt;
-	&lt;img src=&quot;#&quot;&gt;
-  
+    &lt;button class=&quot;btn&quot; id=&quot;prev&quot;&gt;Prev&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; id=&quot;next&quot;&gt;Next&lt;/button&gt;
+    &lt;h1&gt;no data loaded&lt;/h1&gt;
+    &lt;em&gt;no data loaded&lt;/em&gt;
+    &lt;p id=&quot;p&quot;&gt;no data loaded&lt;/p&gt;
+    &lt;img src=&quot;#&quot;&gt;
+    &lt;script&gt;
+        let sendRequest = function(a) {
+            fetch('http://localhost:62818/api/loremtexts/animals?animalid=' + a, {
+                    method: 'get',
+                    headers: new Headers({
+                        'apikey': ''
+                    })
+                })
+                .then(function(response) {
+                    console.log(a);
+                    if (response.status === 200 || response.status === 403) {
+                        return response.text().then(function(text) {
+                            let arr = text.split(&quot;*&quot;);
+                            $(&quot;h1&quot;).html(arr[0]);
+                            $(&quot;em&quot;).html(arr[1]);
+                            $(&quot;#p&quot;).html(arr[2]);
+                            $(&quot;img&quot;).attr(&quot;src&quot;, arr[3]);
+
+                        });
+                    }
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        };
+        let animal = 1;
+
+        $(&quot;#prev&quot;).click(function() {
+            animal--;
+            if (animal &lt; 1)
+                animal = 5;
+            sendRequest(animal);
+        });
+        $(&quot;#next&quot;).click(function() {
+            animal++;
+            if (animal &gt; 5)
+                animal = 1;
+            sendRequest(animal);
+        });
+    &lt;/script&gt;
+
 &lt;/body&gt;
+
 &lt;/html&gt;
 </pre>
 

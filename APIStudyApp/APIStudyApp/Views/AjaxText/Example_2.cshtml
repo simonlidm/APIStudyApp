@@ -14,24 +14,24 @@
             innan men vi lägger nu till svaret som ett list item i en oordnad lista.
         </p>
         <div>
-            @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link"})
+            @Html.ActionLink("Tillbaka till övningarna", "Index", new { area = "" }, new { @class = "link" })
         </div>
         <br /><br />
 
 
         <!--Under här skrivs övningen-->
-        
+
         <style>
-                      /* din css här, tänk på att använda klasser och id för att
+            /* din css här, tänk på att använda klasser och id för att
                 inte krocka med annan css.
             */
         </style>
 
 
         <!--html här-->
-        <div id="here"></div>
+        <div id="here">
 
-
+        </div>
 
         <script>
 
@@ -42,14 +42,8 @@
                 })
             })
                 .then(function (response) {
-                    if (response.status === 200) {
+                    if (response.status === 200 || response.status === 403) {
                         return response.text().then(function (text) {
-
-                            $("#here").append("<p>" + text + "</p>");
-
-                        });
-                    } else if (response.status === 403) {
-                        response.text().then(function (text) {
 
                             $("#here").append("<p>" + text + "</p>");
 
@@ -71,7 +65,7 @@
         <h3>Tips</h3>
         <ol>
             <li>
-                Lägg till en tom ul-tagg i bodyn som du sedan kan lägga till li-taggar med request.responseText i
+                Lägg till en tom ul-tagg i bodyn som du sedan kan lägga till li-taggar med response.text() i
             </li>
             <li>
                 Du vill ändra request.open från att ha url:en i förra uppgiften till att ha <em>http://localhost:62818/api/loremtexts?numberOfWords=10</em>

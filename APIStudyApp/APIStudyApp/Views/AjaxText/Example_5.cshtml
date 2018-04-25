@@ -23,46 +23,40 @@
         <br /><br />
         <!--Under här skrivs övningen-->
 
-    <style>
-        /* din css här, tänk på att använda klasser och id för att
-            inte krocka med annan css.
-        */
-    </style>
+     <style>
+            /* din css här, tänk på att använda klasser och id för att
+                inte krocka med annan css.
+            */
+        </style>
 
 
-    <!--html här-->
-    <div id="here"></div>
+        <!--html här-->
+        <div id="here">
 
+        </div>
 
+        <script>
+            
+                fetch('http://localhost:62818/api/loremtexts', {
+                    method: 'get',
+                    headers: new Headers({
+                        'apikey': ''
+                    })
+                })
+                    .then(function (response) {
+                        if (response.status === 200 || response.status === 403) {
+                            return response.text().then(function (text) {
 
-    <script>
+                                $("#here").append("<p>" + text + "</p>");
 
-        fetch('http://localhost:62818/api/loremtexts', {
-            method: 'get',
-            headers: new Headers({
-                'apikey': ''
-            })
-        })
-            .then(function (response) {
-                if (response.status === 200) {
-                    return response.text().then(function (text) {
-
-                        $("#here").append("<p>" + text + "</p>");
-
+                            });
+                        } 
+                    })
+                    .catch(function (err) {
+                        console.log('Fetch Error :-S', err);
                     });
-                } else if (response.status === 403) {
-                    response.text().then(function (text) {
-
-                        $("#here").append("<p>" + text + "</p>");
-
-                    });
-                }
-            })
-            .catch(function (err) {
-                console.log('Fetch Error :-S', err);
-            });
-
-    </script>
+            
+        </script>
     
 
         <!--Slut på kod-->
