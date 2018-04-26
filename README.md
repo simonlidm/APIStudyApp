@@ -63,6 +63,7 @@ Back-end developers should try to create similar APIs as seen in the WebApi Core
 + ASP.NET Core WebApi
 + Entity Framework
 + Entity Framework Core
++ LinQ to SQL
 + Bootstrap
 + HTML
 + CSS
