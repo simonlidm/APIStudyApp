@@ -69,6 +69,7 @@ Back-end developers should try to create similar APIs as seen in the WebApi Core
 + CSS
 + Razor
 + JQuery
++ Fetch API
 
 ## Release History
 
