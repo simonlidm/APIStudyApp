@@ -33,9 +33,9 @@
 
             fetch('http://localhost:62818/api/loremtexts', {
                 method: 'get',
-                headers: new Headers({
+                headers: {
                     'apikey': ''
-                })
+                },
             })
                 .then(function (response) {
                     if (response.status === 200) {

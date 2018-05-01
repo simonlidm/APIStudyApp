@@ -32,11 +32,11 @@
 
     &lt;script&gt;
         $(&quot;.btn&quot;).click(function() {
-            fetch('http://localhost:60658/api/loremtexts', {
+            fetch('http://localhost:62818/api/loremtexts', {
                     method: 'get',
-                    headers: new Headers({
+                    headers: {
                         'apikey': ''
-                    })
+                    },
                 })
                 .then(function(response) {
                     if (response.status === 200 || response.status === 403) {
@@ -81,9 +81,9 @@
         $(&quot;.btn&quot;).click(function() {
             fetch('http://localhost:62818/api/loremtexts?numberOfWords=10', {
                     method: 'get',
-                    headers: new Headers({
+                   headers: {
                         'apikey': ''
-                    })
+                    },
                 })
                 .then(function(response) {
                     if (response.status === 200 || response.status === 403) {
@@ -118,7 +118,7 @@
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
     &lt;title&gt;Övning 3&lt;/title&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
+    &lt;style &gt;
         th,
         td {
             border: 1px solid lightblue;
@@ -147,9 +147,9 @@
             input = $(&quot;#in&quot;).val();
             fetch('http://localhost:62818/api/loremtexts?numberOfWords=' + input, {
                     method: 'get',
-                    headers: new Headers({
+                    headers: {
                         'apikey': ''
-                    })
+                    },
                 })
                 .then(function(response) {
                     if (response.status === 200 || response.status === 403) {
@@ -184,7 +184,7 @@
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
     &lt;title&gt;Övning 4&lt;/title&gt;
-	&lt;style type=&quot;text/css&quot;&gt;
+	&lt;style&gt;
 		th, td {
 			border: 1px solid lightblue;
 		}
@@ -200,7 +200,7 @@
    	&lt;table id=&quot;here&quot;&gt;
 		&lt;tr&gt;&lt;th&gt;responseText&lt;/th&gt;&lt;/tr&gt;
 	&lt;/table&gt;
-&lt;img src=&quot;http://i.imgur.com/yM5pI7W.gif&quot; /&gt;
+&lt;img src=&quot;http://i.imgur.com/yM5pI7W.gif&quot; alt="Loading .gif" /&gt;
            &lt;script&gt;
             $(&quot;img&quot;).hide();
 
@@ -213,9 +213,9 @@
 
                 fetch('http://localhost:62818/api/loremtexts/slow', {
                     method: 'get',
-                    headers: new Headers({
+                   headers: {
                         'apikey': ''
-                    })
+                    },
                 })
                     .then(function (response) {
                         if (response.status === 200 || response.status === 403) {
@@ -254,7 +254,7 @@
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
     &lt;title&gt;&Ouml;vning 5&lt;/title&gt;
-    &lt;style type=&quot;text/css&quot;&gt;
+    &lt;style&gt;
         th,
         td {
             border: 1px solid lightblue;
@@ -273,15 +273,15 @@
 
             fetch('http://localhost:62818/api/loremtexts/comma', {
                     method: 'get',
-                    headers: new Headers({
+                   headers: {
                         'apikey': ''
-                    })
+                    },
                 })
                 .then(function(response) {
                     if (response.status === 200 || response.status === 403) {
                         return response.text().then(function(text) {
                             let arr = text.split(&quot;,&quot;);
-                            for (i in arr)
+                            for (let i in arr)
                                 $(&quot;#here&quot;).append(&quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;);
 
                         });
@@ -321,14 +321,14 @@
     &lt;h1&gt;no data loaded&lt;/h1&gt;
     &lt;em&gt;no data loaded&lt;/em&gt;
     &lt;p id=&quot;p&quot;&gt;no data loaded&lt;/p&gt;
-    &lt;img src=&quot;#&quot;&gt;
+    &lt;img src=&quot;#&quot; alt="Animal Picture"&gt;
     &lt;script&gt;
         let sendRequest = function(a) {
             fetch('http://localhost:62818/api/loremtexts/animals?animalid=' + a, {
                     method: 'get',
-                    headers: new Headers({
+                   headers: {
                         'apikey': ''
-                    })
+                    },
                 })
                 .then(function(response) {
                     console.log(a);

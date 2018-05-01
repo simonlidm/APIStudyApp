@@ -37,12 +37,12 @@
 
         <script>
             
-                fetch('http://localhost:62818/api/loremtexts', {
-                    method: 'get',
-                    headers: new Headers({
-                        'apikey': ''
-                    })
-                })
+            fetch('http://localhost:62818/api/loremtexts', {
+                method: 'get',
+                headers: {
+                    'apikey': ''
+                },
+            })
                     .then(function (response) {
                         if (response.status === 200 || response.status === 403) {
                             return response.text().then(function (text) {
