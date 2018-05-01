@@ -77,6 +77,8 @@ Back-end developers should try to create similar APIs as seen in the WebApi Core
    * Ready to Use
 * 1.1.0
     * WebApi Core
+* 1.2.0
+    * Work In Progress
 
 ## Meta
 
