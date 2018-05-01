@@ -13,7 +13,7 @@
 <pre>
 &lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
-
+&lt;head>
 	&lt;meta charset=&quot;utf-8&quot;&gt;
 	&lt;title&gt;&Ouml;va AJAX JSON 1&lt;/title&gt;
     &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
@@ -81,52 +81,100 @@
 <h3>Lösning 2</h3>
 <pre>
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;title&gt;Öva AJAX JSON 2&lt;/title&gt;
-	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script type=&quot;text/javascript&quot;&gt;
-		$(document).ready(function() {
-			$(&quot;button&quot;).click(function() {
-				var x = $(this).text();
-				var request = new XMLHttpRequest();
-				request.onreadystatechange = function() {
-					if(request.readyState===4 &amp;&amp; request.status===200)
-					{
-						var arr = JSON.parse(request.responseText);
-						var list = &quot;&quot;;
-						for(var i in arr)
-							list += &quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;;
-						var thisUl = &quot;#u&quot; + x;
-						$(thisUl).html(list);
-					}
-                                        else if (request.status === 403 && request.readyState === 4) {
-                                            $("#here").append(&quot;&lt;p>" + request.responseText + &quot;&lt;/p>");
-                                             }
-				}
-				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/jsonapi/lorem_json_array?numberOfWords=&quot; + x);
-                                request.setRequestHeader("apikey", "Nyckel HÄR");
-				request.send();
-			});
-		});
-	&lt;/script&gt;
-	&lt;style type=&quot;text/css&quot;&gt;
-		td {
-			border: 1px solid lightblue;
-		}
-		button {
-			width: 140px;
-		}
-	&lt;/style&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head>
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;&Ouml;va AJAX JSON 2&lt;/title&gt;
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;style&gt;
+    td {
+        border: 1px solid lightblue;
+    }
+    button {
+        width: 140px;
+    }
+&lt;/style&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
-	&lt;table&gt;
-		&lt;tr&gt;&lt;td&gt;&lt;button&gt;1&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;2&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;3&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;4&lt;/button&gt;&lt;/td&gt;&lt;td&gt;&lt;button&gt;5&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
-		&lt;tr&gt;&lt;td&gt;&lt;ul id=&quot;u1&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u2&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u3&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u4&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;td&gt;&lt;ul id=&quot;u5&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&lt;/tr&gt;
-	&lt;/table&gt;
-    &lt;div id="here">&lt;/div>
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;button&gt;1&lt;/button&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;button&gt;2&lt;/button&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;button&gt;3&lt;/button&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;button&gt;4&lt;/button&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;button&gt;5&lt;/button&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;ul id=&quot;u1&quot;&gt;&lt;/ul&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;ul id=&quot;u2&quot;&gt;&lt;/ul&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;ul id=&quot;u3&quot;&gt;&lt;/ul&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;ul id=&quot;u4&quot;&gt;&lt;/ul&gt;
+            &lt;/td&gt;
+            &lt;td&gt;
+                &lt;ul id=&quot;u5&quot;&gt;&lt;/ul&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;script&gt;
+        $(&quot;button&quot;).addClass('btn').click(function() {
+
+            let x = $(this).text();
+            fetch(&quot;http://localhost:62818/api/jsonapi/lorem_json_array?numberOfWords=&quot; + x, {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': ''
+                    },
+                })
+                .then(function(response) {
+                    if (response.status === 200) {
+
+                        return response.json().then(function(json) {
+                            let arr = json;
+                            let list = &quot;&quot;;
+
+                            for (let i in arr)
+                                list += &quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;;
+
+                            let thisUl = &quot;#u&quot; + x;
+                            $(thisUl).html(list);
+                        });
+                    } else if (response.status === 403) {
+                        return response.text().then(function(text) {
+
+                            $(&quot;table&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + x + &quot;&lt;/td&gt;&lt;td&gt;&quot; + text + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+
+                        });
+                    }
+
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
 &lt;/body&gt;
+
 &lt;/html&gt;
 </pre>
 <div id="link3"></div>
@@ -134,63 +182,78 @@
 <h3>Lösning 2 - Utmaning</h3>
 <pre>
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;title&gt;Öva AJAX JSON 2&lt;/title&gt;
-	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script type=&quot;text/javascript&quot;&gt;
-		// change this variable to the number of buttons you want!
-		var numButtons = 5;
-		$(document).ready(function() {
-			var buttons = &quot;&lt;tr&gt;&quot;;
-			var uls = &quot;&lt;tr&gt;&quot;;
-			for (var i = 1; i &lt;= numButtons; i++)
-			{
-				buttons += &quot;&lt;td&gt;&lt;button&gt;&quot;+i+&quot;&lt;/button&gt;&lt;/td&gt;&quot;;
-				uls += &quot;&lt;td&gt;&lt;ul id=u&quot;+i+&quot;&gt;&lt;/ul&gt;&lt;/td&gt;&quot;;
-			};
-			buttons += &quot;&lt;/tr&gt;&quot;;
-			uls += &quot;&lt;/tr&gt;&quot;;
-			$(&quot;table&quot;).append(buttons + uls);
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;&Ouml;va AJAX JSON 1&lt;/title&gt;
+&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
 
-			$(&quot;button&quot;).click(function() {
-				var x = $(this).text();
-				var request = new XMLHttpRequest();
-				request.onreadystatechange = function() {
-					if(request.readyState===4 &amp;&amp; request.status===200)
-					{
-						var arr = JSON.parse(request.responseText);
-						var list = &quot;&quot;;
-						for(var i in arr)
-							list += &quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;;
-						var thisUl = &quot;#u&quot; + x;
-						$(thisUl).html(list);
-					}
-                                     else if (request.status === 403 && request.readyState === 4) {
-                                            $("#here").append(&quot;&lt;p>" + request.responseText + &quot;&lt;/p>");
-                                             }
-				}
-				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/jsonapi/lorem_json_array?numberOfWords=&quot; + x);
-                                request.setRequestHeader("apikey", "Nyckel HÄR");
-				request.send();
-			});
-		});
-	&lt;/script&gt;
-	&lt;style type=&quot;text/css&quot;&gt;
-		td {
-			border: 1px solid lightblue;
-		}
-		button {
-			width: 140px;
-		}
-	&lt;/style&gt;
+&lt;style&gt;
+    td {
+        border: 1px solid lightblue;
+    }
+    button {
+        width: 140px;
+    }
+&lt;/style&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
-	&lt;table&gt;
-	&lt;/table&gt;
-    &lt;div id="here">&lt;/div>
+    &lt;table&gt;
+     
+    &lt;/table&gt;
+    &lt;script&gt;
+        // change this variable to the number of buttons you want!
+        let numButtons = 5;
+        let buttons = &quot;&lt;tr&gt;&quot;;
+        let uls = &quot;&lt;tr&gt;&quot;;
+        for (let i = 1; i &lt;= numButtons; i++) {
+            buttons += &quot;&lt;td&gt;&lt;button&gt;&quot; + i + &quot;&lt;/button&gt;&lt;/td&gt;&quot;;
+            uls += &quot;&lt;td&gt;&lt;ul id=u&quot; + i + &quot;&gt;&lt;/ul&gt;&lt;/td&gt;&quot;;
+        }
+        buttons += &quot;&lt;/tr&gt;&quot;;
+        uls += &quot;&lt;/tr&gt;&quot;;
+        $(&quot;table&quot;).append(buttons + uls);
+
+        $(&quot;button&quot;).addClass('btn').click(function() {
+
+            let x = $(this).text();
+            fetch(&quot;http://localhost:62818/api/jsonapi/lorem_json_array?numberOfWords=&quot; + x, {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': ''
+                    },
+                })
+                .then(function(response) {
+                    if (response.status === 200) {
+
+                        return response.json().then(function(json) {
+                            let arr = json;
+                            let list = &quot;&quot;;
+
+                            for (let i in arr)
+                                list += &quot;&lt;li&gt;&quot; + arr[i] + &quot;&lt;/li&gt;&quot;;
+
+                            let thisUl = &quot;#u&quot; + x;
+                            $(thisUl).html(list);
+                        });
+                    } else if (response.status === 403) {
+                        return response.text().then(function(text) {
+
+                            $(&quot;table&quot;).append(&quot;&lt;tr&gt;&lt;td&gt;&quot; + x + &quot;&lt;/td&gt;&lt;td&gt;&quot; + text + &quot;&lt;/td&gt;&lt;/tr&gt;&quot;);
+
+                        });
+                    }
+
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
 &lt;/body&gt;
+
 &lt;/html&gt;
 </pre>
 <div id="link4"></div>
@@ -216,52 +279,67 @@
 </p>
 <pre>
 &lt;!DOCTYPE html&gt;
-&lt;html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
 &lt;head&gt;
-	&lt;meta charset=&quot;utf-8&quot;&gt;
-	&lt;title&gt;Öva AJAX JSON 6&lt;/title&gt;
-	&lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-	&lt;script type=&quot;text/javascript&quot;&gt;
-	$(document).ready(function() {
-		$(&quot;#blog&quot;).click(function(e) {
-			e.preventDefault();
-			var request = new XMLHttpRequest();
-			request.onreadystatechange = function() {
-				if(request.readyState===4 &amp;&amp; request.status===200)
-				{
-					var blogposts = JSON.parse(request.responseText).blog_posts;
-					for(var i in blogposts)
-					{
-						$(&quot;#main&quot;).append(&quot;&lt;div&gt;&quot; + 
-							&quot;&lt;h1&gt;&quot; + blogposts[i].title + &quot;&lt;/h1&gt;&quot; + 
-							&quot;&lt;em&gt;&quot; + blogposts[i].date + &quot;&lt;/em&gt;&quot; + 
-							&quot;&lt;p&gt;&quot; + blogposts[i].text + &quot;&lt;/p&gt;&quot; + 
-							&quot;&lt;/div&gt;&quot;);
-					}
-				}
-                                 else if (request.status === 403 && request.readyState === 4) {
-                                          $("#here").append(&quot;&lt;p>" + request.responseText + &quot;&lt;/p>");
-                                           }
-			};
-				request.open(&quot;GET&quot;, &quot;http://localhost:62818/api/jsonapi/simple_json&quot;);
-                                request.setRequestHeader("apikey", "Nyckel HÄR");
-			        request.send();
-		});
-	});
-	&lt;/script&gt;
-	&lt;style type=&quot;text/css&quot;&gt;
-	div div {
-		width: 50%;
-		border: 2px solid blue;
-		margin-bottom: 5px;
-	}
-	&lt;/style&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;&Ouml;va AJAX JSON 6&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;style&gt;
+        #main div {
+            width: 50%;
+            border: 2px solid blue;
+            margin-bottom: 5px;
+        }
+    &lt;/style&gt;
 &lt;/head&gt;
+
 &lt;body&gt;
-&lt;a href=&quot;#&quot; id=&quot;blog&quot;&gt;Blog&lt;/a&gt;
-&lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
-&lt;div id="here">&lt;/div>
+    &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;Blog&lt;/a&gt;
+    &lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+
+        $(&quot;.link&quot;).click(function(e) {
+
+            e.preventDefault();
+            fetch(&quot;http://localhost:62818/api/jsonapi/simple_json&quot;, {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': ''
+                    },
+                })
+                .then(function(response) {
+                    if (response.status === 200) {
+
+                        return response.json().then(function(json) {
+                            let blogposts = json.blog_posts;
+
+                            for (var i in blogposts) {
+                                $(&quot;#main&quot;).append(&quot;&lt;div&gt;&quot; +
+                                    &quot;&lt;h1&gt;&quot; + blogposts[i].title + &quot;&lt;/h1&gt;&quot; +
+                                    &quot;&lt;em&gt;&quot; + blogposts[i].date + &quot;&lt;/em&gt;&quot; +
+                                    &quot;&lt;p&gt;&quot; + blogposts[i].text + &quot;&lt;/p&gt;&quot; +
+                                    &quot;&lt;/div&gt;&quot;);
+                            }
+                        });
+                    } else if (response.status === 403) {
+                        return response.text().then(function(text) {
+
+                            $(&quot;#main&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
+
+                        });
+                    }
+
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
 &lt;/body&gt;
+
 &lt;/html&gt;
 </pre>
 <div id="link8"></div>
