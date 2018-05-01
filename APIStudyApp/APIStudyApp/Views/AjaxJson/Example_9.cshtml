@@ -30,29 +30,38 @@
 
 
 <!--html här-->
-<button>Ladda JSON</button>
-<ul></ul>
+<button class="btn">Ladda JSON</button>
+<ul id="here"></ul>
 
-<script type="text/javascript">
 
-    var request = new XMLHttpRequest();
+<script>
+    $(".btn").click(function () {
+        fetch("http://localhost:62818/api/jsonapi/lorem_json_array", {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': ''
+            },
+        })
+            .then(function (response) {
+                if (response.status === 200) {
+                    return response.json().then(function (json) {
+                        let arr = json;
+                        for (let i in arr) {
+                            $("#here").append("<li>" + arr[i] + "</li>");
+                        }
+                    });
 
-    request.onreadystatechange = function () {
 
-        if ((request.readyState === 4) && (request.status === 200)) {
-            var arr = JSON.parse(request.responseText);
-            for (var i in arr) {
-                $("ul").append("<li>" + arr[i] + "</li>");
-            }
-        }
-    }
-
-    $(document).ready(function () {
-        $("button").click(function () {
-            //EDIT  request.open('GET', 'http://mardby.se/AJK15G/lorem_json_array.php');
-            request.send();
-        });
+                }
+                else if (response.status === 403) {
+                    return response.text().then(function (text) {
+                        $("#here").append("<li>" + text + "</li>");
+                    });
+                }
+            })
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
     });
-
 </script>
-
