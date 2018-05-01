@@ -363,7 +363,6 @@
     <Content Include="Views\AjaxText\Example_4.cshtml" />
     <Content Include="Views\AjaxText\Example_5.cshtml" />
     <Content Include="Views\AjaxText\Example_6.cshtml" />
-    <Content Include="Views\Home\AjaxJsonTips.cshtml" />
     <Content Include="Views\Home\AjaxTextFacit.cshtml" />
     <Content Include="Views\Home\AjaxJsonFacit.cshtml" />
     <Content Include="Views\AjaxJson\Example_1.cshtml" />
