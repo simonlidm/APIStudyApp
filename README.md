@@ -50,7 +50,8 @@ Back-end developers should try to create similar APIs as seen in the WebApi Core
    5. API Key is needed and will be given by your teacher.
    6. Guide for usage of the app [GUIDE VIDEO] (10min)
    7. Guide for usage of WebApi Core [GUIDE VIDEO WEBAPICORE] (5min)
-
+      1. You might need to start project by Right Click on WebApiCore > Debug > Start new instance.
+         <img src="https://www.softwarekey.com/help/plus5/Content/Resources/Images/ScreenShot/PLUSNative_CloudControlled_Debug.png" width="450" height="250"/>
 
 ## Technologies and Methods
 
