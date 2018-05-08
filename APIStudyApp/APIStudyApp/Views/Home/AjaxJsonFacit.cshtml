@@ -265,11 +265,136 @@
 <br /><br /><br />
 <h3>Lösning 4</h3>
 <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;&Ouml;va AJAX JSON 4&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;style&gt;
+        #main div {
+            width: 50%;
+            border: 2px solid blue;
+            margin-bottom: 5px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;About&lt;/a&gt;
+    &lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+
+        $(&quot;.link&quot;).click(function(e) {
+
+            e.preventDefault();
+            fetch(&quot;http://localhost:62818/api/jsonapi/simple_json&quot;, {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': ''
+                    },
+                })
+                .then(function(response) {
+                    if (response.status === 200) {
+
+                        return response.json().then(function(json) {
+                            let blogposts = json;
+                           
+                                $(&quot;#main&quot;).append(                             
+                                    &quot;&lt;p&gt;&quot; + blogposts.About + &quot;&lt;/p&gt;&quot;
+                                   );
+                            
+                        });
+                    } else if (response.status === 403) {
+                        return response.text().then(function(text) {
+
+                            $(&quot;#main&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
+
+                        });
+                    }
+
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
 </pre>
 <div id="link6"></div>
 <br /><br /><br />
 <h3>Lösning 5</h3>
 <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;&Ouml;va AJAX JSON 5&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;style&gt;
+        #main div {
+            width: 50%;
+            border: 2px solid blue;
+            margin-bottom: 5px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;a href=&quot;#&quot; id=&quot;link1&quot;&gt;About&lt;/a&gt;
+    &lt;a href=&quot;#&quot; id=&quot;link2&quot;&gt;Author&lt;/a&gt;
+    &lt;div id=&quot;main&quot;&gt;&lt;/div&gt;
+    &lt;script&gt;
+        fetch(&quot;http://localhost:62818/api/jsonapi/simple_json&quot;, {
+                method: 'get',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': ''
+                },
+            })
+            .then(function(response) {
+                if (response.status === 200) {
+
+                    return response.json().then(function(json) {
+                        let blogposts = json;
+                        $(&quot;#link1&quot;).addClass(&quot;link&quot;).click(function(e) {
+
+                            e.preventDefault();
+                            $(&quot;#main&quot;).append(
+                                &quot;&lt;p&gt;&quot; + blogposts.About + &quot;&lt;/p&gt;&quot;
+                            )
+                        })
+                        $(&quot;#link2&quot;).addClass(&quot;link&quot;).click(function(e) {
+
+                            e.preventDefault();
+                            $(&quot;#main&quot;).append(
+                                &quot;&lt;p&gt;&quot; + blogposts.Author + &quot;&lt;/p&gt;&quot;
+                            );
+                        })
+                    });
+                } else if (response.status === 403) {
+                    return response.text().then(function(text) {
+
+                        $(&quot;#main&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
+
+                    });
+                }
+
+            })
+            .catch(function(err) {
+                console.log('Fetch Error :-S', err);
+            });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
 </pre>
 <div id="link7"></div>
 <br /><br /><br />
@@ -346,11 +471,206 @@
 <br /><br /><br />
 <h3>Lösning 7</h3>
 <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;&Ouml;va AJAX JSON 7&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;style&gt;
+        #main div {
+            width: 100%;
+            margin-bottom: 50px;
+            display: inline-block;
+        }
+        
+        .tags &gt; li {
+            background-color: #4CAF50;
+            border-radius: 25px;
+            list-style-type: none;
+            float: left;
+            text-align: center;
+            position: relative;
+            list-style-type:none;
+            background-color: aquamarine;
+            width: 20%;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;a href=&quot;#&quot; class=&quot;link&quot;&gt;Blog&lt;/a&gt;
+
+    &lt;div id=&quot;main&quot;&gt;
+
+    &lt;/div&gt;
+    &lt;script&gt;
+        $(&quot;.link&quot;).click(function(e) {
+
+            e.preventDefault();
+            fetch(&quot;http://localhost:62818/api/jsonapi/simple_json&quot;, {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': ''
+                    },
+                })
+                .then(function(response) {
+                    if (response.status === 200) {
+
+                        return response.json().then(function(json) {
+                            let blogposts = json.blog_posts;
+                     
+
+                            for (let i in blogposts) {
+                                $(&quot;#main&quot;).append('&lt;div&gt;' +
+                                    &quot;&lt;h1&gt;&quot; + blogposts[i].title + &quot;&lt;/h1&gt;&quot; +
+                                    &quot;&lt;em&gt;&quot; + blogposts[i].date + &quot;&lt;/em&gt;&quot; +
+                                    &quot;&lt;p&gt;&quot; + blogposts[i].text + &quot;&lt;/p&gt;&quot; +
+                                    '&lt;ul id=&quot;tags'+i+'&quot; class=&quot;tags&quot;&gt;&lt;/ul&gt;'+
+                                    &quot;&lt;/div&gt;&quot;
+                                );
+                                for (let j = 0; j &lt; blogposts[i].tags.length; j++) {                                   
+
+                                    $(&quot;#tags&quot;+i).append(
+                                        '&lt;li&gt;' + blogposts[i].tags[j].TagName + &quot;&lt;/li&gt;&quot;
+                                    );
+                                }
+
+                            }
+                        });
+                    } else if (response.status === 403) {
+                        return response.text().then(function(text) {
+
+                            $(&quot;#main&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
+
+                        });
+                    }
+
+                })
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
+        });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
 </pre>
 <div id="link9"></div>
 <br /><br /><br />
 <h3>Lösning 8</h3>
 <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;&Ouml;va AJAX JSON 8&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;style&gt;
+        .btn {
+            white-space: pre;
+            text-align: center;
+            width:100%;
+            display: inline-block;
+        }
+    
+        #main &gt; div div {
+            display: none;       
+        }
+    
+        #main &gt; div &gt; div p {
+            width: 50%;
+        }
+    
+        .tags &gt; li{
+            float: left;
+            border-radius: 25px;
+            text-align: center;
+            width:20%; 
+            list-style-type:none;
+            background-color: aquamarine;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+  
+
+    &lt;div id=&quot;main&quot;&gt;
+
+    &lt;/div&gt;
+    
+    &lt;script&gt;
+    
+        function toggle_visibility(i, id) {
+    
+            let e = document.getElementById(id);
+            if (e.style.display == 'block')
+                $('.div' + i).css('display', 'none');
+            else
+                $('.div' + i).css('display', 'block');
+        }
+    
+        fetch(&quot;http://localhost:62818/api/jsonapi/blog_json&quot;, {
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': ''
+            },
+        })
+            .then(function (response) {
+                if (response.status === 200) {
+    
+                    return response.json().then(function (json) {
+                        let blogposts = json.blog_posts;
+    
+                        let vis = &quot;&quot;;
+                        for (let i = 0; i &lt; blogposts.length; i++) {
+                            vis = &quot;'vis&quot; + i + &quot;'&quot;;
+                            $(&quot;#main&quot;).append('&lt;div&gt;' +
+                                '&lt;a class=&quot;btn btn-info&quot; href=&quot;#&quot; onclick=&quot;toggle_visibility(' + i + ',' + vis + ');return false;&quot;&gt;' + blogposts[i].title + &quot;&lt;/a&gt;&quot; + '&lt;div class=&quot;div' + i + '&quot; id=vis' + i + '&gt;' +
+                                '&lt;h4&gt;' + blogposts[i].date + &quot;&lt;/h4&gt;&quot; +
+                                '&lt;p&gt;' + blogposts[i].text + &quot;&lt;/p&gt;&quot; +
+                                '&lt;em&gt;' + blogposts[i].author + &quot;&lt;/em&gt;&quot; +
+                                '&lt;ul id=&quot;tags'+i+'&quot; class=&quot;tags&quot;&gt;&lt;/ul&gt;'+
+                                &quot;&lt;/div&gt;&quot; +
+                                &quot;&lt;/div&gt;&quot;
+                            );
+    
+                            for (let j = 0; j &lt; blogposts[i].tags.length; j++) {
+    
+                                $(&quot;#tags&quot;+i).append(
+                                   
+                                    '&lt;li&gt;' + blogposts[i].tags[j].TagName + &quot;&lt;/li&gt;&quot;
+                                );
+    
+                            }
+    
+                        }
+    
+                    });
+                } else if (response.status === 403) {
+                    return response.text().then(function (text) {
+    
+                        $(&quot;#main&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
+    
+                    });
+                }
+    
+            })
+            .catch(function (err) {
+                console.log('Fetch Error :-S', err);
+            });
+    &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+
 </pre>
 <div id="link10"></div>
 <br /><br /><br />
