@@ -676,6 +676,96 @@
 <br /><br /><br />
 <h3>Lösning 9</h3>
 <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot;&gt;
+    &lt;title&gt;&Ouml;va AJAX JSON 7&lt;/title&gt;
+    &lt;script src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js&quot;&gt;&lt;/script&gt;
+
+    &lt;style&gt;
+        .btn {
+            margin: auto;
+            display: block;
+        }
+        
+        #h2,
+        #p {
+            text-align: center;
+        }
+        
+        #img {
+            margin: auto;
+            display: none;
+            width: 50%;
+            height: 20%;
+            border-radius: 50%;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    &lt;button class=&quot;btn&quot; id=&quot;next&quot;&gt;Next&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; id=&quot;prev&quot;&gt;Prev&lt;/button&gt;
+    &lt;h2 id=&quot;h2&quot;&gt;&lt;/h2&gt;
+    &lt;p id=&quot;p&quot;&gt;&lt;/p&gt;
+    &lt;img id=&quot;img&quot; alt=&quot;Animal Picture&quot; /&gt;
+    &lt;script&gt;
+
+            let sendRequest = function (a) {
+        
+                fetch(&quot;http://localhost:62818/api/jsonapi/animals_json?animalid=&quot; + a, {
+                    method: 'get',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'apikey': 'Studentnyckel12'
+                    },
+                })
+                    .then(function (response) {
+                        if (response.status === 200) {
+        
+                            return response.json().then(function (json) {
+                                let animal = json[0].animal[0];
+        
+                                $(&quot;#h2&quot;).html(animal.Name);
+                                $(&quot;#p&quot;).html(animal.Description);
+        
+                                $(&quot;img&quot;).attr(&quot;src&quot;, animal.Url).css('display', 'block');
+        
+                            });
+                        } else if (response.status === 403) {
+                            return response.text().then(function (text) {
+        
+                                $(&quot;#main&quot;).append(&quot;&lt;p&gt;&quot; + text + &quot;&lt;/p&gt;&quot;);
+        
+                            });
+                        }
+        
+                    })
+                    .catch(function (err) {
+                        console.log('Fetch Error :-S', err);
+                    });
+            };
+            let animal = 1;
+        
+            $(&quot;#prev&quot;).click(function () {
+        
+                animal--;
+                if (animal &lt; 1)
+                    animal = 5;
+                sendRequest(animal);
+            });
+            $(&quot;#next&quot;).click(function () {
+                animal++;
+                if (animal &gt; 5)
+                    animal = 1;
+                sendRequest(animal);
+            });
+        &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
 </pre>
 <div id="link11"></div>
 <br /><br /><br />
