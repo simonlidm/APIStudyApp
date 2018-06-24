@@ -37,6 +37,7 @@ Please watch the videos in order to understand how to use this app. [GUIDE VIDEO
 
 ### Recommendation
 
+
 Front-end developers should either use the APIStudyApp project directly as seen in the video below or run the WebApiCore project and use own webdeveloper tools like Sublime, Atom etc. If you choose to use the latter dont forget to call GET requests to the WebApiCore project as seen in the guide video for WebApi Core [GUIDE VIDEO WEBAPICORE] (5min)
 
 Back-end developers should try to create similar APIs as seen in the WebApi Core/APIStudyApp project(without copying the code in controllers). Use Postman or Restlet to see the output from the GET requests in the APIs. You can use the already created API controllers as right answers.
